@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2014 NTT Corporation.
+ * Copyright(c) 2013 NTT Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,12 +18,12 @@ package com.example.session.domain.model;
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
  
-import org.springframework.security.crypto.codec.Base64;
 import org.springframework.util.SerializationUtils;
  
 public class Cart implements Serializable {
@@ -96,6 +96,6 @@ public class Cart implements Serializable {
 			signature = messageDigest.digest(serialized);
 		} catch (NoSuchAlgorithmException ignored) {
 		}
-		return new String(Base64.encode(signature));
+		return Base64.getEncoder().encodeToString(signature);
 	}
 }

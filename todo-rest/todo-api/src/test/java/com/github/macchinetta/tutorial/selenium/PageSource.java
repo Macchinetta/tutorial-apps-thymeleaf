@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2014 NTT Corporation.
+ * Copyright(c) 2013 NTT Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package com.github.macchinetta.tutorial.selenium;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.io.FileUtils;
@@ -69,7 +70,7 @@ public class PageSource {
 
         try {
             FileUtils.writeStringToFile(pageSourceFile, webDriver
-                    .getPageSource());
+                    .getPageSource(), StandardCharsets.UTF_8);
 
         } catch (IOException e) {
             logger.error(e.toString());

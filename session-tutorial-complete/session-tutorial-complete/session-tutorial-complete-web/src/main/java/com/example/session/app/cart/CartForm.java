@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2014 NTT Corporation.
+ * Copyright(c) 2013 NTT Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@ package com.example.session.app.cart;
 
 import java.util.Set;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotEmpty;
 
 public class CartForm {
 

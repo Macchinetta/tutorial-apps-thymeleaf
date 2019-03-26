@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2014 NTT Corporation.
+ * Copyright(c) 2013 NTT Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import org.hibernate.validator.constraints.Email;
+import javax.validation.constraints.Email;
 
 @Documented
 @Constraint(validatedBy = { DomainRestrictedEmailValidator.class })

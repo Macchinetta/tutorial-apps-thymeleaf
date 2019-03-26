@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2014 NTT Corporation.
+ * Copyright(c) 2013 NTT Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -565,7 +565,7 @@ public class SessionTutorialTest extends FunctionTestSupport {
         // check error message
         {
             assertThat(driver.findElement(By.id("removedItemsIds-errors"))
-                    .getText(), is("may not be empty"));
+                    .getText(), is("must not be empty"));
         }
     }
 

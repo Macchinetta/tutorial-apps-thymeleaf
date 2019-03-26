@@ -78,13 +78,15 @@
 
     <bean class="com.github.macchinetta.tutorial.selenium.WebDriverCreator" />
 
-    <bean id="waitWebDriverEventListener" class="com.github.macchinetta.tutorial.selenium.WaitWebDriverEventListener"  scope="prototype"/>
+  <bean class="com.github.macchinetta.tutorial.selenium.WebDriverManagerConfigurer">
+    <property name="propertyFileLocation" value="wdm.properties" />
+  </bean>
 
-    <bean id="firefoxDriverPrepare" class="com.github.macchinetta.tutorial.selenium.FirefoxDriverPrepare" />
-
-    <beans profile="firefox default">
-        <bean id="webDriver" class="com.github.macchinetta.tutorial.selenium.FirefoxDriverFactoryBean"
-        scope="prototype" />
-    </beans>
+  <beans profile="firefox default">
+    <bean id="webDriver" class="com.github.macchinetta.tutorial.selenium.FirefoxDriverFactoryBean"
+      scope="prototype">
+      <property name="propertyFileLocation" value="wdm.properties" />
+    </bean>
+  </beans>
 
 </beans>

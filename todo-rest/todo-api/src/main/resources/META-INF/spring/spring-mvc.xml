@@ -79,7 +79,7 @@
         <property name="enableSpringELCompiler" value="true" />
         <property name="additionalDialects">
             <set>
-                <bean class="org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect" />
+                <bean class="org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect" />
                 <bean class="org.thymeleaf.extras.java8time.dialect.Java8TimeDialect" />
             </set>
         </property>

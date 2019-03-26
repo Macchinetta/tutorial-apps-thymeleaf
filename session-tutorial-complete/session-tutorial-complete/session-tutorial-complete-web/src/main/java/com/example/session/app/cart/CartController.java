@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2014 NTT Corporation.
+ * Copyright(c) 2013 NTT Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,9 +21,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.terasoluna.gfw.common.message.ResultMessages;
 
 import com.example.session.domain.model.Cart;
@@ -41,12 +42,12 @@ public class CartController {
         return new CartForm();
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     String viewCart(Model model) {
         return "cart/viewCart";
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     String removeFromCart(@Validated CartForm cartForm,
             BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
