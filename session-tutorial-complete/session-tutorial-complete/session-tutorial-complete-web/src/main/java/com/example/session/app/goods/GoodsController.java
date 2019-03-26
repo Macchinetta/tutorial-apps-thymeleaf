@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2014 NTT Corporation.
+ * Copyright(c) 2013 NTT Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,10 +24,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.terasoluna.gfw.common.message.ResultMessages;
  
@@ -57,15 +58,15 @@ public class GoodsController {
 	}
  
 	// (2)
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @GetMapping
 	String showGoods(GoodViewForm form, Model model) {
-        Pageable pageable = new PageRequest(criteria.getPage(), 3);
+        Pageable pageable = PageRequest.of(criteria.getPage(), 3);
         form.setCategoryId(criteria.getCategoryId());
         return showGoods(pageable, model);
     }
 
     // (3)
-    @RequestMapping(value = "", method = RequestMethod.GET, params = "categoryId")
+    @GetMapping(params = "categoryId")
     String changeCategoryId(GoodViewForm form, Pageable pageable, Model model) {
         criteria.setPage(pageable.getPageNumber());
         criteria.setCategoryId(form.getCategoryId());
@@ -73,7 +74,7 @@ public class GoodsController {
     }
 
     // (4)
-    @RequestMapping(value = "", method = RequestMethod.GET, params = "page")
+    @GetMapping(params = "page")
     String changePage(GoodViewForm form, Pageable pageable, Model model) {
         criteria.setPage(pageable.getPageNumber());
         form.setCategoryId(criteria.getCategoryId());
@@ -89,7 +90,7 @@ public class GoodsController {
 		return "goods/showGoods";
 	}
  
-	@RequestMapping(value = "/{goodsId}", method = RequestMethod.GET)
+	@GetMapping("/{goodsId}")
 	public String showGoodsDetail(@PathVariable String goodsId, Model model) {
  
 		Goods goods = goodsService.findOne(goodsId);
@@ -98,7 +99,7 @@ public class GoodsController {
 		return "/goods/showGoodsDetail";
     }
 
-    @RequestMapping(value = "/addToCart", method = RequestMethod.POST)
+    @PostMapping("/addToCart")
     public String addToCart(@Validated GoodAddForm form, BindingResult result,
             RedirectAttributes attributes) {
 

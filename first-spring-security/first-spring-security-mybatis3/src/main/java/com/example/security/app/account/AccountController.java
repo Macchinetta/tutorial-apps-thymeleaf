@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2014 NTT Corporation.
+ * Copyright(c) 2013 NTT Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.example.security.app.account;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.security.domain.model.Account;
@@ -27,7 +28,7 @@ import com.example.security.domain.service.userdetails.SampleUserDetails;
 @RequestMapping("account")
 public class AccountController {
 
-    @RequestMapping
+    @GetMapping
     public String view(
             @AuthenticationPrincipal SampleUserDetails userDetails, // (1)
             Model model) {

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2014 NTT Corporation.
+ * Copyright(c) 2013 NTT Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,19 +16,28 @@
 package com.github.macchinetta.tutorial.selenium;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.springframework.beans.factory.FactoryBean;
 
-public class FirefoxDriverFactoryBean implements FactoryBean<FirefoxDriver> {
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class FirefoxDriverFactoryBean extends
+                                      WebDriverManagerFactoryBean<FirefoxDriver> {
 
     @Override
     public FirefoxDriver getObject() {
+
+        if (System.getenv("webdriver.gecko.driver") == null) {
+            WebDriverManager.firefoxdriver().setup();
+        }
+
         FirefoxProfile profile = new FirefoxProfile();
-        profile.setPreference("brouser.startup.homepage_override.mstone",
+        profile.setPreference("browser.startup.homepage_override.mstone",
                 "ignore");
         profile.setPreference("network.proxy.type", 0);
         profile.setPreference("intl.accept_languages", "en-us,en");
-        return new FirefoxDriver(profile);
+        FirefoxOptions options = new FirefoxOptions().setProfile(profile);
+        return new FirefoxDriver(options);
     }
 
     @Override

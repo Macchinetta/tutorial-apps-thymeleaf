@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2014 NTT Corporation.
+ * Copyright(c) 2013 NTT Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import static com.jayway.restassured.config.RestAssuredConfig.config;
 import java.io.File;
 import java.io.PrintStream;
 import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 
 import javax.inject.Inject;
 
@@ -70,7 +71,7 @@ public abstract class RestTestSupport extends FunctionTestSupport {
         RestAssured.config = config().logConfig(logConfig()
                 .enablePrettyPrinting(false));
         writer = new StringWriter();
-        captor = new PrintStream(new WriterOutputStream(writer), true);
+        captor = new PrintStream(new WriterOutputStream(writer, StandardCharsets.UTF_8), true);
     }
 
     @Override
