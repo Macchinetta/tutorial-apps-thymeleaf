@@ -96,36 +96,38 @@ public class PasswordReissueServiceImpl implements PasswordReissueService {
         String rowSecret = passwordGenerator.generatePassword(10,
                 passwordGenerationRules);
 
-        if (!accountSharedService.exists(username)) {
-            return rowSecret;
+        String encodeSecret = passwordEncoder.encode(rowSecret);
+
+        if (accountSharedService.exists(username)) {
+
+            Account account = accountSharedService.findOne(username);
+
+            String token = UUID.randomUUID().toString();
+
+            LocalDateTime expiryDate = dateFactory.newTimestamp()
+                    .toLocalDateTime().plusSeconds(tokenLifeTimeSeconds);
+
+            PasswordReissueInfo info = new PasswordReissueInfo();
+            info.setUsername(username);
+            info.setToken(token);
+            info.setSecret(encodeSecret);
+            info.setExpiryDate(expiryDate);
+
+            passwordReissueInfoRepository.create(info);
+
+            UriComponentsBuilder uriBuilder = UriComponentsBuilder
+                    .newInstance();
+            uriBuilder.scheme(protocol).host(host).port(port).path(contextPath)
+                    .pathSegment("reissue").pathSegment("resetpassword")
+                    .queryParam("form").queryParam("token", info.getToken());
+            String passwordResetUrl = uriBuilder.build().toString();
+
+            mailSharedService.send(account.getEmail(), passwordResetUrl);
+
         }
-
-        Account account = accountSharedService.findOne(username);
-
-        String token = UUID.randomUUID().toString();
-
-        LocalDateTime expiryDate = dateFactory.newTimestamp().toLocalDateTime()
-                .plusSeconds(tokenLifeTimeSeconds);
-
-        PasswordReissueInfo info = new PasswordReissueInfo();
-        info.setUsername(username);
-        info.setToken(token);
-        info.setSecret(passwordEncoder.encode(rowSecret));
-        info.setExpiryDate(expiryDate);
-
-        passwordReissueInfoRepository.create(info);
-
-        UriComponentsBuilder uriBuilder = UriComponentsBuilder.newInstance();
-        uriBuilder.scheme(protocol).host(host).port(port).path(contextPath)
-                .pathSegment("reissue").pathSegment("resetpassword")
-                .queryParam("form").queryParam("token", info.getToken());
-        String passwordResetUrl = uriBuilder.build().toString();
-
-        mailSharedService.send(account.getEmail(), passwordResetUrl);
-
         return rowSecret;
-
     }
+
 
     @Override
     @Transactional(readOnly = true)
@@ -162,7 +164,7 @@ public class PasswordReissueServiceImpl implements PasswordReissueService {
                     MessageKeys.E_SL_PR_5003));
         }
         failedPasswordReissueRepository.deleteByToken(token);
-        passwordReissueInfoRepository.delete(token);
+        passwordReissueInfoRepository.deleteByToken(token);
 
         return accountSharedService.updatePassword(username, rawPassword);
 

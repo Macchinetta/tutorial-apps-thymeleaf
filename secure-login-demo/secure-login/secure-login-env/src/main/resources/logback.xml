@@ -68,6 +68,10 @@
         <appender-ref ref="DB" />
     </logger>
 
+    <logger name="com.example.securelogin.domain.repository">
+        <level value="trace" />
+    </logger>
+
     <!-- TERASOLUNA -->
     <logger name="org.terasoluna.gfw">
         <level value="info" />
@@ -93,16 +97,19 @@
         <level value="info" />
     </logger>
 
+    <logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+        <level value="trace" />
+    </logger>
+
+    <logger name="org.springframework.jdbc.core.JdbcTemplate">
+        <level value="trace" />
+    </logger>
+
     <logger name="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <level value="debug" />
     </logger>
 
-    <logger name="jdbc.sqltiming">
-        <level value="debug" />
-    </logger>
-    
-    
-    <root level="debug">
+    <root level="warn">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="APPLICATION_LOG_FILE" />
         <appender-ref ref="DB" />

@@ -59,7 +59,7 @@ public class GoodsController {
  
 	// (2)
     @GetMapping
-	String showGoods(GoodViewForm form, Model model) {
+	public String showGoods(GoodViewForm form, Model model) {
         Pageable pageable = PageRequest.of(criteria.getPage(), 3);
         form.setCategoryId(criteria.getCategoryId());
         return showGoods(pageable, model);
@@ -67,7 +67,7 @@ public class GoodsController {
 
     // (3)
     @GetMapping(params = "categoryId")
-    String changeCategoryId(GoodViewForm form, Pageable pageable, Model model) {
+    public String changeCategoryId(GoodViewForm form, Pageable pageable, Model model) {
         criteria.setPage(pageable.getPageNumber());
         criteria.setCategoryId(form.getCategoryId());
         return showGoods(pageable, model);
@@ -75,7 +75,7 @@ public class GoodsController {
 
     // (4)
     @GetMapping(params = "page")
-    String changePage(GoodViewForm form, Pageable pageable, Model model) {
+    public String changePage(GoodViewForm form, Pageable pageable, Model model) {
         criteria.setPage(pageable.getPageNumber());
         form.setCategoryId(criteria.getCategoryId());
         return showGoods(pageable, model);

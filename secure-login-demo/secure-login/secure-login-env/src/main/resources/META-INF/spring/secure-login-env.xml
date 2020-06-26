@@ -5,14 +5,14 @@
     
     xmlns:cache="http://www.springframework.org/schema/cache"
     xsi:schemaLocation="
-        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+        http://www.springframework.org/schema/jdbc https://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/cache https://www.springframework.org/schema/cache/spring-cache.xsd
     ">
 
     <bean id="dateFactory" class="org.terasoluna.gfw.common.date.jodatime.DefaultJodaTimeDateFactory" />
 
-    <bean id="realDataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
         destroy-method="close">
         <property name="driverClassName" value="${database.driverClassName}" />
         <property name="url" value="${database.url}" />
@@ -23,11 +23,6 @@
         <property name="maxIdle" value="${cp.maxIdle}" />
         <property name="minIdle" value="${cp.minIdle}" />
         <property name="maxWaitMillis" value="${cp.maxWait}" />
-    </bean>
-
-
-    <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
-        <constructor-arg index="0" ref="realDataSource" />
     </bean>
 
     <jdbc:initialize-database data-source="dataSource"
