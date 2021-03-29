@@ -4,7 +4,7 @@
     <artifactId>secure-login-selenium</artifactId>
     <packaging>jar</packaging>
     <parent>
-        <version>1.7.1.RELEASE</version>
+        <version>1.7.2.RELEASE</version>
         <artifactId>secure-login</artifactId>
         <groupId>com.example.securelogin</groupId>
         <relativePath>../pom.xml</relativePath>
@@ -57,7 +57,7 @@
 <!--             <scope>test</scope> -->
 <!--         </dependency> -->
 <!--         <dependency> -->
-<!--             <groupId>com.oracle.ojdbc</groupId> -->
+<!--             <groupId>com.oracle.database.jdbc</groupId> -->
 <!--             <artifactId>ojdbc8</artifactId> -->
 <!--             <scope>test</scope> -->
 <!--         </dependency> -->

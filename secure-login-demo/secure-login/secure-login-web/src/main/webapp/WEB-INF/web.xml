@@ -5,6 +5,11 @@
     version="3.0">
 
     <context-param>
+        <param-name>logbackDisableServletContainerInitializer</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
         <param-name>db.url</param-name>
         <param-value>jdbc:h2:mem:secure-login;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'classpath:logback-ddl.sql'</param-value>
     </context-param>
@@ -42,6 +47,10 @@
         <servlet-name>H2Console</servlet-name>
         <url-pattern>/admin/h2/*</url-pattern>
     </servlet-mapping>
+    <listener>
+        <listener-class>ch.qos.logback.classic.servlet.LogbackServletContextListener</listener-class>
+    </listener>
+
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>

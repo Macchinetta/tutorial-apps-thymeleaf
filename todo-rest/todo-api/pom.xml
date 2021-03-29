@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example.todo</groupId>
     <artifactId>todo-api</artifactId>
-    <version>1.7.1.RELEASE</version>
+    <version>1.7.2.RELEASE</version>
     <packaging>war</packaging>
     <parent>
         <groupId>org.terasoluna.gfw</groupId>
         <artifactId>terasoluna-gfw-parent</artifactId>
-        <version>5.6.1.RELEASE</version>
+        <version>5.6.2.RELEASE</version>
     </parent>
 
     <name>Macchinetta Server Framework (1.x) Web Blank Project (No O/R Mapper)</name>
@@ -86,6 +86,13 @@
                                 <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             </manifest>
                         </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <configuration>
+                        <source>${java-version}</source>
                     </configuration>
                 </plugin>
             </plugins>
@@ -254,13 +261,14 @@
                 <groupId>io.github.bonigarcia</groupId>
                 <artifactId>webdrivermanager</artifactId>
                 <version>${webdrivermanager.version}</version>
+                <scope>test</scope>
             </dependency>
 
         </dependencies>
 
     <properties>
         <!-- == Maven Plugin Versions == -->
-        <maven-war-plugin.version>2.5</maven-war-plugin.version>
+        <maven-war-plugin.version>3.3.1</maven-war-plugin.version>
         <org.codehaus.mojo.build-helper-maven-plugin.version>1.9.1</org.codehaus.mojo.build-helper-maven-plugin.version>
         <!-- == Dependency Versions == -->
         <dbunit.version>2.5.4</dbunit.version>

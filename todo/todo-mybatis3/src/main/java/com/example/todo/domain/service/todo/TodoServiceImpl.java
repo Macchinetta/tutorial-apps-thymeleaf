@@ -40,23 +40,8 @@ public class TodoServiceImpl implements TodoService {
     @Inject// (3)
     TodoRepository todoRepository;
 
-    // (4)
-    private Todo findOne(String todoId) {
-        Todo todo = todoRepository.findOne(todoId);
-        if (todo == null) {
-            // (5)
-            ResultMessages messages = ResultMessages.error();
-            messages.add(ResultMessage
-                    .fromText("[E404] The requested Todo is not found. (id="
-                            + todoId + ")"));
-            // (6)
-            throw new ResourceNotFoundException(messages);
-        }
-        return todo;
-    }
-
     @Override
-    @Transactional(readOnly = true) // (7)
+    @Transactional(readOnly = true) // (4)
     public Collection<Todo> findAll() {
         return todoRepository.findAll();
     }
@@ -65,15 +50,16 @@ public class TodoServiceImpl implements TodoService {
     public Todo create(Todo todo) {
         long unfinishedCount = todoRepository.countByFinished(false);
         if (unfinishedCount >= MAX_UNFINISHED_COUNT) {
+            // (5)
             ResultMessages messages = ResultMessages.error();
             messages.add(ResultMessage
                     .fromText("[E001] The count of un-finished Todo must not be over "
                             + MAX_UNFINISHED_COUNT + "."));
-            // (8)
+            // (6)
             throw new BusinessException(messages);
         }
 
-        // (9)
+        // (7)
         String todoId = UUID.randomUUID().toString();
         Date createdAt = new Date();
 
@@ -105,5 +91,19 @@ public class TodoServiceImpl implements TodoService {
     public void delete(String todoId) {
         Todo todo = findOne(todoId);
         todoRepository.delete(todo);
+    }
+
+    // (8)
+    private Todo findOne(String todoId) {
+        Todo todo = todoRepository.findOne(todoId);
+        if (todo == null) {
+            ResultMessages messages = ResultMessages.error();
+            messages.add(ResultMessage
+                    .fromText("[E404] The requested Todo is not found. (id="
+                            + todoId + ")"));
+            // (9)
+            throw new ResourceNotFoundException(messages);
+        }
+        return todo;
     }
 }
