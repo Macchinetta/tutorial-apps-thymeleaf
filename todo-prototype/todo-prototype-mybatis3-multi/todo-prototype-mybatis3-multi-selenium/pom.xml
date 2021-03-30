@@ -4,7 +4,7 @@
     <artifactId>todo-prototype-mybatis3-multi-selenium</artifactId>
     <packaging>jar</packaging>
     <parent>
-        <version>1.7.1.RELEASE</version>
+        <version>1.8.0.RELEASE</version>
         <artifactId>todo-prototype-mybatis3-multi</artifactId>
         <groupId>com.example.todo</groupId>
         <relativePath>../pom.xml</relativePath>
@@ -55,7 +55,7 @@
 <!--             <scope>test</scope> -->
 <!--         </dependency> -->
 <!--         <dependency> -->
-<!--             <groupId>com.oracle.ojdbc</groupId> -->
+<!--             <groupId>com.oracle.database.jdbc</groupId> -->
 <!--             <artifactId>ojdbc8</artifactId> -->
 <!--             <scope>test</scope> -->
 <!--         </dependency> -->

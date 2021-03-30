@@ -17,7 +17,7 @@ package com.example.todo.selenium.todo;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.IOException;
 
@@ -135,7 +135,7 @@ public class TodoTest extends FunctionTestSupport {
         ;
 
         assertThat(driver.findElement(By.xpath("//span[@class='text-error']"))
-                .getText(), is("size must be between 1 and 30"));
+                .getText(), is("1 から 30 の間のサイズにしてください"));
     }
 
     /**
@@ -151,7 +151,7 @@ public class TodoTest extends FunctionTestSupport {
         ;
 
         assertThat(driver.findElement(By.xpath("//span[@class='text-error']"))
-                .getText(), is("size must be between 1 and 30"));
+                .getText(), is("1 から 30 の間のサイズにしてください"));
     }
 
     /**

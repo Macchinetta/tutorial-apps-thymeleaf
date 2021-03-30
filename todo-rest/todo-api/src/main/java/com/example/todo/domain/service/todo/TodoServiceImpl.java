@@ -25,38 +25,34 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.terasoluna.gfw.common.exception.BusinessException;
 import org.terasoluna.gfw.common.exception.ResourceNotFoundException;
-import org.terasoluna.gfw.common.message.ResultMessage;
 import org.terasoluna.gfw.common.message.ResultMessages;
 
 import com.example.todo.domain.model.Todo;
 import com.example.todo.domain.repository.todo.TodoRepository;
 
-@Service// (1)
-@Transactional // (2)
+@Service
+@Transactional
 public class TodoServiceImpl implements TodoService {
 
     private static final long MAX_UNFINISHED_COUNT = 5;
 
-    @Inject// (3)
+    @Inject
     TodoRepository todoRepository;
 
-    // (4)
     @Override
     @Transactional(readOnly = true)
     public Todo findOne(String todoId) {
         Todo todo = todoRepository.findOne(todoId);
         if (todo == null) {
-            // (5)
             ResultMessages messages = ResultMessages.error();
             messages.add("E404", todoId);
-            // (6)
             throw new ResourceNotFoundException(messages);
         }
         return todo;
     }
 
     @Override
-    @Transactional(readOnly = true) // (7)
+    @Transactional(readOnly = true)
     public Collection<Todo> findAll() {
         return todoRepository.findAll();
     }
@@ -67,11 +63,9 @@ public class TodoServiceImpl implements TodoService {
         if (unfinishedCount >= MAX_UNFINISHED_COUNT) {
             ResultMessages messages = ResultMessages.error();
             messages.add("E001", MAX_UNFINISHED_COUNT);
-            // (8)
             throw new BusinessException(messages);
         }
 
-        // (9)
         String todoId = UUID.randomUUID().toString();
         Date createdAt = new Date();
 

@@ -17,7 +17,7 @@ package com.example.session.selenium.session;
 
 import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.After;
 import org.junit.Test;
@@ -565,7 +565,7 @@ public class SessionTutorialTest extends FunctionTestSupport {
         // check error message
         {
             assertThat(driver.findElement(By.id("removedItemsIds-errors"))
-                    .getText(), is("must not be empty"));
+                    .getText(), is("空要素は許可されていません"));
         }
     }
 
