@@ -53,7 +53,7 @@ public class StrongPasswordValidator implements
                 .getPropertyValue(newPasswordPropertyName);
 
         RuleResult result = characteristicPasswordValidator
-                .validate(PasswordData.newInstance(newPassword, username, null));
+                .validate(new PasswordData(username, newPassword));
 
         if (result.isValid()) {
             return true;

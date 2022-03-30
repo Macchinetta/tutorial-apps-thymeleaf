@@ -30,8 +30,9 @@ public class FirstSpringSecurityTest extends FunctionTestSupport {
 
     /**
      * Test of login screen<br>
-     * <li>Access the root of the project and transition to the login screen. <li>The initial value of username on the login screen is "demo".<li>
-     * The initial value of password on the login screen is "demo".
+     * <li>Access the root of the project and transition to the login screen.
+     * <li>The initial value of username on the login screen is "demo".
+     * <li>The initial value of password on the login screen is "demo".
      */
     @Test
     public void testLoginForm() {
@@ -50,9 +51,9 @@ public class FirstSpringSecurityTest extends FunctionTestSupport {
     /**
      * Test of home screen<br>
      * After login screen is displayed, login as the default user.<br>
-     * <li>"Hello World!" Is displayed on the login screen.<li>
-     * "Welcome Taro Yamada !!" is displayed on the login screen.<li>
-     * The "view account" link is displayed on the login screen.
+     * <li>"Hello World!" Is displayed on the login screen.
+     * <li>"Welcome Taro Yamada !!" is displayed on the login screen.
+     * <li>The "view account" link is displayed on the login screen.
      */
     @Test
     public void testLogin() {
@@ -74,9 +75,10 @@ public class FirstSpringSecurityTest extends FunctionTestSupport {
     }
 
     /**
-     * Testlogout process.After logging in as the default user, press the logout button on the Home screen. <li>
-     * Return to the login screen after pressing the logout button. <li>The initial value of username on the login screen is "demo". <li>
-     * The initial value of password on the login screen is "demo".
+     * Testlogout process.After logging in as the default user, press the logout button on the Home screen.
+     * <li>Return to the login screen after pressing the logout button.
+     * <li>The initial value of username on the login screen is "demo".
+     * <li>The initial value of password on the login screen is "demo".
      */
     @Test
     public void testLogout() {
@@ -102,9 +104,9 @@ public class FirstSpringSecurityTest extends FunctionTestSupport {
     /**
      * Test account information screen<br>
      * After logging in, click "view account" button.<br>
-     * <li>Username is "demo".<li>First name is "Taro". <li>
-     * Last name is "Yamada".
-     * 
+     * <li>Username is "demo".
+     * <li>First name is "Taro".
+     * <li>Last name is "Yamada".
      */
     @Test
     public void testViewAccount() {
@@ -133,8 +135,8 @@ public class FirstSpringSecurityTest extends FunctionTestSupport {
     }
 
     /**
-     * Authentication test with non-registered users
-     * Display the login screen, enter the user name that is not registered, and click the login button.
+     * Authentication test with non-registered users Display the login screen, enter the user name that is not registered, and
+     * click the login button.
      * <li>The error message "Bad credentials" is output on the login screen.
      */
     @Test

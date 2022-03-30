@@ -70,8 +70,8 @@ public class PasswordStrengthTest extends DBLogFunctionTestSupport {
         page = ((LoginPage) page).loginSuccessIntercepted("demo", "demo")
                 .changePasswordFailure("demo", "Fo1", "Fo1");
         assertThat(((PasswordChangePage) page).getNewPasswordError(),
-                containsString("Password must be at least "
-                        + passwordMinimumLength + " characters in length."));
+                containsString("Password must be " + passwordMinimumLength
+                        + " or more characters in length."));
 
         page = ((PasswordChangePage) page).changePasswordSuccess("demo", "Foo1",
                 "Foo1").gotoTop().logout();
@@ -79,8 +79,7 @@ public class PasswordStrengthTest extends DBLogFunctionTestSupport {
 
     /**
      * <ul>
-     * <li>test : password strength check(characteristic condition is
-     * unsatisfied)</li>
+     * <li>test : password strength check(characteristic condition is unsatisfied)</li>
      * </ul>
      */
     @Test

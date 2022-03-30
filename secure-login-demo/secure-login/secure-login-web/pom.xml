@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.example.securelogin</groupId>
         <artifactId>secure-login</artifactId>
-        <version>1.8.0.RELEASE</version>
+        <version>1.8.1.RELEASE</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -59,7 +59,7 @@
         <dependency>
             <groupId>org.passay</groupId>
             <artifactId>passay</artifactId>
-            <version>1.1.0</version>
+            <version>1.6.1</version>
         </dependency>
     </dependencies>
         </profile>
@@ -94,7 +94,7 @@
         <dependency>
             <groupId>org.passay</groupId>
             <artifactId>passay</artifactId>
-            <version>1.1.0</version>
+            <version>1.6.1</version>
         </dependency>
     </dependencies>
         </profile>
@@ -196,6 +196,11 @@
             <artifactId>spring-test-dbunit</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <scope>test</scope>
+        </dependency>
         -->
         <!-- == End Unit Test == -->
 
@@ -224,7 +229,7 @@
         <dependency>
             <groupId>org.passay</groupId>
             <artifactId>passay</artifactId>
-            <version>1.1.0</version>
+            <version>1.6.1</version>
         </dependency>
     </dependencies>
 </project>

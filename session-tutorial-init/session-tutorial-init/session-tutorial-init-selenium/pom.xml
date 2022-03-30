@@ -4,7 +4,7 @@
     <artifactId>session-tutorial-init-selenium</artifactId>
     <packaging>jar</packaging>
     <parent>
-        <version>1.8.0.RELEASE</version>
+        <version>1.8.1.RELEASE</version>
         <artifactId>session-tutorial-init</artifactId>
         <groupId>com.example.session</groupId>
         <relativePath>../pom.xml</relativePath>

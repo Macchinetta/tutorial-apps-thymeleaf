@@ -58,8 +58,7 @@ public class InputValidationTest extends DBLogFunctionTestSupport {
 
     /**
      * <ul>
-     * <li>test : go to error page if the request parameter contains prohibited
-     * charactor</li>
+     * <li>test : go to error page if the request parameter contains prohibited charactor</li>
      * </ul>
      */
     @Test
@@ -79,8 +78,7 @@ public class InputValidationTest extends DBLogFunctionTestSupport {
 
     /**
      * <ul>
-     * <li>test : go to error page if the file name contains prohibited
-     * charactor</li>
+     * <li>test : go to error page if the file name contains prohibited charactor</li>
      * </ul>
      */
     @Test

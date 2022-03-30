@@ -322,7 +322,7 @@ public class DBLogAssertOperations {
      * @param xTrack リクエストを一意に特定するための値（絞り込みを行わない場合はnullを指定）
      * @param loggerNamePattern 出力元のロガー名のパターン（絞り込みを行わない場合はnullを指定）
      * @param messagePattern メッセージのパターン（必須）
-     * @return　指定したメッセージパターン(正規表現)に一致するログ
+     * @return 指定したメッセージパターン(正規表現)に一致するログ
      */
     public List<String> getLogByRegexMessage(String xTrack,
             String loggerNamePattern, String messagePattern) {

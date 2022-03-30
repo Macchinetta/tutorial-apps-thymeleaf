@@ -128,8 +128,7 @@ public class NotReusedPasswordValidator implements
                     .getPassword()));
         }
 
-        PasswordData passwordData = PasswordData.newInstance(newPassword,
-                username, historyData);
+        PasswordData passwordData = new PasswordData(username, newPassword, historyData);
         RuleResult result = encodedPasswordHistoryValidator
                 .validate(passwordData);
 

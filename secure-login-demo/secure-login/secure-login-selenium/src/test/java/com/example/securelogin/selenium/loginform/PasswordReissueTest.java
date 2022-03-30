@@ -122,8 +122,7 @@ public class PasswordReissueTest extends DBLogFunctionTestSupport {
     /**
      * <ul>
      * <li>test : secret phrase is generated at random</li>
-     * <li>test : the URL for reissue password contains token which generated at
-     * random</li>
+     * <li>test : the URL for reissue password contains token which generated at random</li>
      * </ul>
      */
     @Test
@@ -157,8 +156,7 @@ public class PasswordReissueTest extends DBLogFunctionTestSupport {
 
     /**
      * <ul>
-     * <li>test : the URL is invalidated by series of incorrect password
-     * attempts</li>
+     * <li>test : the URL is invalidated by series of incorrect password attempts</li>
      * </ul>
      */
     @Test

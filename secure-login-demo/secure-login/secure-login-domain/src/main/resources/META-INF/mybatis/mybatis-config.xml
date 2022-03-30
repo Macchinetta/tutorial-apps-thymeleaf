@@ -22,16 +22,12 @@
 <!--
         <package name="com.example.securelogin.infra.mybatis.typehandler" />
 -->
-    
-        <package name="com.example.securelogin.infra.mybatis.typehandler" />
     </typeAliases>
 
     <typeHandlers>
 <!--
         <package name="com.example.securelogin.infra.mybatis.typehandler" />
 -->
-    
-        <package name="com.example.securelogin.infra.mybatis.typehandler" />
     </typeHandlers>
 
 </configuration>
