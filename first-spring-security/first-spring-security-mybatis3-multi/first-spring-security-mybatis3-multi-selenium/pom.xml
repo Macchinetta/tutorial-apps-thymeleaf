@@ -4,7 +4,7 @@
     <artifactId>first-spring-security-mybatis3-multi-selenium</artifactId>
     <packaging>jar</packaging>
     <parent>
-        <version>1.7.1.RELEASE</version>
+        <version>1.7.1.SP1.RELEASE</version>
         <artifactId>first-spring-security-mybatis3-multi</artifactId>
         <groupId>com.example.security</groupId>
         <relativePath>../pom.xml</relativePath>

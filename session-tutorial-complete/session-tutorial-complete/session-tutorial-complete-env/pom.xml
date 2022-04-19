@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.example.session</groupId>
         <artifactId>session-tutorial-complete</artifactId>
-        <version>1.7.1.RELEASE</version>
+        <version>1.7.1.SP1.RELEASE</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
