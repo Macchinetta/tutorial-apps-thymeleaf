@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.example.todo</groupId>
         <artifactId>todo-prototype-mybatis3-multi</artifactId>
-        <version>1.8.1.RELEASE</version>
+        <version>1.8.1.SP1.RELEASE</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 

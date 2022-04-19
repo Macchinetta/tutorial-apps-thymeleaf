@@ -4,7 +4,7 @@
     <artifactId>secure-login-selenium</artifactId>
     <packaging>jar</packaging>
     <parent>
-        <version>1.8.1.RELEASE</version>
+        <version>1.8.1.SP1.RELEASE</version>
         <artifactId>secure-login</artifactId>
         <groupId>com.example.securelogin</groupId>
         <relativePath>../pom.xml</relativePath>

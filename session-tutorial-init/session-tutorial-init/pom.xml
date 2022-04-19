@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example.session</groupId>
     <artifactId>session-tutorial-init</artifactId>
-    <version>1.8.1.RELEASE</version>
+    <version>1.8.1.SP1.RELEASE</version>
     <packaging>pom</packaging>
     <parent>
         <groupId>org.terasoluna.gfw</groupId>
         <artifactId>terasoluna-gfw-parent</artifactId>
-        <version>5.7.1.RELEASE</version>
+        <version>5.7.1.SP1.RELEASE</version>
     </parent>
 
     <name>Macchinetta Server Framework (1.x) Web Blank Multi Project</name>
@@ -120,17 +120,17 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>session-tutorial-init-domain</artifactId>
-                <version>1.8.1.RELEASE</version>
+                <version>1.8.1.SP1.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>session-tutorial-init-web</artifactId>
-                <version>1.8.1.RELEASE</version>
+                <version>1.8.1.SP1.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>session-tutorial-init-env</artifactId>
-                <version>1.8.1.RELEASE</version>
+                <version>1.8.1.SP1.RELEASE</version>
             </dependency>
 
             <!-- == Begin TERASOLUNA == -->
