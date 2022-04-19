@@ -4,7 +4,7 @@
     <artifactId>todo-mybatis3-multi-selenium</artifactId>
     <packaging>jar</packaging>
     <parent>
-        <version>1.7.0.RELEASE</version>
+        <version>1.7.0.SP1.RELEASE</version>
         <artifactId>todo-mybatis3-multi</artifactId>
         <groupId>com.example.todo</groupId>
         <relativePath>../pom.xml</relativePath>
