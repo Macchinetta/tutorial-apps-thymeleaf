@@ -28,7 +28,7 @@ import com.example.securelogin.domain.repository.passwordreissue.PasswordReissue
 @Service
 @Transactional
 public class PasswordReissueFailureSharedServiceImpl implements
-        PasswordReissueFailureSharedService {
+                                                     PasswordReissueFailureSharedService {
 
     @Inject
     ClassicDateFactory dateFactory;

@@ -39,7 +39,9 @@ import com.example.securelogin.app.common.validation.UploadFileRequired.List;
 @Repeatable(List.class)
 public @interface UploadFileRequired {
     String message() default "{com.example.securelogin.app.common.validation.UploadFileRequired.message}";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 
     @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER,

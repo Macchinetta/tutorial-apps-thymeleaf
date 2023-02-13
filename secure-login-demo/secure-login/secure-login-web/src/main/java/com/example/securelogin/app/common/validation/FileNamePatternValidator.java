@@ -24,7 +24,7 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileNamePatternValidator implements
-        ConstraintValidator<FileNamePattern, MultipartFile> {
+                                      ConstraintValidator<FileNamePattern, MultipartFile> {
 
     private Pattern pattern;
 

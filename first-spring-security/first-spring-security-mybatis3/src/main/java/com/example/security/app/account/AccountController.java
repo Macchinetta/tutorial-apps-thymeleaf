@@ -29,8 +29,7 @@ import com.example.security.domain.service.userdetails.SampleUserDetails;
 public class AccountController {
 
     @GetMapping
-    public String view(
-            @AuthenticationPrincipal SampleUserDetails userDetails, // (1)
+    public String view(@AuthenticationPrincipal SampleUserDetails userDetails, // (1)
             Model model) {
         // (2)
         Account account = userDetails.getAccount();
@@ -38,4 +37,3 @@ public class AccountController {
         return "account/view";
     }
 }
-

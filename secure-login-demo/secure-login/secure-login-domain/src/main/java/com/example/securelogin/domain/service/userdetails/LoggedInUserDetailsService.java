@@ -40,19 +40,18 @@ public class LoggedInUserDetailsService implements UserDetailsService {
 
     @Transactional(readOnly = true)
     @Override
-    public UserDetails loadUserByUsername(String username)
-            throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(
+            String username) throws UsernameNotFoundException {
         try {
             Account account = accountSharedService.findOne(username);
             List<SimpleGrantedAuthority> authorities = new ArrayList<>();
             for (Role role : account.getRoles()) {
-                authorities.add(new SimpleGrantedAuthority("ROLE_"
-                        + role.getRoleValue()));
+                authorities.add(new SimpleGrantedAuthority("ROLE_" + role
+                        .getRoleValue()));
             }
-            return new LoggedInUser(account,
-                    accountSharedService.isLocked(username),
-                    accountSharedService.getLastLoginDate(username),
-                    authorities);
+            return new LoggedInUser(account, accountSharedService.isLocked(
+                    username), accountSharedService.getLastLoginDate(
+                            username), authorities);
         } catch (ResourceNotFoundException e) {
             throw new UsernameNotFoundException("user not found", e);
         }

@@ -23,9 +23,9 @@ import com.example.session.domain.model.Goods;
 
 public interface GoodsRepository {
 
-	List<Goods> findPageByCategoryId(int categoryId, RowBounds rowBounds);
-	
-	long countByCategoryId(int categoryId);
+    List<Goods> findPageByCategoryId(int categoryId, RowBounds rowBounds);
 
-	Goods findOne(String id);
+    long countByCategoryId(int categoryId);
+
+    Goods findOne(String id);
 }

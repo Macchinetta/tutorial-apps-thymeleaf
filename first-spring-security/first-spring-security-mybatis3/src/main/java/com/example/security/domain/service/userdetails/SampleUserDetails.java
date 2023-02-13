@@ -37,4 +37,3 @@ public class SampleUserDetails extends User { // (1)
     }
 
 }
-

@@ -20,4 +20,3 @@ import com.example.security.domain.model.Account;
 public interface AccountRepository {
     Account findOne(String username);
 }
-

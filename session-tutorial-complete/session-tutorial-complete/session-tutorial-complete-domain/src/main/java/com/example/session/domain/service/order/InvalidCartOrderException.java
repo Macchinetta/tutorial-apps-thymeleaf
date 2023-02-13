@@ -19,12 +19,12 @@ import org.terasoluna.gfw.common.exception.BusinessException;
 import org.terasoluna.gfw.common.message.ResultMessages;
 
 public class InvalidCartOrderException extends BusinessException {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
-	public InvalidCartOrderException(ResultMessages messages) {
-		super(messages);
-	}
+    public InvalidCartOrderException(ResultMessages messages) {
+        super(messages);
+    }
 }

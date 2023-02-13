@@ -29,7 +29,7 @@ import com.example.securelogin.domain.service.account.AccountSharedService;
 import com.example.securelogin.domain.service.userdetails.LoggedInUser;
 
 public class CacheClearLogoutSuccessHandler extends
-        SimpleUrlLogoutSuccessHandler {
+                                            SimpleUrlLogoutSuccessHandler {
 
     @Inject
     AccountSharedService accountSharedService;
@@ -40,8 +40,8 @@ public class CacheClearLogoutSuccessHandler extends
 
     @Override
     public void onLogoutSuccess(HttpServletRequest request,
-            HttpServletResponse response, Authentication authentication)
-            throws IOException, ServletException {
+            HttpServletResponse response,
+            Authentication authentication) throws IOException, ServletException {
         if (authentication.getPrincipal() instanceof LoggedInUser) {
             LoggedInUser details = (LoggedInUser) authentication.getPrincipal();
             accountSharedService.clearPasswordValidationCache(details

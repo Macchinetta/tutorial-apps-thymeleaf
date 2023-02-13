@@ -128,7 +128,6 @@ public class PasswordReissueServiceImpl implements PasswordReissueService {
         return rowSecret;
     }
 
-
     @Override
     @Transactional(readOnly = true)
     public PasswordReissueInfo findOne(String token) {
@@ -139,8 +138,8 @@ public class PasswordReissueServiceImpl implements PasswordReissueService {
                     MessageKeys.E_SL_PR_5002, token));
         }
 
-        if (dateFactory.newTimestamp().toLocalDateTime()
-                .isAfter(info.getExpiryDate())) {
+        if (dateFactory.newTimestamp().toLocalDateTime().isAfter(info
+                .getExpiryDate())) {
             throw new BusinessException(ResultMessages.error().add(
                     MessageKeys.E_SL_PR_2001));
         }

@@ -80,8 +80,7 @@ public class AccountController {
     @GetMapping("/image")
     @ResponseBody
     public ResponseEntity<byte[]> showImage(
-            @AuthenticationPrincipal LoggedInUser userDetails)
-            throws IOException {
+            @AuthenticationPrincipal LoggedInUser userDetails) throws IOException {
         AccountImage userImage = accountSharedService.getImage(userDetails
                 .getUsername());
         HttpHeaders headers = new HttpHeaders();
@@ -92,8 +91,8 @@ public class AccountController {
         } else if (userImage.getExtension().equalsIgnoreCase("jpg")) {
             headers.setContentType(MediaType.IMAGE_JPEG);
         }
-        return new ResponseEntity<byte[]>(IOUtils.toByteArray(userImage.getBody()), headers,
-                HttpStatus.OK);
+        return new ResponseEntity<byte[]>(IOUtils.toByteArray(userImage
+                .getBody()), headers, HttpStatus.OK);
     }
 
     @GetMapping(value = "/create", params = "form")
@@ -107,10 +106,9 @@ public class AccountController {
     }
 
     @PostMapping(value = "/create", params = "confirm")
-    public String createConfirm(
-            @Validated({ Confirm.class, Default.class }) AccountCreateForm form,
-            BindingResult result, Model model,
-            RedirectAttributes redirectAttributes) {
+    public String createConfirm(@Validated({ Confirm.class,
+            Default.class }) AccountCreateForm form, BindingResult result,
+            Model model, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             return createForm();
         }
@@ -133,17 +131,17 @@ public class AccountController {
     }
 
     @PostMapping("/create")
-    public String create(
-            @Validated({ CreateAccount.class, Default.class }) AccountCreateForm form,
-            BindingResult result, RedirectAttributes redirectAttributes) {
+    public String create(@Validated({ CreateAccount.class,
+            Default.class }) AccountCreateForm form, BindingResult result,
+            RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             return createForm();
         }
         Account account = beanMapper.map(form, Account.class);
         List<Role> roles = Arrays.asList(Role.USER);
         account.setRoles(roles);
-        String password = accountSharedService.create(account,
-                form.getImageId());
+        String password = accountSharedService.create(account, form
+                .getImageId());
         redirectAttributes.addFlashAttribute("firstName", form.getFirstName());
         redirectAttributes.addFlashAttribute("lastName", form.getLastName());
         redirectAttributes.addFlashAttribute("password", password);

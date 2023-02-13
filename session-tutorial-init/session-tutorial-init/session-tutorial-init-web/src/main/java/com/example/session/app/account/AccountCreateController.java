@@ -40,67 +40,69 @@ import com.example.session.domain.service.account.AccountService;
 @SessionAttributes(value = { "accountCreateForm" })
 public class AccountCreateController {
 
-	@Inject
-	AccountService accountService;
+    @Inject
+    AccountService accountService;
 
-	@Inject
-	Mapper beanMapper;
+    @Inject
+    Mapper beanMapper;
 
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
-	}
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(String.class,
+                new StringTrimmerEditor(true));
+    }
 
-	@ModelAttribute(value = "accountCreateForm")
-	public AccountCreateForm setUpAccountForm() {
-		return new AccountCreateForm();
-	}
+    @ModelAttribute(value = "accountCreateForm")
+    public AccountCreateForm setUpAccountForm() {
+        return new AccountCreateForm();
+    }
 
-	@GetMapping(params = "form")
-	public String showCreateForm() {
-		return "account/createForm";
-	}
+    @GetMapping(params = "form")
+    public String showCreateForm() {
+        return "account/createForm";
+    }
 
-	@PostMapping(params = "confirm")
-	public String confirmCreate(@Validated AccountCreateForm form,
-			BindingResult result) {
+    @PostMapping(params = "confirm")
+    public String confirmCreate(@Validated AccountCreateForm form,
+            BindingResult result) {
 
-		if (result.hasErrors()) {
-			return showCreateForm();
-		}
+        if (result.hasErrors()) {
+            return showCreateForm();
+        }
 
-		return "account/createConfirm";
-	}
+        return "account/createConfirm";
+    }
 
-	@PostMapping(params = "redoForm")
-	public String redoCreateForm() {
-		return showCreateForm();
-	}
+    @PostMapping(params = "redoForm")
+    public String redoCreateForm() {
+        return showCreateForm();
+    }
 
-	@PostMapping
-	public String update(@Validated AccountCreateForm form, BindingResult result) {
+    @PostMapping
+    public String update(@Validated AccountCreateForm form,
+            BindingResult result) {
 
-		if (result.hasErrors()) {
-			ResultMessages messages = ResultMessages.error();
-			messages.add("e.st.ac.5001");
-			throw new IllegalOperationException(messages);
-		}
+        if (result.hasErrors()) {
+            ResultMessages messages = ResultMessages.error();
+            messages.add("e.st.ac.5001");
+            throw new IllegalOperationException(messages);
+        }
 
-		Account account = beanMapper.map(form, Account.class);
-		accountService.create(account, form.getPassword());
+        Account account = beanMapper.map(form, Account.class);
+        accountService.create(account, form.getPassword());
 
-		return "redirect:/account/create?finish";
-	}
+        return "redirect:/account/create?finish";
+    }
 
-	@GetMapping(params = "finish")
-	public String finishCreate() {
-		return "account/createFinish";
-	}
+    @GetMapping(params = "finish")
+    public String finishCreate() {
+        return "account/createFinish";
+    }
 
-	@GetMapping(params = "home")
-	public String home(SessionStatus sessionStatus) {
-		sessionStatus.setComplete();
-		return "redirect:/goods";
-	}
+    @GetMapping(params = "home")
+    public String home(SessionStatus sessionStatus) {
+        sessionStatus.setComplete();
+        return "redirect:/goods";
+    }
 
 }

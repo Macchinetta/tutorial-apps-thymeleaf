@@ -51,8 +51,8 @@ public class CartController {
     public String removeFromCart(@Validated CartForm cartForm,
             BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            ResultMessages messages = ResultMessages.error()
-                    .add("e.st.ca.5001");
+            ResultMessages messages = ResultMessages.error().add(
+                    "e.st.ca.5001");
             model.addAttribute(messages);
             return viewCart(model);
         }

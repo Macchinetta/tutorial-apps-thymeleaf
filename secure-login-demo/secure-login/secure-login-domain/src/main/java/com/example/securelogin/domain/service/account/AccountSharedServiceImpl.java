@@ -118,12 +118,9 @@ public class AccountSharedServiceImpl implements AccountSharedService {
             return false;
         }
 
-        if (failureEvents
-                .get(lockingThreshold - 1)
-                .getAuthenticationTimestamp()
-                .isBefore(
-                        dateFactory.newTimestamp().toLocalDateTime()
-                                .minusSeconds(lockingDurationSeconds))) {
+        if (failureEvents.get(lockingThreshold - 1).getAuthenticationTimestamp()
+                .isBefore(dateFactory.newTimestamp().toLocalDateTime()
+                        .minusSeconds(lockingDurationSeconds))) {
             return false;
         }
 
@@ -163,12 +160,9 @@ public class AccountSharedServiceImpl implements AccountSharedService {
             return true;
         }
 
-        if (passwordHistories
-                .get(0)
-                .getUseFrom()
-                .isBefore(
-                        dateFactory.newTimestamp().toLocalDateTime()
-                                .minusSeconds(passwordLifeTimeSeconds))) {
+        if (passwordHistories.get(0).getUseFrom().isBefore(dateFactory
+                .newTimestamp().toLocalDateTime().minusSeconds(
+                        passwordLifeTimeSeconds))) {
             return true;
         }
 
@@ -176,7 +170,8 @@ public class AccountSharedServiceImpl implements AccountSharedService {
     }
 
     @Override
-    @CacheEvict(value = { "isInitialPassword", "isCurrentPasswordExpired" }, key = "#username")
+    @CacheEvict(value = { "isInitialPassword",
+            "isCurrentPasswordExpired" }, key = "#username")
     public boolean updatePassword(String username, String rawPassword) {
         String password = passwordEncoder.encode(rawPassword);
         boolean result = accountRepository.updatePassword(username, password);
@@ -194,7 +189,8 @@ public class AccountSharedServiceImpl implements AccountSharedService {
     }
 
     @Override
-    @CacheEvict(value = { "isInitialPassword", "isCurrentPasswordExpired" }, key = "#username")
+    @CacheEvict(value = { "isInitialPassword",
+            "isCurrentPasswordExpired" }, key = "#username")
     public void clearPasswordValidationCache(String username) {
         // evict caches
     }

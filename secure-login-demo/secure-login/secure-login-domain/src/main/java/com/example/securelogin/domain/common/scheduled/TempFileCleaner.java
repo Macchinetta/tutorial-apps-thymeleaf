@@ -25,14 +25,15 @@ public class TempFileCleaner {
 
     @Inject
     ClassicDateFactory dateFactory;
-    
+
     @Inject
     FileUploadSharedService fileUploadSharedService;
-    
+
     @Value("${security.tempFileCleanupSeconds}")
     int cleanupInterval;
-    
+
     public void cleanup() {
-        fileUploadSharedService.cleanUp(dateFactory.newTimestamp().toLocalDateTime().minusSeconds(cleanupInterval));
+        fileUploadSharedService.cleanUp(dateFactory.newTimestamp()
+                .toLocalDateTime().minusSeconds(cleanupInterval));
     }
 }

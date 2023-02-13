@@ -32,9 +32,10 @@ public class SampleUserDetailsService implements UserDetailsService { // (1)
     @Inject
     AccountSharedService accountSharedService; // (2)
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(
+            String username) throws UsernameNotFoundException {
         try {
             Account account = accountSharedService.findOne(username); // (3)
             return new SampleUserDetails(account); // (4)
@@ -44,4 +45,3 @@ public class SampleUserDetailsService implements UserDetailsService { // (1)
     }
 
 }
-

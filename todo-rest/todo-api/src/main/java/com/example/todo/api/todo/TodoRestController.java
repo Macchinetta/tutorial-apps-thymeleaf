@@ -60,9 +60,12 @@ public class TodoRestController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public TodoResource postTodos(@RequestBody @Validated TodoResource todoResource) {
-        Todo createdTodo = todoService.create(beanMapper.map(todoResource, Todo.class));
-        TodoResource createdTodoResponse = beanMapper.map(createdTodo, TodoResource.class);
+    public TodoResource postTodos(
+            @RequestBody @Validated TodoResource todoResource) {
+        Todo createdTodo = todoService.create(beanMapper.map(todoResource,
+                Todo.class));
+        TodoResource createdTodoResponse = beanMapper.map(createdTodo,
+                TodoResource.class);
         return createdTodoResponse;
     }
 
@@ -78,7 +81,8 @@ public class TodoRestController {
     @ResponseStatus(HttpStatus.OK)
     public TodoResource putTodo(@PathVariable("todoId") String todoId) {
         Todo finishedTodo = todoService.finish(todoId);
-        TodoResource finishedTodoResource = beanMapper.map(finishedTodo, TodoResource.class);
+        TodoResource finishedTodoResource = beanMapper.map(finishedTodo,
+                TodoResource.class);
         return finishedTodoResource;
     }
 

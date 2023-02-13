@@ -32,4 +32,3 @@ public interface TodoRepository {
 
     long countByFinished(boolean finished);
 }
-

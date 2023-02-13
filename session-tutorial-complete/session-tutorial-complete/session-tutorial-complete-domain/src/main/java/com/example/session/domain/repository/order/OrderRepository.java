@@ -22,8 +22,8 @@ import com.example.session.domain.model.OrderLine;
 
 public interface OrderRepository {
 
-	void createOrderLines(List<OrderLine> orderLines);
+    void createOrderLines(List<OrderLine> orderLines);
 
-	void createOrder(Order order);
+    void createOrder(Order order);
 
 }

@@ -58,4 +58,3 @@ public class TodoForm implements Serializable {
     }
 
 }
-

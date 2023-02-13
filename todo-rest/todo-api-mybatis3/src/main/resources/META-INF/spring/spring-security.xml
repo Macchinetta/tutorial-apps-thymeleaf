@@ -13,7 +13,7 @@
     <!-- (1) -->
     <sec:http pattern="/api/v1/**" security="none" />
 
-    <sec:http>
+    <sec:http once-per-request="false">
         <sec:form-login/>
         <sec:logout/>
         <sec:access-denied-handler ref="accessDeniedHandler"/>

@@ -27,7 +27,7 @@ import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 
 public class StrongPasswordValidator implements
-        ConstraintValidator<StrongPassword, Object> {
+                                     ConstraintValidator<StrongPassword, Object> {
 
     @Inject
     @Named("characteristicPasswordValidator")
@@ -47,21 +47,21 @@ public class StrongPasswordValidator implements
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
         BeanWrapper beanWrapper = new BeanWrapperImpl(value);
-        String username = (String) beanWrapper
-                .getPropertyValue(usernamePropertyName);
-        String newPassword = (String) beanWrapper
-                .getPropertyValue(newPasswordPropertyName);
+        String username = (String) beanWrapper.getPropertyValue(
+                usernamePropertyName);
+        String newPassword = (String) beanWrapper.getPropertyValue(
+                newPasswordPropertyName);
 
-        RuleResult result = characteristicPasswordValidator
-                .validate(new PasswordData(username, newPassword));
+        RuleResult result = characteristicPasswordValidator.validate(
+                new PasswordData(username, newPassword));
 
         if (result.isValid()) {
             return true;
         } else {
             context.disableDefaultConstraintViolation();
 
-            for (String message : characteristicPasswordValidator
-                    .getMessages(result)) {
+            for (String message : characteristicPasswordValidator.getMessages(
+                    result)) {
                 context.buildConstraintViolationWithTemplate(message)
                         .addPropertyNode(newPasswordPropertyName)
                         .addConstraintViolation();

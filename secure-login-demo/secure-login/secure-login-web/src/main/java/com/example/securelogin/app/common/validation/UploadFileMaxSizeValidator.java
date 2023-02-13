@@ -21,7 +21,7 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.web.multipart.MultipartFile;
 
 public class UploadFileMaxSizeValidator implements
-        ConstraintValidator<UploadFileMaxSize, MultipartFile> {
+                                        ConstraintValidator<UploadFileMaxSize, MultipartFile> {
 
     private UploadFileMaxSize constraint;
 

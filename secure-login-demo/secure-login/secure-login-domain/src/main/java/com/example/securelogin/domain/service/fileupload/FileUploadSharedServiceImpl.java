@@ -32,10 +32,10 @@ public class FileUploadSharedServiceImpl implements FileUploadSharedService {
 
     @Inject
     TempFileRepository tempFileRepository;
-    
+
     @Inject
     ClassicDateFactory dateFactory;
-    
+
     @Override
     public String uploadTempFile(TempFile tempFile) {
         tempFile.setId(UUID.randomUUID().toString());
@@ -53,7 +53,7 @@ public class FileUploadSharedServiceImpl implements FileUploadSharedService {
     public void deleteTempFile(String id) {
         tempFileRepository.delete(id);
     };
-    
+
     @Override
     public void cleanUp(LocalDateTime deleteTo) {
         tempFileRepository.deleteByToDate(deleteTo);

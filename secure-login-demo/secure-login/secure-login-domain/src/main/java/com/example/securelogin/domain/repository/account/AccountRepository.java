@@ -26,10 +26,10 @@ public interface AccountRepository {
             @Param("password") String password);
 
     boolean create(Account account);
-    
+
     boolean createRoles(Account account);
-    
+
     AccountImage findImage(String username);
-    
+
     boolean createImage(AccountImage accountImage);
 }

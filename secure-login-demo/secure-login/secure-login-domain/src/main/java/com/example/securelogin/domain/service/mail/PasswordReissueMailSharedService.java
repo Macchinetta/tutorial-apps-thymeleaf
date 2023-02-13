@@ -21,6 +21,6 @@ import com.example.securelogin.domain.model.ReceivedMail;
 
 public interface PasswordReissueMailSharedService {
     void send(String to, String text);
-    
+
     List<ReceivedMail> getReceivedMessages();
 }

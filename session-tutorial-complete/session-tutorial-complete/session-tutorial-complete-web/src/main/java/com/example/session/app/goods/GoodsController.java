@@ -14,9 +14,9 @@
  * governing permissions and limitations under the License.
  */
 package com.example.session.app.goods;
- 
+
 import javax.inject.Inject;
- 
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -31,35 +31,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.terasoluna.gfw.common.message.ResultMessages;
- 
+
 import com.example.session.domain.model.Cart;
 import com.example.session.domain.model.CartItem;
 import com.example.session.domain.model.Goods;
 import com.example.session.domain.service.goods.GoodsService;
- 
+
 @Controller
 @RequestMapping("goods")
 public class GoodsController {
- 
-	@Inject
-	GoodsService goodsService;
 
-    
+    @Inject
+    GoodsService goodsService;
+
     @Inject
     Cart cart;
 
     // (1)
     @Inject
     GoodsSearchCriteria criteria;
- 
-	@ModelAttribute(value = "goodViewForm")
-	public GoodViewForm setUpCategoryId() {
-		return new GoodViewForm();
-	}
- 
-	// (2)
+
+    @ModelAttribute(value = "goodViewForm")
+    public GoodViewForm setUpCategoryId() {
+        return new GoodViewForm();
+    }
+
+    // (2)
     @GetMapping
-	public String showGoods(GoodViewForm form, Model model) {
+    public String showGoods(GoodViewForm form, Model model) {
         Pageable pageable = PageRequest.of(criteria.getPage(), 3);
         form.setCategoryId(criteria.getCategoryId());
         return showGoods(pageable, model);
@@ -67,7 +66,8 @@ public class GoodsController {
 
     // (3)
     @GetMapping(params = "categoryId")
-    public String changeCategoryId(GoodViewForm form, Pageable pageable, Model model) {
+    public String changeCategoryId(GoodViewForm form, Pageable pageable,
+            Model model) {
         criteria.setPage(pageable.getPageNumber());
         criteria.setCategoryId(form.getCategoryId());
         return showGoods(pageable, model);
@@ -75,7 +75,8 @@ public class GoodsController {
 
     // (4)
     @GetMapping(params = "page")
-    public String changePage(GoodViewForm form, Pageable pageable, Model model) {
+    public String changePage(GoodViewForm form, Pageable pageable,
+            Model model) {
         criteria.setPage(pageable.getPageNumber());
         form.setCategoryId(criteria.getCategoryId());
         return showGoods(pageable, model);
@@ -83,20 +84,20 @@ public class GoodsController {
 
     // (5)
     String showGoods(Pageable pageable, Model model) {
- 
-		Page<Goods> page = goodsService.findByCategoryId(
-				criteria.getCategoryId(), pageable);
-		model.addAttribute("page", page);
-		return "goods/showGoods";
-	}
- 
-	@GetMapping("/{goodsId}")
-	public String showGoodsDetail(@PathVariable String goodsId, Model model) {
- 
-		Goods goods = goodsService.findOne(goodsId);
-		model.addAttribute(goods);
- 
-		return "/goods/showGoodsDetail";
+
+        Page<Goods> page = goodsService.findByCategoryId(criteria
+                .getCategoryId(), pageable);
+        model.addAttribute("page", page);
+        return "goods/showGoods";
+    }
+
+    @GetMapping("/{goodsId}")
+    public String showGoodsDetail(@PathVariable String goodsId, Model model) {
+
+        Goods goods = goodsService.findOne(goodsId);
+        model.addAttribute(goods);
+
+        return "/goods/showGoodsDetail";
     }
 
     @PostMapping("/addToCart")
@@ -104,8 +105,8 @@ public class GoodsController {
             RedirectAttributes attributes) {
 
         if (result.hasErrors()) {
-            ResultMessages messages = ResultMessages.error()
-                    .add("e.st.go.5001");
+            ResultMessages messages = ResultMessages.error().add(
+                    "e.st.go.5001");
             attributes.addFlashAttribute(messages);
             return "redirect:/goods";
         }
@@ -117,5 +118,5 @@ public class GoodsController {
         cart.add(cartItem);
 
         return "redirect:/goods";
-	}
+    }
 }

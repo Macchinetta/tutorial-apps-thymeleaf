@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example.session</groupId>
     <artifactId>session-tutorial-complete</artifactId>
-    <version>1.8.1.SP1.RELEASE</version>
+    <version>1.8.2.RELEASE</version>
     <packaging>pom</packaging>
     <parent>
         <groupId>org.terasoluna.gfw</groupId>
         <artifactId>terasoluna-gfw-parent</artifactId>
-        <version>5.7.1.SP1.RELEASE</version>
+        <version>5.7.2.RELEASE</version>
     </parent>
 
     <name>Macchinetta Server Framework (1.x) Web Blank Multi Project</name>
@@ -120,17 +120,17 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>session-tutorial-complete-domain</artifactId>
-                <version>1.8.1.SP1.RELEASE</version>
+                <version>1.8.2.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>session-tutorial-complete-web</artifactId>
-                <version>1.8.1.SP1.RELEASE</version>
+                <version>1.8.2.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>session-tutorial-complete-env</artifactId>
-                <version>1.8.1.SP1.RELEASE</version>
+                <version>1.8.2.RELEASE</version>
             </dependency>
 
             <!-- == Begin TERASOLUNA == -->
@@ -231,16 +231,16 @@
         <org.apache.maven.plugins.maven-failsafe-plugin.version>3.0.0-M5</org.apache.maven.plugins.maven-failsafe-plugin.version>
         <org.apache.maven.plugins.maven-surefire-plugin.version>3.0.0-M5</org.apache.maven.plugins.maven-surefire-plugin.version>
         <!-- == Dependency Versions == -->
-        <postgresql.version>42.3.1</postgresql.version>
-        <ojdbc.version>21.3.0.0</ojdbc.version>
-        <dbunit.version>2.7.2</dbunit.version>
+        <postgresql.version>42.5.1</postgresql.version>
+        <ojdbc.version>21.8.0.0</ojdbc.version>
+        <dbunit.version>2.7.3</dbunit.version>
         <spring.test.dbunit.version>1.3.0</spring.test.dbunit.version>
         <!-- == Project Properties == -->
         <encoding>UTF-8</encoding>
         <java-version>1.8</java-version>
-        <webdrivermanager.version>3.1.1</webdrivermanager.version>
+        <webdrivermanager.version>5.3.1</webdrivermanager.version>
         <jaxb-core.version>2.3.0.1</jaxb-core.version>
-    <jaxb-impl.version>2.3.5</jaxb-impl.version>
+    <jaxb-impl.version>2.3.7</jaxb-impl.version>
     </properties>
 <modules>  <module>session-tutorial-complete-env</module>
     <module>session-tutorial-complete-domain</module>
@@ -258,7 +258,34 @@
         <java-version>11</java-version>
         <cargo.jvmargs>-Xms512m -Xmx1024m -Djava.locale.providers=COMPAT,CLDR,SPI</cargo.jvmargs>
           <jaxb-core.version>2.3.0.1</jaxb-core.version>
-    <jaxb-impl.version>2.3.5</jaxb-impl.version>
+    <jaxb-impl.version>2.3.7</jaxb-impl.version>
+    </properties>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <configuration>
+                <systemProperties>
+                  <jdk.tls.client.protocols>TLSv1.2</jdk.tls.client.protocols>
+                </systemProperties>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+    <profile>
+      <id>jdk17</id>
+      <activation>
+        <jdk>17</jdk>
+      </activation>
+      <properties>
+        <java-version>17</java-version>
+        <cargo.jvmargs>-Xms512m -Xmx1024m -Djava.locale.providers=COMPAT,CLDR,SPI</cargo.jvmargs>
+          <jaxb-core.version>2.3.0.1</jaxb-core.version>
+    <jaxb-impl.version>2.3.7</jaxb-impl.version>
     </properties>
       <build>
         <pluginManagement>

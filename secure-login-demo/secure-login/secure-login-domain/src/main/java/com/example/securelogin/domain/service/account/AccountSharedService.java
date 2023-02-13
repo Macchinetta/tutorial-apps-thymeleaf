@@ -24,11 +24,11 @@ public interface AccountSharedService {
     Account findOne(String username);
 
     LocalDateTime getLastLoginDate(String username);
-    
+
     String create(Account account, String imageId);
 
     boolean exists(String username);
-    
+
     boolean isLocked(String username);
 
     boolean isInitialPassword(String username);

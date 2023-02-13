@@ -66,4 +66,3 @@ public class ApiError implements Serializable {
     }
 
 }
-

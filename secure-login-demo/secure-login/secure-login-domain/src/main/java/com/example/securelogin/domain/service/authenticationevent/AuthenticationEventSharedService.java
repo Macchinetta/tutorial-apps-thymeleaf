@@ -22,11 +22,11 @@ import com.example.securelogin.domain.model.SuccessfulAuthentication;
 
 public interface AuthenticationEventSharedService {
 
-    List<SuccessfulAuthentication> findLatestSuccessEvents(
-            String username, int count);
+    List<SuccessfulAuthentication> findLatestSuccessEvents(String username,
+            int count);
 
-    List<FailedAuthentication> findLatestFailureEvents(
-            String username, int count);
+    List<FailedAuthentication> findLatestFailureEvents(String username,
+            int count);
 
     void authenticationSuccess(String username);
 

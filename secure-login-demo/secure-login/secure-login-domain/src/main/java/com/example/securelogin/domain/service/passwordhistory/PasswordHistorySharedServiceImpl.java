@@ -28,7 +28,7 @@ import com.example.securelogin.domain.repository.passwordhistory.PasswordHistory
 @Service
 @Transactional
 public class PasswordHistorySharedServiceImpl implements
-        PasswordHistorySharedService {
+                                              PasswordHistorySharedService {
 
     @Inject
     PasswordHistoryRepository passwordHistoryRepository;

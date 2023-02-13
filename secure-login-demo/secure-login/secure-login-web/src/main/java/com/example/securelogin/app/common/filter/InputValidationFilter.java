@@ -42,14 +42,14 @@ public class InputValidationFilter extends OncePerRequestFilter {
     public InputValidationFilter(char[] prohibitedChars,
             char[] prohibitedCharsForFileName) {
         this.prohibitedChars = Chars.asList(prohibitedChars);
-        this.prohibitedCharsForFileName = Chars
-                .asList(prohibitedCharsForFileName);
+        this.prohibitedCharsForFileName = Chars.asList(
+                prohibitedCharsForFileName);
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
-            HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException {
+            HttpServletResponse response,
+            FilterChain filterChain) throws ServletException, IOException {
         if (request != null) {
             validateRequestParams(request);
 
@@ -84,8 +84,7 @@ public class InputValidationFilter extends OncePerRequestFilter {
             List<Character> chars = Chars.asList(target.toCharArray());
             for (Character prohibitedChar : prohibited) {
                 if (chars.contains(prohibitedChar)) {
-                    throw new InvalidCharacterException(
-                            "The request contains prohibited charcter.");
+                    throw new InvalidCharacterException("The request contains prohibited charcter.");
                 }
             }
         }

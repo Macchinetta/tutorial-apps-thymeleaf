@@ -58,8 +58,8 @@ public class OrderController {
     public String confirm(@AuthenticationPrincipal AccountDetails userDetails,
             Model model) {
         if (cart.isEmpty()) {
-            ResultMessages messages = ResultMessages.error()
-                    .add("e.st.od.5001");
+            ResultMessages messages = ResultMessages.error().add(
+                    "e.st.od.5001");
             model.addAttribute(messages);
             return "cart/viewCart";
         }

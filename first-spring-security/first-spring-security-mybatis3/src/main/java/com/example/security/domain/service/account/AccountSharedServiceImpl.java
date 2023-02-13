@@ -31,7 +31,7 @@ public class AccountSharedServiceImpl implements AccountSharedService {
     @Inject
     AccountRepository accountRepository;
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     @Override
     public Account findOne(String username) {
         // (1)

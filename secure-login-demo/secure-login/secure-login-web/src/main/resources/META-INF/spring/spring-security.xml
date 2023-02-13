@@ -8,7 +8,7 @@
     ">
 
     <sec:http pattern="/resources/**" security="none"/>
-    <sec:http>
+    <sec:http once-per-request="false">
         <sec:form-login login-page="/login"
             login-processing-url="/login" username-parameter="username"
             password-parameter="password" />

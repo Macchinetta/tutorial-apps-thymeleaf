@@ -53,7 +53,8 @@ public class AccountUpdateController {
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+        binder.registerCustomEditor(String.class,
+                new StringTrimmerEditor(true));
     }
 
     @ModelAttribute(value = "accountUpdateForm") // (2)
@@ -108,10 +109,10 @@ public class AccountUpdateController {
     }
 
     @PostMapping
-    public String update(
-            @AuthenticationPrincipal AccountDetails userDetails,
+    public String update(@AuthenticationPrincipal AccountDetails userDetails,
             @Validated({ Wizard1.class, Wizard2.class }) AccountUpdateForm form,
-            BindingResult result, RedirectAttributes attributes, SessionStatus sessionStatus) {
+            BindingResult result, RedirectAttributes attributes,
+            SessionStatus sessionStatus) {
 
         if (result.hasErrors()) {
             ResultMessages messages = ResultMessages.error();
@@ -123,7 +124,7 @@ public class AccountUpdateController {
         accountService.update(account);
         userDetails.setAccount(account);
         attributes.addFlashAttribute("account", account);
-        sessionStatus.setComplete();  // (4)
+        sessionStatus.setComplete(); // (4)
 
         return "redirect:/account/update?finish";
     }

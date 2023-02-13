@@ -39,7 +39,9 @@ import com.example.securelogin.app.common.validation.UploadFileNotEmpty.List;
 @Repeatable(List.class)
 public @interface UploadFileNotEmpty {
     String message() default "{com.example.securelogin.app.common.validation.UploadFileNotEmpty.message}";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 
     @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER,

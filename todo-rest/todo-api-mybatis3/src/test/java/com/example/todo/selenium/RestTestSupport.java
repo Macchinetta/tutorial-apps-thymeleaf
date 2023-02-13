@@ -15,8 +15,8 @@
  */
 package com.example.todo.selenium;
 
-import static com.jayway.restassured.config.LogConfig.logConfig;
-import static com.jayway.restassured.config.RestAssuredConfig.config;
+import static io.restassured.config.LogConfig.logConfig;
+import static io.restassured.config.RestAssuredConfig.config;
 
 import java.io.File;
 import java.io.PrintStream;
@@ -32,7 +32,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.github.macchinetta.tutorial.selenium.FunctionTestSupport;
 
-import com.jayway.restassured.RestAssured;
+import io.restassured.RestAssured;
 
 public abstract class RestTestSupport extends FunctionTestSupport {
 

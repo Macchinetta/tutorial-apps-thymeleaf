@@ -22,11 +22,11 @@ import com.example.securelogin.domain.model.TempFile;
 public interface FileUploadSharedService {
 
     String uploadTempFile(TempFile tempFile);
-    
+
     TempFile findTempFile(String id);
-    
+
     void deleteTempFile(String id);
-    
+
     void cleanUp(LocalDateTime deleteTo);
-    
+
 }

@@ -32,7 +32,7 @@ import com.example.securelogin.domain.service.account.AccountSharedService;
 @Service
 @Transactional
 public class AuthenticationEventSharedServiceImpl implements
-        AuthenticationEventSharedService {
+                                                  AuthenticationEventSharedService {
 
     @Inject
     ClassicDateFactory dateFactory;

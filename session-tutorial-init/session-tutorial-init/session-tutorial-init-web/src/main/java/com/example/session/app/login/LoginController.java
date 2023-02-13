@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController {
 
-	@RequestMapping(value = "loginForm")
-	public String viewLoginForm() {
-		return "login/loginForm";
-	}
+    @RequestMapping(value = "loginForm")
+    public String viewLoginForm() {
+        return "login/loginForm";
+    }
 
 }

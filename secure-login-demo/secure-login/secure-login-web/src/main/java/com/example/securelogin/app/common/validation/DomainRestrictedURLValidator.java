@@ -27,10 +27,10 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.util.StringUtils;
 
 public class DomainRestrictedURLValidator implements
-        ConstraintValidator<DomainRestrictedURL, CharSequence> {
+                                          ConstraintValidator<DomainRestrictedURL, CharSequence> {
 
-    private static final Pattern URL_REGEX = Pattern
-            .compile("(?i)^(?:[a-z](?:[-a-z0-9\\+\\.])*)" + // protocol
+    private static final Pattern URL_REGEX = Pattern.compile(
+            "(?i)^(?:[a-z](?:[-a-z0-9\\+\\.])*)" + // protocol
                     ":(?:\\/\\/([^\\/:]+)" + // auth+host/ip
                     "(?::([0-9]*))?" + // port
                     "(?:\\/.*)*)$");
@@ -50,7 +50,8 @@ public class DomainRestrictedURLValidator implements
         if (urlMatcher.matches()) {
             String host = urlMatcher.group(1);
             for (String domain : allowedDomains) {
-                if (StringUtils.hasLength(host) && host.endsWith("." + domain)) {
+                if (StringUtils.hasLength(host) && host.endsWith("."
+                        + domain)) {
                     return true;
                 }
             }

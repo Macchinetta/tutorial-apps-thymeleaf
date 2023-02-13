@@ -29,93 +29,93 @@ import com.example.session.app.validation.Confirm;
 @Confirm(field = "password")
 public class AccountCreateForm implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
-	@NotNull
-	@Size(min = 1, max = 255)
-	private String name;
+    @NotNull
+    @Size(min = 1, max = 255)
+    private String name;
 
-	@NotNull
-	@Size(min = 1, max = 255)
-	@Email
-	private String email;
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Email
+    private String email;
 
-	@NotNull
-	@Size(min = 4)
-	private String password;
+    @NotNull
+    @Size(min = 4)
+    private String password;
 
-	@NotNull
-	@Size(min = 4)
-	private String confirmPassword;
+    @NotNull
+    @Size(min = 4)
+    private String confirmPassword;
 
-	@NotNull
-	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-	private Date birthday;
+    @NotNull
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private Date birthday;
 
-	@NotNull
-	@Size(min = 7, max = 7)
-	private String zip;
+    @NotNull
+    @Size(min = 7, max = 7)
+    private String zip;
 
-	@NotNull
-	@Size(min = 1, max = 255)
-	private String address;
+    @NotNull
+    @Size(min = 1, max = 255)
+    private String address;
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
 
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
-	}
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 
-	public Date getBirthday() {
-		return birthday;
-	}
+    public Date getBirthday() {
+        return birthday;
+    }
 
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
 
-	public String getZip() {
-		return zip;
-	}
+    public String getZip() {
+        return zip;
+    }
 
-	public void setZip(String zip) {
-		this.zip = zip;
-	}
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }

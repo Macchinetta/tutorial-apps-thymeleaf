@@ -15,7 +15,7 @@
  */
 package com.github.macchinetta.tutorial.selenium;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 import javax.inject.Inject;
 
 import org.openqa.selenium.WebDriver;
@@ -112,7 +112,7 @@ public class WebDriverCreator extends ApplicationObjectSupport {
 
         FirefoxOptions options = new FirefoxOptions().setProfile(profile);
         WebDriver webDriver = new FirefoxDriver(options);
-        webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
         return webDriver;
     }

@@ -39,7 +39,7 @@ import com.example.securelogin.domain.service.account.AccountSharedService;
 import com.example.securelogin.domain.service.passwordhistory.PasswordHistorySharedService;
 
 public class NotReusedPasswordValidator implements
-        ConstraintValidator<NotReusedPassword, Object> {
+                                        ConstraintValidator<NotReusedPassword, Object> {
 
     @Inject
     ClassicDateFactory dateFactory;
@@ -80,10 +80,10 @@ public class NotReusedPasswordValidator implements
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
         BeanWrapper beanWrapper = new BeanWrapperImpl(value);
-        String username = (String) beanWrapper
-                .getPropertyValue(usernamePropertyName);
-        String newPassword = (String) beanWrapper
-                .getPropertyValue(newPasswordPropertyName);
+        String username = (String) beanWrapper.getPropertyValue(
+                usernamePropertyName);
+        String newPassword = (String) beanWrapper.getPropertyValue(
+                newPasswordPropertyName);
 
         Account account = accountSharedService.findOne(username);
         String currentPassword = account.getPassword();
@@ -111,8 +111,8 @@ public class NotReusedPasswordValidator implements
         }
     }
 
-    private boolean checkHistoricalPassword(String username,
-            String newPassword, ConstraintValidatorContext context) {
+    private boolean checkHistoricalPassword(String username, String newPassword,
+            ConstraintValidatorContext context) {
         LocalDateTime useFrom = dateFactory.newTimestamp().toLocalDateTime()
                 .minusMinutes(passwordHistoricalCheckingPeriod);
         List<PasswordHistory> historyByTime = passwordHistorySharedService
@@ -129,8 +129,8 @@ public class NotReusedPasswordValidator implements
         }
 
         PasswordData passwordData = new PasswordData(username, newPassword, historyData);
-        RuleResult result = encodedPasswordHistoryValidator
-                .validate(passwordData);
+        RuleResult result = encodedPasswordHistoryValidator.validate(
+                passwordData);
 
         if (result.isValid()) {
             return true;

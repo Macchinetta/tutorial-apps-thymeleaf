@@ -48,13 +48,14 @@ public class RestGlobalExceptionHandler extends ResponseEntityExceptionHandler {
         if (body == null) {
             responseBody = createApiError(request, "E999", ex.getMessage());
         }
-        return ResponseEntity.status(status).headers(headers).body(responseBody);
+        return ResponseEntity.status(status).headers(headers).body(
+                responseBody);
     }
 
     private ApiError createApiError(WebRequest request, String errorCode,
             Object... args) {
-        return new ApiError(errorCode, messageSource.getMessage(errorCode,
-                args, request.getLocale()));
+        return new ApiError(errorCode, messageSource.getMessage(errorCode, args,
+                request.getLocale()));
     }
 
     @Override
@@ -66,7 +67,8 @@ public class RestGlobalExceptionHandler extends ResponseEntityExceptionHandler {
             apiError.addDetail(createApiError(request, fieldError, fieldError
                     .getField()));
         }
-        for (ObjectError objectError : ex.getBindingResult().getGlobalErrors()) {
+        for (ObjectError objectError : ex.getBindingResult()
+                .getGlobalErrors()) {
             apiError.addDetail(createApiError(request, objectError, objectError
                     .getObjectName()));
         }
@@ -77,7 +79,8 @@ public class RestGlobalExceptionHandler extends ResponseEntityExceptionHandler {
             DefaultMessageSourceResolvable messageSourceResolvable,
             String target) {
         return new ApiError(messageSourceResolvable.getCode(), messageSource
-                .getMessage(messageSourceResolvable, request.getLocale()), target);
+                .getMessage(messageSourceResolvable, request
+                        .getLocale()), target);
     }
 
     @ExceptionHandler(BusinessException.class)
@@ -112,4 +115,3 @@ public class RestGlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
 }
-

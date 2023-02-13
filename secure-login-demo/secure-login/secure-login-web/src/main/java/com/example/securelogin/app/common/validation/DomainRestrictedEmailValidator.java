@@ -23,7 +23,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 public class DomainRestrictedEmailValidator implements
-        ConstraintValidator<DomainRestrictedEmail, CharSequence> {
+                                            ConstraintValidator<DomainRestrictedEmail, CharSequence> {
 
     private Set<String> allowedDomains;
 
@@ -44,9 +44,8 @@ public class DomainRestrictedEmailValidator implements
         }
 
         for (String domain : allowedDomains) {
-            if (value.toString().endsWith("@" + domain)
-                    || (allowSubDomain && value.toString().endsWith(
-                            "." + domain))) {
+            if (value.toString().endsWith("@" + domain) || (allowSubDomain
+                    && value.toString().endsWith("." + domain))) {
                 return true;
             }
         }

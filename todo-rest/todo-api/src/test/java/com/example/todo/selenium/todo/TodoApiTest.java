@@ -28,8 +28,8 @@ import org.springframework.test.context.ContextConfiguration;
 
 import com.example.todo.selenium.RestTestSupport;
 
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.http.ContentType;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 
 @ContextConfiguration(locations = {
         "classpath:META-INF/spring/seleniumContextRest.xml" })

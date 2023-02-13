@@ -19,29 +19,29 @@ import java.io.Serializable;
 
 public class CartItem implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
-	private Goods goods;
+    private Goods goods;
 
-	private int quantity;
+    private int quantity;
 
-	public Goods getGoods() {
-		return goods;
-	}
+    public Goods getGoods() {
+        return goods;
+    }
 
-	public void setGoods(Goods goods) {
-		this.goods = goods;
-	}
+    public void setGoods(Goods goods) {
+        this.goods = goods;
+    }
 
-	public int getQuantity() {
-		return quantity;
-	}
+    public int getQuantity() {
+        return quantity;
+    }
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
 }

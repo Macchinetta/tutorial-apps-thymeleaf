@@ -31,13 +31,13 @@ import org.terasoluna.gfw.common.message.ResultMessages;
 import com.example.todo.domain.model.Todo;
 import com.example.todo.domain.repository.todo.TodoRepository;
 
-@Service// (1)
+@Service // (1)
 @Transactional // (2)
 public class TodoServiceImpl implements TodoService {
 
     private static final long MAX_UNFINISHED_COUNT = 5;
 
-    @Inject// (3)
+    @Inject // (3)
     TodoRepository todoRepository;
 
     @Override
@@ -52,8 +52,8 @@ public class TodoServiceImpl implements TodoService {
         if (unfinishedCount >= MAX_UNFINISHED_COUNT) {
             // (5)
             ResultMessages messages = ResultMessages.error();
-            messages.add(ResultMessage
-                    .fromText("[E001] The count of un-finished Todo must not be over "
+            messages.add(ResultMessage.fromText(
+                    "[E001] The count of un-finished Todo must not be over "
                             + MAX_UNFINISHED_COUNT + "."));
             // (6)
             throw new BusinessException(messages);
@@ -77,8 +77,8 @@ public class TodoServiceImpl implements TodoService {
         Todo todo = findOne(todoId);
         if (todo.isFinished()) {
             ResultMessages messages = ResultMessages.error();
-            messages.add(ResultMessage
-                    .fromText("[E002] The requested Todo is already finished. (id="
+            messages.add(ResultMessage.fromText(
+                    "[E002] The requested Todo is already finished. (id="
                             + todoId + ")"));
             throw new BusinessException(messages);
         }
@@ -98,9 +98,9 @@ public class TodoServiceImpl implements TodoService {
         Todo todo = todoRepository.findOne(todoId);
         if (todo == null) {
             ResultMessages messages = ResultMessages.error();
-            messages.add(ResultMessage
-                    .fromText("[E404] The requested Todo is not found. (id="
-                            + todoId + ")"));
+            messages.add(ResultMessage.fromText(
+                    "[E404] The requested Todo is not found. (id=" + todoId
+                            + ")"));
             // (9)
             throw new ResourceNotFoundException(messages);
         }

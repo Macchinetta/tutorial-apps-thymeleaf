@@ -67,4 +67,3 @@ public class TodoResource implements Serializable {
         this.createdAt = createdAt;
     }
 }
-

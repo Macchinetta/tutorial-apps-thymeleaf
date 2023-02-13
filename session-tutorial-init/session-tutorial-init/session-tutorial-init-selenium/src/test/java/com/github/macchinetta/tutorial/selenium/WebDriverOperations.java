@@ -16,6 +16,7 @@
 package com.github.macchinetta.tutorial.selenium;
 
 import java.io.File;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -60,7 +61,7 @@ public class WebDriverOperations {
      */
     public boolean exists(By by) {
         webDriver.findElement(By.tagName("body"));
-        setTimeoutForImplicitlyWait(0, TimeUnit.SECONDS);
+        setTimeoutForImplicitlyWait(Duration.ZERO);
         boolean existsElement = true;
         try {
             webDriver.findElement(by).getText();
@@ -76,15 +77,15 @@ public class WebDriverOperations {
      * Set to the default value of the timeout value waiting process to find the element.
      */
     public void setDefaultTimeoutForImplicitlyWait() {
-        setTimeoutForImplicitlyWait(defaultTimeoutSecForImplicitlyWait,
-                TimeUnit.SECONDS);
+        setTimeoutForImplicitlyWait(Duration.ofSeconds(
+                defaultTimeoutSecForImplicitlyWait));
     }
 
     /**
      * Set the time-out value of the waiting process to find the element.
      */
-    public void setTimeoutForImplicitlyWait(long timeout, TimeUnit timeUnit) {
-        webDriver.manage().timeouts().implicitlyWait(timeout, timeUnit);
+    public void setTimeoutForImplicitlyWait(Duration duration) {
+        webDriver.manage().timeouts().implicitlyWait(duration);
     }
 
     public void displayPage(String url) {

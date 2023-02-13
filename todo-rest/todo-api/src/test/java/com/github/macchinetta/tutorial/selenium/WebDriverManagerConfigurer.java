@@ -29,7 +29,8 @@ public class WebDriverManagerConfigurer extends ApplicationObjectSupport {
 
     public void setUp() {
         if (propertyFileLocation != null) {
-            WebDriverManager.config().setProperties(propertyFileLocation);
+            WebDriverManager.firefoxdriver().config().setProperties(
+                    propertyFileLocation);
         }
 
         for (String activeProfile : getApplicationContext().getEnvironment()

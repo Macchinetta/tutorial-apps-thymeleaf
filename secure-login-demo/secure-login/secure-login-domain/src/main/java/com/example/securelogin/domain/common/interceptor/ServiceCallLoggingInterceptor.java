@@ -22,8 +22,8 @@ import org.slf4j.LoggerFactory;
 
 public class ServiceCallLoggingInterceptor implements MethodInterceptor {
 
-    private static final Logger logger = LoggerFactory
-            .getLogger(ServiceCallLoggingInterceptor.class);
+    private static final Logger logger = LoggerFactory.getLogger(
+            ServiceCallLoggingInterceptor.class);
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {

@@ -24,7 +24,7 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class AccountUpdateForm implements Serializable {  // (1)
+public class AccountUpdateForm implements Serializable { // (1)
 
     /**
      *

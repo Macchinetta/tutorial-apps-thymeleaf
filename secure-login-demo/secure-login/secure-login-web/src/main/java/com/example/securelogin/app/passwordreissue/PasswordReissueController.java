@@ -92,8 +92,8 @@ public class PasswordReissueController {
         }
 
         try {
-            passwordReissueService.resetPassword(form.getUsername(),
-                    form.getToken(), form.getSecret(), form.getNewPassword());
+            passwordReissueService.resetPassword(form.getUsername(), form
+                    .getToken(), form.getSecret(), form.getNewPassword());
             return "redirect:/reissue/resetpassword?complete";
         } catch (BusinessException e) {
             model.addAttribute(e.getResultMessages());

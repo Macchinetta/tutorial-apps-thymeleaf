@@ -66,4 +66,3 @@ public class Account implements Serializable {
                 + ", firstName=" + firstName + ", lastName=" + lastName + "]";
     }
 }
-

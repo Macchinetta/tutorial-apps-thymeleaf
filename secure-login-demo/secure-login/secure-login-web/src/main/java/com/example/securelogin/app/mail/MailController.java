@@ -30,21 +30,21 @@ import com.example.securelogin.domain.service.mail.PasswordReissueMailSharedServ
 @RestController
 @RequestMapping("api/receivedmail")
 public class MailController {
-    
+
     @Inject
     PasswordReissueMailSharedService mailSharedService;
-    
+
     @Inject
     Mapper beanMapper;
-    
+
     @GetMapping
-    public List<ReceivedMailResource> receivedMessages(){
+    public List<ReceivedMailResource> receivedMessages() {
         List<ReceivedMailResource> resources = new ArrayList<>();
-        List<ReceivedMail> mails = mailSharedService.getReceivedMessages(); 
-        for(ReceivedMail mail : mails){
+        List<ReceivedMail> mails = mailSharedService.getReceivedMessages();
+        for (ReceivedMail mail : mails) {
             resources.add(beanMapper.map(mail, ReceivedMailResource.class));
         }
         return resources;
     }
-    
+
 }

@@ -50,8 +50,8 @@ public class HomeController {
 
         model.addAttribute("account", account);
 
-        if (accountSharedService
-                .isCurrentPasswordExpired(account.getUsername())) {
+        if (accountSharedService.isCurrentPasswordExpired(account
+                .getUsername())) {
             ResultMessages messages = ResultMessages.warning().add(
                     "w.sl.pe.0001");
             model.addAttribute(messages);

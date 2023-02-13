@@ -26,7 +26,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileExtensionValidator implements
-        ConstraintValidator<FileExtension, MultipartFile> {
+                                    ConstraintValidator<FileExtension, MultipartFile> {
 
     private Set<String> extensions;
 
@@ -34,8 +34,8 @@ public class FileExtensionValidator implements
 
     @Override
     public void initialize(FileExtension constraintAnnotation) {
-        this.extensions = new HashSet<String>(
-                Arrays.asList(constraintAnnotation.extensions()));
+        this.extensions = new HashSet<String>(Arrays.asList(constraintAnnotation
+                .extensions()));
         this.ignoreCase = constraintAnnotation.ignoreCase();
     }
 

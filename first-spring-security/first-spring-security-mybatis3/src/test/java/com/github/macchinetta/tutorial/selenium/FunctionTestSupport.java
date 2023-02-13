@@ -16,9 +16,9 @@
 package com.github.macchinetta.tutorial.selenium;
 
 import java.io.File;
+import java.time.Duration;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -165,8 +165,8 @@ public class FunctionTestSupport extends ApplicationObjectSupport {
         if (driver == null) {
             driver = newWebDriver();
         }
-        driver.manage().timeouts().implicitlyWait(
-                defaultTimeoutSecForImplicitlyWait, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(
+                defaultTimeoutSecForImplicitlyWait));
         driver.get(getPackageRootUrl());
 
         this.webDriverOperations = new WebDriverOperations(driver, inputFieldAccessor, screenCapture);

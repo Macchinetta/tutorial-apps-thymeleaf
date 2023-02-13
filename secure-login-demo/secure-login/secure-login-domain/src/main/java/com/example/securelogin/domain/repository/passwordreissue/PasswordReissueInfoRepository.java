@@ -20,7 +20,6 @@ import java.time.LocalDateTime;
 import org.apache.ibatis.annotations.Param;
 import com.example.securelogin.domain.model.PasswordReissueInfo;
 
-
 public interface PasswordReissueInfoRepository {
 
     void create(PasswordReissueInfo info);

@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.example.securelogin</groupId>
         <artifactId>secure-login</artifactId>
-        <version>1.8.1.SP1.RELEASE</version>
+        <version>1.8.2.RELEASE</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -59,7 +59,7 @@
         <dependency>
             <groupId>org.passay</groupId>
             <artifactId>passay</artifactId>
-            <version>1.6.1</version>
+            <version>1.6.2</version>
         </dependency>
     </dependencies>
         </profile>
@@ -94,7 +94,7 @@
         <dependency>
             <groupId>org.passay</groupId>
             <artifactId>passay</artifactId>
-            <version>1.6.1</version>
+            <version>1.6.2</version>
         </dependency>
     </dependencies>
         </profile>
@@ -229,7 +229,7 @@
         <dependency>
             <groupId>org.passay</groupId>
             <artifactId>passay</artifactId>
-            <version>1.6.1</version>
+            <version>1.6.2</version>
         </dependency>
     </dependencies>
 </project>

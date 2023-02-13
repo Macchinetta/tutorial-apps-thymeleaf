@@ -19,14 +19,14 @@ import org.terasoluna.gfw.common.exception.ResultMessagesNotificationException;
 import org.terasoluna.gfw.common.message.ResultMessages;
 
 public class IllegalOperationException extends
-		ResultMessagesNotificationException {
+                                       ResultMessagesNotificationException {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
-	public IllegalOperationException(ResultMessages messages) {
-		super(messages);
-	}
+    public IllegalOperationException(ResultMessages messages) {
+        super(messages);
+    }
 }
