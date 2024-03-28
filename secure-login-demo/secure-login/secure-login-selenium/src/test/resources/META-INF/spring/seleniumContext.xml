@@ -2,20 +2,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    
     xmlns:tx="http://www.springframework.org/schema/tx"
     xsi:schemaLocation="
         http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-                        http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
     ">
 
     <context:property-placeholder
         location="classpath*:META-INF/spring/*.properties" />
-
-    <bean id="webDriver" class="org.openqa.selenium.firefox.FirefoxDriver"
-        scope="prototype" />
-
 
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
         destroy-method="close">
@@ -40,14 +35,7 @@
         <constructor-arg index="0" ref="dbResetScript" />
     </bean>
 
-    <bean id="restOperations" class="org.springframework.web.client.RestTemplate">
-        <property name="requestFactory">
-            <bean class="org.springframework.http.client.SimpleClientHttpRequestFactory">
-                <property name="connectTimeout" value="${selenium.restOperations.connectTimeout:-1}" />
-                <property name="readTimeout" value="${selenium.restOperations.readTimeout:-1}" />
-            </bean>
-        </property>
-    </bean>
+    <context:component-scan base-package="com.example.securelogin.config" />
 
     <bean id="dbLogAssertOperations" class="com.github.macchinetta.tutorial.selenium.DBLogAssertOperations">
         <constructor-arg index="0">
@@ -74,15 +62,12 @@
 
     <bean class="com.github.macchinetta.tutorial.selenium.WebDriverCreator" />
 
-  <bean class="com.github.macchinetta.tutorial.selenium.WebDriverManagerConfigurer">
-    <property name="propertyFileLocation" value="wdm.properties" />
-  </bean>
-
-  <beans profile="firefox default">
-    <bean id="webDriver" class="com.github.macchinetta.tutorial.selenium.FirefoxDriverFactoryBean"
-      scope="prototype">
+    <bean class="com.github.macchinetta.tutorial.selenium.WebDriverManagerConfigurer">
       <property name="propertyFileLocation" value="wdm.properties" />
     </bean>
-  </beans>
+
+
+    <bean id="webDriver" class="org.openqa.selenium.firefox.FirefoxDriver"
+        scope="prototype" />
 
 </beans>

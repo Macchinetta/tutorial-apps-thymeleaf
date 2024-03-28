@@ -19,6 +19,7 @@ import static io.restassured.config.LogConfig.logConfig;
 import static io.restassured.config.RestAssuredConfig.config;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
@@ -64,14 +65,16 @@ public abstract class RestTestSupport extends FunctionTestSupport {
     }
 
     @Before
-    public final void setUpConfig() {
+    public final void setUpConfig() throws IOException {
 
         // Initialization of applicationContextUrl
         RestAssured.baseURI = applicationContextUrl + "/api/v1/todos";
         RestAssured.config = config().logConfig(logConfig()
                 .enablePrettyPrinting(false));
         writer = new StringWriter();
-        captor = new PrintStream(new WriterOutputStream(writer, StandardCharsets.UTF_8), true);
+        WriterOutputStream writerOutputStream = WriterOutputStream.builder().setWriter(writer)
+                .setCharset(StandardCharsets.UTF_8).get();
+        captor = new PrintStream(writerOutputStream, true);
     }
 
     @Override

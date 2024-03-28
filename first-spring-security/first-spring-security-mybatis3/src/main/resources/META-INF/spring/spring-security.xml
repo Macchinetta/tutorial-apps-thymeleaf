@@ -19,7 +19,6 @@
         <sec:intercept-url pattern="/login/**"
             access="permitAll" />
         <sec:intercept-url pattern="/**" access="isAuthenticated()" />
-        <sec:logout/>
         <sec:access-denied-handler ref="accessDeniedHandler"/>
         <sec:custom-filter ref="userIdMDCPutFilter" after="ANONYMOUS_FILTER"/>
         <sec:session-management />

@@ -4,7 +4,7 @@
     <artifactId>secure-login-selenium</artifactId>
     <packaging>jar</packaging>
     <parent>
-        <version>1.8.2.RELEASE</version>
+        <version>1.8.3.RELEASE</version>
         <artifactId>secure-login</artifactId>
         <groupId>com.example.securelogin</groupId>
         <relativePath>../pom.xml</relativePath>
@@ -50,6 +50,11 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <scope>test</scope>
+        </dependency>
 
 <!--         <dependency> -->
 <!--             <groupId>org.postgresql</groupId> -->
@@ -68,13 +73,7 @@
             <artifactId>selenium-java</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-                <groupId>io.github.bonigarcia</groupId>
-                <artifactId>webdrivermanager</artifactId>
-                <scope>test</scope>
-            </dependency>
-
-        
+    
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>

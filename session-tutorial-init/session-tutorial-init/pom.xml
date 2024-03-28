@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example.session</groupId>
     <artifactId>session-tutorial-init</artifactId>
-    <version>1.8.2.RELEASE</version>
+    <version>1.8.3.RELEASE</version>
     <packaging>pom</packaging>
     <parent>
         <groupId>org.terasoluna.gfw</groupId>
         <artifactId>terasoluna-gfw-parent</artifactId>
-        <version>5.7.2.RELEASE</version>
+        <version>5.7.3.RELEASE</version>
     </parent>
 
     <name>Macchinetta Server Framework (1.x) Web Blank Multi Project</name>
@@ -120,17 +120,17 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>session-tutorial-init-domain</artifactId>
-                <version>1.8.2.RELEASE</version>
+                <version>1.8.3.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>session-tutorial-init-web</artifactId>
-                <version>1.8.2.RELEASE</version>
+                <version>1.8.3.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>session-tutorial-init-env</artifactId>
-                <version>1.8.2.RELEASE</version>
+                <version>1.8.3.RELEASE</version>
             </dependency>
 
             <!-- == Begin TERASOLUNA == -->
@@ -190,6 +190,18 @@
             <!-- == End Database == -->
 
             <!-- == Begin Unit Test == -->
+            <dependency>
+                <groupId>io.github.bonigarcia</groupId>
+                <artifactId>webdrivermanager</artifactId>
+                <version>${webdrivermanager.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents.client5</groupId>
+                <artifactId>httpclient5</artifactId>
+                <version>${httpclient5.version}</version>
+                <scope>test</scope>
+            </dependency>
 <!--             <dependency> -->
 <!--                 <groupId>org.dbunit</groupId> -->
 <!--                 <artifactId>dbunit</artifactId> -->
@@ -203,13 +215,6 @@
 <!--                 <scope>test</scope> -->
 <!--             </dependency> -->
             <!-- == End Unit Test == -->
-
-            <dependency>
-                <groupId>io.github.bonigarcia</groupId>
-                <artifactId>webdrivermanager</artifactId>
-                <version>${webdrivermanager.version}</version>
-                <scope>test</scope>
-            </dependency>
 
             <dependency>
               <groupId>com.sun.xml.bind</groupId>
@@ -231,16 +236,17 @@
         <org.apache.maven.plugins.maven-failsafe-plugin.version>3.0.0-M5</org.apache.maven.plugins.maven-failsafe-plugin.version>
         <org.apache.maven.plugins.maven-surefire-plugin.version>3.0.0-M5</org.apache.maven.plugins.maven-surefire-plugin.version>
         <!-- == Dependency Versions == -->
-        <postgresql.version>42.5.1</postgresql.version>
-        <ojdbc.version>21.8.0.0</ojdbc.version>
+        <postgresql.version>42.7.1</postgresql.version>
+        <ojdbc.version>23.3.0.23.09</ojdbc.version>
         <dbunit.version>2.7.3</dbunit.version>
         <spring.test.dbunit.version>1.3.0</spring.test.dbunit.version>
+        <webdrivermanager.version>5.6.3</webdrivermanager.version>
+        <httpclient5.version>5.2.3</httpclient5.version>
         <!-- == Project Properties == -->
         <encoding>UTF-8</encoding>
         <java-version>1.8</java-version>
-        <webdrivermanager.version>5.3.1</webdrivermanager.version>
         <jaxb-core.version>2.3.0.1</jaxb-core.version>
-    <jaxb-impl.version>2.3.7</jaxb-impl.version>
+    <jaxb-impl.version>2.3.9</jaxb-impl.version>
     </properties>
 <modules>  <module>session-tutorial-init-env</module>
     <module>session-tutorial-init-domain</module>
@@ -258,7 +264,7 @@
         <java-version>11</java-version>
         <cargo.jvmargs>-Xms512m -Xmx1024m -Djava.locale.providers=COMPAT,CLDR,SPI</cargo.jvmargs>
           <jaxb-core.version>2.3.0.1</jaxb-core.version>
-    <jaxb-impl.version>2.3.7</jaxb-impl.version>
+    <jaxb-impl.version>2.3.9</jaxb-impl.version>
     </properties>
       <build>
         <pluginManagement>
@@ -285,7 +291,34 @@
         <java-version>17</java-version>
         <cargo.jvmargs>-Xms512m -Xmx1024m -Djava.locale.providers=COMPAT,CLDR,SPI</cargo.jvmargs>
           <jaxb-core.version>2.3.0.1</jaxb-core.version>
-    <jaxb-impl.version>2.3.7</jaxb-impl.version>
+    <jaxb-impl.version>2.3.9</jaxb-impl.version>
+    </properties>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <configuration>
+                <systemProperties>
+                  <jdk.tls.client.protocols>TLSv1.2</jdk.tls.client.protocols>
+                </systemProperties>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+    <profile>
+      <id>jdk21</id>
+      <activation>
+        <jdk>21</jdk>
+      </activation>
+      <properties>
+        <java-version>21</java-version>
+        <cargo.jvmargs>-Xms512m -Xmx1024m -Djava.locale.providers=COMPAT,CLDR,SPI</cargo.jvmargs>
+          <jaxb-core.version>2.3.0.1</jaxb-core.version>
+    <jaxb-impl.version>2.3.9</jaxb-impl.version>
     </properties>
       <build>
         <pluginManagement>

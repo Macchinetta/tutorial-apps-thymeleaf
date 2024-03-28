@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.example.securelogin</groupId>
         <artifactId>secure-login</artifactId>
-        <version>1.8.2.RELEASE</version>
+        <version>1.8.3.RELEASE</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -132,7 +132,7 @@
         <dependency>
             <groupId>org.passay</groupId>
             <artifactId>passay</artifactId>
-            <version>1.6.2</version>
+            <version>1.6.4</version>
         </dependency>
 
         <dependency>
@@ -143,7 +143,7 @@
         <dependency>
             <groupId>com.icegreen</groupId>
             <artifactId>greenmail-spring</artifactId>
-            <version>1.6.11</version>
+            <version>1.6.15</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.sun.mail</groupId>
@@ -177,6 +177,18 @@
       <id>jdk17</id>
       <activation>
         <jdk>17</jdk>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>jakarta.annotation</groupId>
+          <artifactId>jakarta.annotation-api</artifactId>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>jdk21</id>
+      <activation>
+        <jdk>21</jdk>
       </activation>
       <dependencies>
         <dependency>

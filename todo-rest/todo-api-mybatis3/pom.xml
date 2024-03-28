@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example.todo</groupId>
     <artifactId>todo-api-mybatis3</artifactId>
-    <version>1.8.2.RELEASE</version>
+    <version>1.8.3.RELEASE</version>
     <packaging>war</packaging>
     <parent>
         <groupId>org.terasoluna.gfw</groupId>
         <artifactId>terasoluna-gfw-parent</artifactId>
-        <version>5.7.2.RELEASE</version>
+        <version>5.7.3.RELEASE</version>
     </parent>
 
     <name>Macchinetta Server Framework (1.x) Web Blank Project</name>
@@ -103,7 +103,6 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>${io.rest.assured.version}</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
@@ -232,6 +231,18 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdrivermanager.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents.client5</groupId>
+            <artifactId>httpclient5</artifactId>
+            <version>${httpclient5.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <scope>test</scope>
@@ -284,29 +295,22 @@
         -->
         <!-- == End Coding Support == -->
 
-        <dependency>
-                <groupId>io.github.bonigarcia</groupId>
-                <artifactId>webdrivermanager</artifactId>
-                <version>${webdrivermanager.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-        </dependencies>
+    </dependencies>
 
     <properties>
         <!-- == Maven Plugin Versions == -->
         <org.apache.maven.plugins.maven-war-plugin.version>3.3.1</org.apache.maven.plugins.maven-war-plugin.version>
         <org.codehaus.mojo.build-helper-maven-plugin.version>3.2.0</org.codehaus.mojo.build-helper-maven-plugin.version>
         <!-- == Dependency Versions == -->
-        <postgresql.version>42.5.1</postgresql.version>
-        <ojdbc.version>21.8.0.0</ojdbc.version>
+        <postgresql.version>42.7.1</postgresql.version>
+        <ojdbc.version>23.3.0.23.09</ojdbc.version>
         <dbunit.version>2.7.3</dbunit.version>
         <spring.test.dbunit.version>1.3.0</spring.test.dbunit.version>
+        <webdrivermanager.version>5.6.3</webdrivermanager.version>
+        <httpclient5.version>5.2.3</httpclient5.version>
         <!-- == Project Properties == -->
         <encoding>UTF-8</encoding>
         <java-version>1.8</java-version>
-        <webdrivermanager.version>5.3.1</webdrivermanager.version>
-        <io.rest.assured.version>5.3.0</io.rest.assured.version>
     </properties>
   <profiles>
     <profile>
@@ -317,8 +321,7 @@
       <properties>
         <java-version>11</java-version>
         <cargo.jvmargs>-Xms512m -Xmx1024m -Djava.locale.providers=COMPAT,CLDR,SPI</cargo.jvmargs>
-          <io.rest.assured.version>5.3.0</io.rest.assured.version>
-    </properties>
+      </properties>
       <build>
         <pluginManagement>
           <plugins>
@@ -343,8 +346,32 @@
       <properties>
         <java-version>17</java-version>
         <cargo.jvmargs>-Xms512m -Xmx1024m -Djava.locale.providers=COMPAT,CLDR,SPI</cargo.jvmargs>
-          <io.rest.assured.version>5.3.0</io.rest.assured.version>
-    </properties>
+      </properties>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <configuration>
+                <systemProperties>
+                  <jdk.tls.client.protocols>TLSv1.2</jdk.tls.client.protocols>
+                </systemProperties>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+    <profile>
+      <id>jdk21</id>
+      <activation>
+        <jdk>21</jdk>
+      </activation>
+      <properties>
+        <java-version>21</java-version>
+        <cargo.jvmargs>-Xms512m -Xmx1024m -Djava.locale.providers=COMPAT,CLDR,SPI</cargo.jvmargs>
+      </properties>
       <build>
         <pluginManagement>
           <plugins>
