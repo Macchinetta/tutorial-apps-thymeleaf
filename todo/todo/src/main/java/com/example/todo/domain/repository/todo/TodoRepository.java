@@ -20,7 +20,7 @@ import java.util.Collection;
 import com.example.todo.domain.model.Todo;
 
 public interface TodoRepository {
-    Todo findOne(String todoId);
+    Todo findById(String todoId);
 
     Collection<Todo> findAll();
 

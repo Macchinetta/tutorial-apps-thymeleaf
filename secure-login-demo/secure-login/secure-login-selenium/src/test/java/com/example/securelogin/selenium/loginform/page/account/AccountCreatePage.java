@@ -15,14 +15,12 @@
  */
 package com.example.securelogin.selenium.loginform.page.account;
 
+import static org.openqa.selenium.By.id;
 import java.io.IOException;
-
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
-import com.github.macchinetta.tutorial.selenium.WebDriverOperations;
 import com.example.securelogin.selenium.loginform.page.AbstractPageObject;
-
-import static org.openqa.selenium.By.id;
+import com.github.macchinetta.tutorial.selenium.WebDriverOperations;
 
 public class AccountCreatePage extends AbstractPageObject {
 
@@ -32,15 +30,14 @@ public class AccountCreatePage extends AbstractPageObject {
         url = "/accounts/create?form";
     }
 
-    public AccountCreatePage(WebDriverOperations webDriverOperations,
-            String applicationContextURL, ResourceLoader resourceLoader) {
+    public AccountCreatePage(WebDriverOperations webDriverOperations, String applicationContextURL,
+            ResourceLoader resourceLoader) {
         super(webDriverOperations, applicationContextURL);
         this.resourceLoader = resourceLoader;
     }
 
-    public AccountCreatePage inputValidationFailure(String username,
-            String firstName, String lastName, String email,
-            String confirmEmail, String url, String image,
+    public AccountCreatePage inputValidationFailure(String username, String firstName,
+            String lastName, String email, String confirmEmail, String url, String image,
             String profile) throws IOException {
         webDriverOperations.overrideText(id("username"), username);
         webDriverOperations.overrideText(id("firstName"), firstName);

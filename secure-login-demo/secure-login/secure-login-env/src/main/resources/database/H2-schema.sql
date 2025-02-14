@@ -72,7 +72,7 @@ CREATE INDEX idx_tbl_prfl ON failed_password_reissue (token);
 CREATE TABLE temp_file(
     id CHAR(36),
     original_name VARCHAR(256),
-    body BINARY NOT NULL,
+    body BINARY(2000) NOT NULL,
     uploaded_date TIMESTAMP NOT NULL,
     CONSTRAINT pk_tbl_tf PRIMARY KEY (id)
 );
@@ -81,7 +81,7 @@ CREATE INDEX idx_tbl_tf ON temp_file (uploaded_date);
 
 CREATE TABLE account_image(
     username VARCHAR(128),
-    body BINARY NOT NULL,
+    body BINARY(2000) NOT NULL,
     extension CHAR(3),
     CONSTRAINT pk_tbl_ui PRIMARY KEY (username),
     CONSTRAINT fk_tbl_ui FOREIGN KEY (username) REFERENCES account(username)

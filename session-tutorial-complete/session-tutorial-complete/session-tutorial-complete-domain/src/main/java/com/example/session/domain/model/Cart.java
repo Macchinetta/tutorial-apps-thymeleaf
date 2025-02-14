@@ -23,7 +23,6 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
@@ -32,9 +31,7 @@ import org.springframework.util.SerializationUtils;
 @Component // (1)
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS) // (2)
 public class Cart implements Serializable {
-    /**
-     * 
-     */
+
     private static final long serialVersionUID = 1L;
 
     private final Map<String, CartItem> cartItems = new LinkedHashMap<>();

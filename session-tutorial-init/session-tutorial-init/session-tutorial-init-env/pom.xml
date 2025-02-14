@@ -6,9 +6,14 @@
     <parent>
         <groupId>com.example.session</groupId>
         <artifactId>session-tutorial-init</artifactId>
-        <version>1.8.3.RELEASE</version>
+        <version>1.8.4.RELEASE</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
+    <scm>
+        <connection>scm:git:git://github.com/Macchinetta/macchinetta-web-multi-blank-thymeleaf.git</connection>
+        <developerConnection>scm:git:ssh://github.com/Macchinetta/macchinetta-web-multi-blank-thymeleaf.git</developerConnection>
+        <url>https://github.com/Macchinetta/macchinetta-web-multi-blank-thymeleaf</url>
+    </scm>
 
     <build>
         <finalName>${buildFinalName}</finalName>

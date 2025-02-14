@@ -18,7 +18,6 @@ package com.example.todo.api.common.error;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class ApiError implements Serializable {

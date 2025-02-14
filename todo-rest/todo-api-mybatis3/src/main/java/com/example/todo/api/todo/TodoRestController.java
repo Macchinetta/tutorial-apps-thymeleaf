@@ -18,10 +18,7 @@ package com.example.todo.api.todo;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import javax.inject.Inject;
-
-import com.github.dozermapper.core.Mapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,9 +30,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.todo.domain.model.Todo;
 import com.example.todo.domain.service.todo.TodoService;
+import com.github.dozermapper.core.Mapper;
 
 @RestController
 @RequestMapping("todos")
@@ -60,12 +57,9 @@ public class TodoRestController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public TodoResource postTodos(
-            @RequestBody @Validated TodoResource todoResource) {
-        Todo createdTodo = todoService.create(beanMapper.map(todoResource,
-                Todo.class));
-        TodoResource createdTodoResponse = beanMapper.map(createdTodo,
-                TodoResource.class);
+    public TodoResource postTodos(@RequestBody @Validated TodoResource todoResource) {
+        Todo createdTodo = todoService.create(beanMapper.map(todoResource, Todo.class));
+        TodoResource createdTodoResponse = beanMapper.map(createdTodo, TodoResource.class);
         return createdTodoResponse;
     }
 
@@ -81,8 +75,7 @@ public class TodoRestController {
     @ResponseStatus(HttpStatus.OK)
     public TodoResource putTodo(@PathVariable("todoId") String todoId) {
         Todo finishedTodo = todoService.finish(todoId);
-        TodoResource finishedTodoResource = beanMapper.map(finishedTodo,
-                TodoResource.class);
+        TodoResource finishedTodoResource = beanMapper.map(finishedTodo, TodoResource.class);
         return finishedTodoResource;
     }
 

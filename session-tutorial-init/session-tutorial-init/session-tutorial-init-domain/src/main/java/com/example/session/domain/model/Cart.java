@@ -23,13 +23,10 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
-
 import org.springframework.util.SerializationUtils;
 
 public class Cart implements Serializable {
-    /**
-     * 
-     */
+
     private static final long serialVersionUID = 1L;
 
     private final Map<String, CartItem> cartItems = new LinkedHashMap<>();

@@ -16,7 +16,6 @@
 package com.example.securelogin.domain.repository.passwordreissue;
 
 import java.time.LocalDateTime;
-
 import org.apache.ibatis.annotations.Param;
 import com.example.securelogin.domain.model.PasswordReissueInfo;
 
@@ -24,7 +23,7 @@ public interface PasswordReissueInfoRepository {
 
     void create(PasswordReissueInfo info);
 
-    PasswordReissueInfo findOne(@Param("token") String token);
+    PasswordReissueInfo findById(@Param("token") String token);
 
     int deleteByToken(@Param("token") String token);
 

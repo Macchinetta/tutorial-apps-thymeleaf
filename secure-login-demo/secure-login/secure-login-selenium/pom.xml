@@ -4,11 +4,16 @@
     <artifactId>secure-login-selenium</artifactId>
     <packaging>jar</packaging>
     <parent>
-        <version>1.8.3.RELEASE</version>
+        <version>1.8.4.RELEASE</version>
         <artifactId>secure-login</artifactId>
         <groupId>com.example.securelogin</groupId>
         <relativePath>../pom.xml</relativePath>
     </parent>
+    <scm>
+        <connection>scm:git:git://github.com/Macchinetta/macchinetta-web-multi-blank-thymeleaf.git</connection>
+        <developerConnection>scm:git:ssh://github.com/Macchinetta/macchinetta-web-multi-blank-thymeleaf.git</developerConnection>
+        <url>https://github.com/Macchinetta/macchinetta-web-multi-blank-thymeleaf</url>
+    </scm>
 
     <build>
         <plugins>
@@ -56,16 +61,16 @@
             <scope>test</scope>
         </dependency>
 
-<!--         <dependency> -->
-<!--             <groupId>org.postgresql</groupId> -->
-<!--             <artifactId>postgresql</artifactId> -->
-<!--             <scope>test</scope> -->
-<!--         </dependency> -->
-<!--         <dependency> -->
-<!--             <groupId>com.oracle.database.jdbc</groupId> -->
-<!--             <artifactId>ojdbc8</artifactId> -->
-<!--             <scope>test</scope> -->
-<!--         </dependency> -->
+        <!--         <dependency> -->
+        <!--             <groupId>org.postgresql</groupId> -->
+        <!--             <artifactId>postgresql</artifactId> -->
+        <!--             <scope>test</scope> -->
+        <!--         </dependency> -->
+        <!--         <dependency> -->
+        <!--             <groupId>com.oracle.database.jdbc</groupId> -->
+        <!--             <artifactId>ojdbc8</artifactId> -->
+        <!--             <scope>test</scope> -->
+        <!--         </dependency> -->
 
         <!-- Please set the appropriate version according to the web browser. -->
         <dependency>
@@ -92,14 +97,14 @@
             </activation>
         </profile>
         <profile>
-        <id>use_mavenplugin_param</id>
-        <activation>
-            <activeByDefault>true</activeByDefault>
-        </activation>
-        <properties>
-            <http.proxyHost>localhost</http.proxyHost>
-            <http.proxyPort>8080</http.proxyPort>
-        </properties>
+            <id>use_mavenplugin_param</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <http.proxyHost>localhost</http.proxyHost>
+                <http.proxyPort>8080</http.proxyPort>
+            </properties>
         </profile>
     </profiles>
     <properties>

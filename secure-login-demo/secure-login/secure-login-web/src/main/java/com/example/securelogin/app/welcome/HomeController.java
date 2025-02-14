@@ -16,9 +16,7 @@
 package com.example.securelogin.app.welcome;
 
 import java.time.LocalDateTime;
-
 import javax.inject.Inject;
-
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,19 +39,15 @@ public class HomeController {
     /**
      * Simply selects the home view to render by returning its name.
      */
-    @RequestMapping(value = "/", method = { RequestMethod.GET,
-            RequestMethod.POST })
-    public String home(@AuthenticationPrincipal LoggedInUser userDetails,
-            Model model) {
+    @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
+    public String home(@AuthenticationPrincipal LoggedInUser userDetails, Model model) {
 
         Account account = userDetails.getAccount();
 
         model.addAttribute("account", account);
 
-        if (accountSharedService.isCurrentPasswordExpired(account
-                .getUsername())) {
-            ResultMessages messages = ResultMessages.warning().add(
-                    "w.sl.pe.0001");
+        if (accountSharedService.isCurrentPasswordExpired(account.getUsername())) {
+            ResultMessages messages = ResultMessages.warning().add("w.sl.pe.0001");
             model.addAttribute(messages);
         }
 

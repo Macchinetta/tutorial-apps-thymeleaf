@@ -42,7 +42,7 @@ public class TodoServiceImpl implements TodoService {
     @Override
     @Transactional(readOnly = true)
     public Todo findOne(String todoId) {
-        Todo todo = todoRepository.findOne(todoId);
+        Todo todo = todoRepository.findById(todoId);
         if (todo == null) {
             ResultMessages messages = ResultMessages.error();
             messages.add("E404", todoId);

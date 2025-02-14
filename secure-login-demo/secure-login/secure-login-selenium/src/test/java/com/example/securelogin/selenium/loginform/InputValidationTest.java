@@ -15,27 +15,24 @@
  */
 package com.example.securelogin.selenium.loginform;
 
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.sql.DataSource;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.jdbc.datasource.init.ScriptException;
-import com.github.macchinetta.tutorial.selenium.DBLogFunctionTestSupport;
 import com.example.securelogin.selenium.loginform.page.AbstractPageObject;
 import com.example.securelogin.selenium.loginform.page.account.AccountCreatePage;
 import com.example.securelogin.selenium.loginform.page.login.LoginPage;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.CoreMatchers.containsString;
+import com.github.macchinetta.tutorial.selenium.DBLogFunctionTestSupport;
 
 public class InputValidationTest extends DBLogFunctionTestSupport {
 
@@ -67,13 +64,11 @@ public class InputValidationTest extends DBLogFunctionTestSupport {
                 .openWithDescription("go to error page if the request parameter"
                         + " contains prohibited charactor");
 
-        page = ((LoginPage) page).goToAccountCreatePage(resourceLoader)
-                .inputValidationFailure("user&name", "firstName", "lastName",
-                        "test@domainexample.co.jp", "test@domainexample.co.jp",
-                        "http://test-secure-login.jp",
-                        "classpath:database/testdata/demo.png", "test user");
-        assertThat(webDriverOperations.getTitle(), is(
-                "Invalid Character Error!"));
+        page = ((LoginPage) page).goToAccountCreatePage(resourceLoader).inputValidationFailure(
+                "user&name", "firstName", "lastName", "test@domainexample.co.jp",
+                "test@domainexample.co.jp", "http://test-secure-login.jp",
+                "classpath:database/testdata/demo.png", "test user");
+        assertThat(webDriverOperations.getTitle(), is("Invalid Character Error!"));
     }
 
     /**
@@ -83,17 +78,15 @@ public class InputValidationTest extends DBLogFunctionTestSupport {
      */
     @Test
     public void testInputValidation002() throws IOException {
-        AbstractPageObject page = new LoginPage(webDriverOperations, applicationContextUrl)
-                .openWithDescription("go to error page if the file name"
-                        + " contains prohibited charactor");
+        AbstractPageObject page =
+                new LoginPage(webDriverOperations, applicationContextUrl).openWithDescription(
+                        "go to error page if the file name" + " contains prohibited charactor");
 
-        page = ((LoginPage) page).goToAccountCreatePage(resourceLoader)
-                .inputValidationFailure("username", "firstName", "lastName",
-                        "test@domainexample.co.jp", "test@domainexample.co.jp",
-                        "http://test-secure-login.jp",
-                        "classpath:database/testdata/demo;.png", "test user");
-        assertThat(webDriverOperations.getTitle(), is(
-                "Invalid Character Error!"));
+        page = ((LoginPage) page).goToAccountCreatePage(resourceLoader).inputValidationFailure(
+                "username", "firstName", "lastName", "test@domainexample.co.jp",
+                "test@domainexample.co.jp", "http://test-secure-login.jp",
+                "classpath:database/testdata/demo;.png", "test user");
+        assertThat(webDriverOperations.getTitle(), is("Invalid Character Error!"));
     }
 
     /**
@@ -104,14 +97,12 @@ public class InputValidationTest extends DBLogFunctionTestSupport {
     @Test
     public void testInputValidation003() throws IOException {
         AbstractPageObject page = new LoginPage(webDriverOperations, applicationContextUrl)
-                .openWithDescription(
-                        "control characters must not be contained in username");
+                .openWithDescription("control characters must not be contained in username");
 
-        page = ((LoginPage) page).goToAccountCreatePage(resourceLoader)
-                .inputValidationFailure("user	name", "firstName", "lastName",
-                        "test@domainexample.co.jp", "test@domainexample.co.jp",
-                        "http://test-secure-login.jp",
-                        "classpath:database/testdata/demo.png", "test user");
+        page = ((LoginPage) page).goToAccountCreatePage(resourceLoader).inputValidationFailure(
+                "user	name", "firstName", "lastName", "test@domainexample.co.jp",
+                "test@domainexample.co.jp", "http://test-secure-login.jp",
+                "classpath:database/testdata/demo.png", "test user");
         assertThat(((AccountCreatePage) page).getUsernameError(),
                 containsString("Control characters are not allowed."));
     }
@@ -124,16 +115,14 @@ public class InputValidationTest extends DBLogFunctionTestSupport {
     @Test
     public void testInputValidation004() throws IOException {
         AbstractPageObject page = new LoginPage(webDriverOperations, applicationContextUrl)
-                .openWithDescription(
-                        "the upload files' extensions are restricted");
+                .openWithDescription("the upload files' extensions are restricted");
 
-        page = ((LoginPage) page).goToAccountCreatePage(resourceLoader)
-                .inputValidationFailure("username", "firstName", "lastName",
-                        "test@domainexample.co.jp", "test@domainexample.co.jp",
-                        "http://test-secure-login.jp",
-                        "classpath:database/testdata/demo.txt", "test user");
-        assertThat(((AccountCreatePage) page).getImageError(), containsString(
-                "The file extension is not allowed."));
+        page = ((LoginPage) page).goToAccountCreatePage(resourceLoader).inputValidationFailure(
+                "username", "firstName", "lastName", "test@domainexample.co.jp",
+                "test@domainexample.co.jp", "http://test-secure-login.jp",
+                "classpath:database/testdata/demo.txt", "test user");
+        assertThat(((AccountCreatePage) page).getImageError(),
+                containsString("The file extension is not allowed."));
     }
 
     /**
@@ -144,17 +133,14 @@ public class InputValidationTest extends DBLogFunctionTestSupport {
     @Test
     public void testInputValidation005() throws IOException {
         AbstractPageObject page = new LoginPage(webDriverOperations, applicationContextUrl)
-                .openWithDescription(
-                        "the upload file's name has to match specific pattern");
+                .openWithDescription("the upload file's name has to match specific pattern");
 
-        page = ((LoginPage) page).goToAccountCreatePage(resourceLoader)
-                .inputValidationFailure("username", "firstName", "lastName",
-                        "test@domainexample.co.jp", "test@domainexample.co.jp",
-                        "http://test-secure-login.jp",
-                        "classpath:database/testdata/secure.login.demo.png",
-                        "test user");
-        assertThat(((AccountCreatePage) page).getImageError(), containsString(
-                "The file name is not allowed."));
+        page = ((LoginPage) page).goToAccountCreatePage(resourceLoader).inputValidationFailure(
+                "username", "firstName", "lastName", "test@domainexample.co.jp",
+                "test@domainexample.co.jp", "http://test-secure-login.jp",
+                "classpath:database/testdata/secure.login.demo.png", "test user");
+        assertThat(((AccountCreatePage) page).getImageError(),
+                containsString("The file name is not allowed."));
     }
 
     /**
@@ -167,13 +153,12 @@ public class InputValidationTest extends DBLogFunctionTestSupport {
         AbstractPageObject page = new LoginPage(webDriverOperations, applicationContextUrl)
                 .openWithDescription("the domains of the URLs are restricted");
 
-        page = ((LoginPage) page).goToAccountCreatePage(resourceLoader)
-                .inputValidationFailure("username", "firstName", "lastName",
-                        "test@domainexample.co.jp", "test@domainexample.co.jp",
-                        "http://test-secure-login.org",
-                        "classpath:database/testdata/demo.png", "test user");
-        assertThat(((AccountCreatePage) page).getUrlError(), containsString(
-                "This domain is not allowed."));
+        page = ((LoginPage) page).goToAccountCreatePage(resourceLoader).inputValidationFailure(
+                "username", "firstName", "lastName", "test@domainexample.co.jp",
+                "test@domainexample.co.jp", "http://test-secure-login.org",
+                "classpath:database/testdata/demo.png", "test user");
+        assertThat(((AccountCreatePage) page).getUrlError(),
+                containsString("This domain is not allowed."));
     }
 
     /**
@@ -184,15 +169,13 @@ public class InputValidationTest extends DBLogFunctionTestSupport {
     @Test
     public void testInputValidation007() throws IOException {
         AbstractPageObject page = new LoginPage(webDriverOperations, applicationContextUrl)
-                .openWithDescription(
-                        "the domains of the E-mail addresses are restricted");
+                .openWithDescription("the domains of the E-mail addresses are restricted");
 
-        page = ((LoginPage) page).goToAccountCreatePage(resourceLoader)
-                .inputValidationFailure("username", "firstName", "lastName",
-                        "test@secure.login.org", "test@secure.login.org",
-                        "http://test-secure-login.jp",
-                        "classpath:database/testdata/demo.png", "test user");
-        assertThat(((AccountCreatePage) page).getEmailError(), containsString(
-                "This domain is not allowed."));
+        page = ((LoginPage) page).goToAccountCreatePage(resourceLoader).inputValidationFailure(
+                "username", "firstName", "lastName", "test@secure.login.org",
+                "test@secure.login.org", "http://test-secure-login.jp",
+                "classpath:database/testdata/demo.png", "test user");
+        assertThat(((AccountCreatePage) page).getEmailError(),
+                containsString("This domain is not allowed."));
     }
 }

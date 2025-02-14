@@ -16,18 +16,15 @@
 package com.example.session.app.goods;
 
 import java.io.Serializable;
-
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class GoodAddForm implements Serializable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
-    @NotNull
+    @NotEmpty
     private String goodsId;
 
     @NotNull

@@ -16,7 +16,6 @@
 package com.example.securelogin.app.passwordreissue;
 
 import javax.inject.Inject;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -55,14 +54,12 @@ public class PasswordReissueController {
 
     @PostMapping("create")
     public String createReissueInfo(@Validated CreateReissueInfoForm form,
-            BindingResult bindingResult, Model model,
-            RedirectAttributes attributes) {
+            BindingResult bindingResult, Model model, RedirectAttributes attributes) {
         if (bindingResult.hasErrors()) {
             return showCreateReissueInfoForm(form);
         }
 
-        String rawSecret = passwordReissueService.createAndSendReissueInfo(form
-                .getUsername());
+        String rawSecret = passwordReissueService.createAndSendReissueInfo(form.getUsername());
         attributes.addFlashAttribute("secret", rawSecret);
         return "redirect:/reissue/create?complete";
     }
@@ -85,15 +82,15 @@ public class PasswordReissueController {
     }
 
     @PostMapping("resetpassword")
-    public String resetPassword(@Validated PasswordResetForm form,
-            BindingResult bindingResult, Model model) {
+    public String resetPassword(@Validated PasswordResetForm form, BindingResult bindingResult,
+            Model model) {
         if (bindingResult.hasErrors()) {
             return showPasswordResetForm(form, model, form.getToken());
         }
 
         try {
-            passwordReissueService.resetPassword(form.getUsername(), form
-                    .getToken(), form.getSecret(), form.getNewPassword());
+            passwordReissueService.resetPassword(form.getUsername(), form.getToken(),
+                    form.getSecret(), form.getNewPassword());
             return "redirect:/reissue/resetpassword?complete";
         } catch (BusinessException e) {
             model.addAttribute(e.getResultMessages());

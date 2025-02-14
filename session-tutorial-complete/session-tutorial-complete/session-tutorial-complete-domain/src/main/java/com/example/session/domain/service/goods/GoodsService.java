@@ -17,7 +17,6 @@ package com.example.session.domain.service.goods;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
 import com.example.session.domain.model.Goods;
 
 public interface GoodsService {

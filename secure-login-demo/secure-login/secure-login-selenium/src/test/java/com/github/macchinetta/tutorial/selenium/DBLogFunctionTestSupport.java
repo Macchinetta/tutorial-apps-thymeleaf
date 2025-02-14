@@ -17,7 +17,7 @@ package com.github.macchinetta.tutorial.selenium;
 
 import javax.inject.Inject;
 
-public class DBLogFunctionTestSupport extends FunctionTestSupport {
+public abstract class DBLogFunctionTestSupport extends FunctionTestSupport {
 
     @Inject
     protected DBLogAssertOperations dbLogAssertOperations;

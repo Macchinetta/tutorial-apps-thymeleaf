@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.security.domain.repository.account.AccountRepository">
 
     <resultMap id="accountResultMap" type="Account">
@@ -10,7 +9,7 @@
         <result property="lastName" column="last_name" />
     </resultMap>
 
-    <select id="findOne" parameterType="String" resultMap="accountResultMap">
+    <select id="findByUserName" parameterType="String" resultMap="accountResultMap">
         SELECT
             username,
             password,
@@ -22,4 +21,3 @@
             username = #{username}
     </select>
 </mapper>
-

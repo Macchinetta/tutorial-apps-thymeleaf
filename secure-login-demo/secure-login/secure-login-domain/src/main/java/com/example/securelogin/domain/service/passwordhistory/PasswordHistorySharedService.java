@@ -17,15 +17,13 @@ package com.example.securelogin.domain.service.passwordhistory;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
 import com.example.securelogin.domain.model.PasswordHistory;
 
 public interface PasswordHistorySharedService {
 
     int insert(PasswordHistory history);
 
-    List<PasswordHistory> findHistoriesByUseFrom(String username,
-            LocalDateTime useFrom);
+    List<PasswordHistory> findHistoriesByUseFrom(String username, LocalDateTime useFrom);
 
     List<PasswordHistory> findLatest(String username, int limit);
 

@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.atomic.AtomicInteger;
-
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,13 +58,11 @@ public class RestLog {
         subTitle = StringUtils.hasText(subTitle) ? "-" + subTitle : "";
 
         int sequenceNo = sequence.incrementAndGet();
-        String evidenceFile = String.format("rest_communi_%03d%s.txt",
-                sequenceNo, subTitle);
+        String evidenceFile = String.format("rest_communi_%03d%s.txt", sequenceNo, subTitle);
         File pageSourceFile = new File(evidenceSavingDirectory, evidenceFile);
 
         try {
-            FileUtils.writeStringToFile(pageSourceFile, writer.toString(),
-                    StandardCharsets.UTF_8);
+            FileUtils.writeStringToFile(pageSourceFile, writer.toString(), StandardCharsets.UTF_8);
 
         } catch (IOException e) {
             logger.error(e.toString());

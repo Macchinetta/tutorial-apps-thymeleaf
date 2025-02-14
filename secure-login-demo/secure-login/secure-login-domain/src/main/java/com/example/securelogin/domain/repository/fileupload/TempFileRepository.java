@@ -16,7 +16,6 @@
 package com.example.securelogin.domain.repository.fileupload;
 
 import java.time.LocalDateTime;
-
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import com.example.securelogin.domain.model.TempFile;
@@ -24,11 +23,11 @@ import com.example.securelogin.domain.model.TempFile;
 @Repository
 public interface TempFileRepository {
 
-    TempFile findOne(@Param("id") String id);
+    TempFile findById(@Param("id") String id);
 
     boolean create(TempFile tempFile);
 
-    int delete(@Param("id") String id);
+    int deleteById(@Param("id") String id);
 
     int deleteByToDate(@Param("date") LocalDateTime date);
 

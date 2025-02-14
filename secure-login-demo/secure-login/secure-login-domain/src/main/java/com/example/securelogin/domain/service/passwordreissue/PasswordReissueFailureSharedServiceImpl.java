@@ -16,28 +16,23 @@
 package com.example.securelogin.domain.service.passwordreissue;
 
 import javax.inject.Inject;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.terasoluna.gfw.common.date.ClassicDateFactory;
 import com.example.securelogin.domain.model.FailedPasswordReissue;
 import com.example.securelogin.domain.repository.passwordreissue.FailedPasswordReissueRepository;
-import com.example.securelogin.domain.repository.passwordreissue.PasswordReissueInfoRepository;
 
 @Service
 @Transactional
-public class PasswordReissueFailureSharedServiceImpl implements
-                                                     PasswordReissueFailureSharedService {
+public class PasswordReissueFailureSharedServiceImpl
+        implements PasswordReissueFailureSharedService {
 
     @Inject
     ClassicDateFactory dateFactory;
 
     @Inject
     FailedPasswordReissueRepository failedPasswordReissueRepository;
-
-    @Inject
-    PasswordReissueInfoRepository passwordReissueInfoRepository;
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
@@ -46,7 +41,6 @@ public class PasswordReissueFailureSharedServiceImpl implements
         event.setToken(token);
         event.setAttemptDate(dateFactory.newTimestamp().toLocalDateTime());
         failedPasswordReissueRepository.create(event);
-
     }
 
 }

@@ -16,11 +16,10 @@
 package com.example.securelogin.app.passwordreissue;
 
 import java.io.Serializable;
-
+import javax.validation.constraints.NotEmpty;
 import org.terasoluna.gfw.common.validator.constraints.Compare;
 import com.example.securelogin.app.common.validation.NotReusedPassword;
 import com.example.securelogin.app.common.validation.StrongPassword;
-
 import lombok.Data;
 
 @Data
@@ -31,13 +30,18 @@ public class PasswordResetForm implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @NotEmpty
     private String username;
 
+    @NotEmpty
     private String token;
 
+    @NotEmpty
     private String secret;
 
+    @NotEmpty
     private String newPassword;
 
+    @NotEmpty
     private String confirmNewPassword;
 }

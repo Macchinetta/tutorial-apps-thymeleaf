@@ -16,23 +16,18 @@
 package com.example.todo.selenium.todo;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
-
 import com.example.todo.selenium.RestTestSupport;
-
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
-@ContextConfiguration(locations = {
-        "classpath:META-INF/spring/seleniumContextRest.xml" })
+@ContextConfiguration(locations = {"classpath:META-INF/spring/seleniumContextRest.xml"})
 public class TodoApiTest extends RestTestSupport {
 
     @Value("${selenium.applicationContextUrl}")
@@ -42,8 +37,8 @@ public class TodoApiTest extends RestTestSupport {
     public void setUp() throws Exception {
 
         // Get all existing todo resources
-        List<String> todoIds = RestAssured.given().when().get("").then()
-                .extract().jsonPath().getList("todoId");
+        List<String> todoIds =
+                RestAssured.given().when().get("").then().extract().jsonPath().getList("todoId");
 
         // Delete all existing todos
         for (String todoId : todoIds) {
@@ -58,15 +53,12 @@ public class TodoApiTest extends RestTestSupport {
         jsonBody.put("todoTitle", null);
 
         // posting request
-        RestAssured.given().body(jsonBody).contentType(ContentType.JSON).when()
-                .post("").then().statusCode(400).body("code", equalTo("E400"))
-                .body("message", equalTo(
-                        "[E400] The requested Todo contains invalid values."))
-                .body("details[0].code", equalTo("NotNull")).body(
-                        "details[0].message", equalTo(
-                                "todoTitle may not be null.")).body(
-                                        "details[0].target", equalTo(
-                                                "todoTitle"));
+        RestAssured.given().body(jsonBody).contentType(ContentType.JSON).when().post("").then()
+                .statusCode(400).body("code", equalTo("E400"))
+                .body("message", equalTo("[E400] The requested Todo contains invalid values."))
+                .body("details[0].code", equalTo("NotNull"))
+                .body("details[0].message", equalTo("todoTitle may not be null."))
+                .body("details[0].target", equalTo("todoTitle"));
     }
 
     @Test
@@ -76,9 +68,9 @@ public class TodoApiTest extends RestTestSupport {
         jsonBody.put("todoTitle", "Hello World!");
 
         // posting request
-        RestAssured.given().body(jsonBody).contentType(ContentType.JSON).when()
-                .post("").then().statusCode(201).body("todoTitle", equalTo(
-                        "Hello World!")).body("finished", equalTo(false));
+        RestAssured.given().body(jsonBody).contentType(ContentType.JSON).when().post("").then()
+                .statusCode(201).body("todoTitle", equalTo("Hello World!"))
+                .body("finished", equalTo(false));
     }
 
     @Test
@@ -88,13 +80,11 @@ public class TodoApiTest extends RestTestSupport {
         jsonBody.put("todoTitle", "Hello World!");
 
         // posting request
-        String todoId = RestAssured.given().body(jsonBody).contentType(
-                ContentType.JSON).when().post("").then().extract().jsonPath()
-                .get("todoId");
+        String todoId = RestAssured.given().body(jsonBody).contentType(ContentType.JSON).when()
+                .post("").then().extract().jsonPath().get("todoId");
 
         // deleting request
-        RestAssured.given().when().delete("/{todoId}", todoId).then()
-                .statusCode(204);
+        RestAssured.given().when().delete("/{todoId}", todoId).then().statusCode(204);
     }
 
     @Test
@@ -111,18 +101,16 @@ public class TodoApiTest extends RestTestSupport {
         jsonBody.put("todoTitle", "Hello World!");
 
         // posting request
-        String todoId = RestAssured.given().body(jsonBody).contentType(
-                ContentType.JSON).when().post("").then().extract().jsonPath()
-                .get("todoId");
+        String todoId = RestAssured.given().body(jsonBody).contentType(ContentType.JSON).when()
+                .post("").then().extract().jsonPath().get("todoId");
 
         // request path
         String nonexistId = todoId + "Nonexist";
 
         // getting request
-        RestAssured.given().when().get("/{nonexistId}", nonexistId).then()
-                .statusCode(404).body("code", equalTo("E404")).body("message",
-                        equalTo("[E404] The requested Todo is not found. (id="
-                                + nonexistId + ")"));
+        RestAssured.given().when().get("/{nonexistId}", nonexistId).then().statusCode(404)
+                .body("code", equalTo("E404")).body("message",
+                        equalTo("[E404] The requested Todo is not found. (id=" + nonexistId + ")"));
     }
 
     @Test
@@ -132,13 +120,12 @@ public class TodoApiTest extends RestTestSupport {
         jsonBody.put("todoTitle", "Hello World!");
 
         // posting request
-        String todoId = RestAssured.given().body(jsonBody).contentType(
-                ContentType.JSON).when().post("").then().extract().jsonPath()
-                .get("todoId");
+        String todoId = RestAssured.given().body(jsonBody).contentType(ContentType.JSON).when()
+                .post("").then().extract().jsonPath().get("todoId");
 
         // getting request
-        RestAssured.given().when().get("/{todoId}", todoId).then().statusCode(
-                200).body("todoId", equalTo(todoId));
+        RestAssured.given().when().get("/{todoId}", todoId).then().statusCode(200).body("todoId",
+                equalTo(todoId));
     }
 
     @Test
@@ -148,9 +135,8 @@ public class TodoApiTest extends RestTestSupport {
         jsonBody.put("todoTitle", "Hello World!");
 
         // putting request
-        RestAssured.given().body(jsonBody).contentType(ContentType.JSON).when()
-                .put("").then().statusCode(405).body("code", equalTo("E999"))
-                .body("message", equalTo(
+        RestAssured.given().body(jsonBody).contentType(ContentType.JSON).when().put("").then()
+                .statusCode(405).body("code", equalTo("E999")).body("message", equalTo(
                         "[E999] Error occurred. Caused by : Request method 'PUT' not supported"));
     }
 
@@ -161,20 +147,18 @@ public class TodoApiTest extends RestTestSupport {
         jsonBody.put("todoTitle", "Hello World!");
 
         // posting request
-        String todoId = RestAssured.given().body(jsonBody).contentType(
-                ContentType.JSON).when().post("").then().extract().jsonPath()
-                .get("todoId");
+        String todoId = RestAssured.given().body(jsonBody).contentType(ContentType.JSON).when()
+                .post("").then().extract().jsonPath().get("todoId");
 
         // putting request
-        RestAssured.given().body(jsonBody).contentType(ContentType.JSON).when()
-                .put("/{todoId}", todoId);
+        RestAssured.given().body(jsonBody).contentType(ContentType.JSON).when().put("/{todoId}",
+                todoId);
 
         // putting request again
         RestAssured.given().body(jsonBody).contentType(ContentType.JSON).when()
-                .put("/{todoId}", todoId).then().statusCode(409).body("code",
-                        equalTo("E002")).body("message", equalTo(
-                                "[E002] The requested Todo is already finished. (id="
-                                        + todoId + ")"));
+                .put("/{todoId}", todoId).then().statusCode(409).body("code", equalTo("E002"))
+                .body("message", equalTo(
+                        "[E002] The requested Todo is already finished. (id=" + todoId + ")"));
     }
 
     @Test
@@ -184,13 +168,11 @@ public class TodoApiTest extends RestTestSupport {
         jsonBody.put("todoTitle", "Hello World!");
 
         // posting request
-        String todoId = RestAssured.given().body(jsonBody).contentType(
-                ContentType.JSON).when().post("").then().extract().jsonPath()
-                .get("todoId");
+        String todoId = RestAssured.given().body(jsonBody).contentType(ContentType.JSON).when()
+                .post("").then().extract().jsonPath().get("todoId");
 
         // putting request
         RestAssured.given().body(jsonBody).contentType(ContentType.JSON).when()
-                .put("/{todoId}", todoId).then().statusCode(200).body(
-                        "finished", equalTo(true));
+                .put("/{todoId}", todoId).then().statusCode(200).body("finished", equalTo(true));
     }
 }

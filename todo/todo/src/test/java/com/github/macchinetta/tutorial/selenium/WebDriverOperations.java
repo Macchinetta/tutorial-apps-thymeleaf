@@ -18,7 +18,6 @@ package com.github.macchinetta.tutorial.selenium;
 import java.io.File;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -38,8 +37,7 @@ public class WebDriverOperations {
     protected long defaultTimeoutSecForImplicitlyWait = 5;
 
     public WebDriverOperations(WebDriver webDriver,
-            WebDriverInputFieldAccessor webDriverInputFieldAccessor,
-            ScreenCapture screenCapture) {
+            WebDriverInputFieldAccessor webDriverInputFieldAccessor, ScreenCapture screenCapture) {
         this.webDriver = webDriver;
         this.webDriverInputFieldAccessor = webDriverInputFieldAccessor;
         this.screenCapture = screenCapture;
@@ -47,10 +45,10 @@ public class WebDriverOperations {
 
     /**
      * Set the default timeout value of the waiting process to find the element.
-     * @param defaultTimeoutSecForImplicitlyWait The default timeout value of the waiting process to find the element (s)
+     * @param defaultTimeoutSecForImplicitlyWait The default timeout value of the waiting process to
+     *        find the element (s)
      */
-    public void setDefaultTimeoutForImplicitlyWait(
-            long defaultTimeoutSecForImplicitlyWait) {
+    public void setDefaultTimeoutForImplicitlyWait(long defaultTimeoutSecForImplicitlyWait) {
         this.defaultTimeoutSecForImplicitlyWait = defaultTimeoutSecForImplicitlyWait;
     }
 
@@ -61,7 +59,7 @@ public class WebDriverOperations {
      */
     public boolean exists(By by) {
         webDriver.findElement(By.tagName("body"));
-        setTimeoutForImplicitlyWait(Duration.ZERO);
+        setTimeoutForImplicitlyWait(0);
         boolean existsElement = true;
         try {
             webDriver.findElement(by).getText();
@@ -77,15 +75,14 @@ public class WebDriverOperations {
      * Set to the default value of the timeout value waiting process to find the element.
      */
     public void setDefaultTimeoutForImplicitlyWait() {
-        setTimeoutForImplicitlyWait(Duration.ofSeconds(
-                defaultTimeoutSecForImplicitlyWait));
+        setTimeoutForImplicitlyWait(defaultTimeoutSecForImplicitlyWait);
     }
 
     /**
      * Set the time-out value of the waiting process to find the element.
      */
-    public void setTimeoutForImplicitlyWait(Duration duration) {
-        webDriver.manage().timeouts().implicitlyWait(duration);
+    public void setTimeoutForImplicitlyWait(long timeout) {
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeout));
     }
 
     public void displayPage(String url) {

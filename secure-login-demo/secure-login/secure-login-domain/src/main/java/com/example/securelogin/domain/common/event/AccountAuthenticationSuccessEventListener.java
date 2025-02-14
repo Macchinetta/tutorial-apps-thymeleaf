@@ -16,7 +16,6 @@
 package com.example.securelogin.domain.common.event;
 
 import javax.inject.Inject;
-
 import org.springframework.context.event.EventListener;
 import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
 import org.springframework.stereotype.Component;
@@ -31,11 +30,9 @@ public class AccountAuthenticationSuccessEventListener {
 
     @EventListener(AuthenticationSuccessEvent.class)
     public void onApplicationEvent(AuthenticationSuccessEvent event) {
-        LoggedInUser details = (LoggedInUser) event.getAuthentication()
-                .getPrincipal();
+        LoggedInUser details = (LoggedInUser) event.getAuthentication().getPrincipal();
 
-        authenticationEventSharedService.authenticationSuccess(details
-                .getUsername());
+        authenticationEventSharedService.authenticationSuccess(details.getUsername());
     }
 
 }

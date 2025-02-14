@@ -16,7 +16,6 @@
 package com.example.securelogin.domain.common.event;
 
 import javax.inject.Inject;
-
 import org.springframework.context.event.EventListener;
 import org.springframework.security.authentication.event.AuthenticationFailureBadCredentialsEvent;
 import org.springframework.stereotype.Component;
@@ -29,8 +28,7 @@ public class AccountAuthenticationFailureBadCredentialsEventListener {
     AuthenticationEventSharedService authenticationEventSharedService;
 
     @EventListener(AuthenticationFailureBadCredentialsEvent.class)
-    public void onApplicationEvent(
-            AuthenticationFailureBadCredentialsEvent event) {
+    public void onApplicationEvent(AuthenticationFailureBadCredentialsEvent event) {
         String username = (String) event.getAuthentication().getPrincipal();
 
         authenticationEventSharedService.authenticationFailure(username);

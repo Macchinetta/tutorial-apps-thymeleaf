@@ -15,8 +15,8 @@
  */
 package com.example.securelogin.selenium.loginform.page.passwordchange;
 
-import com.github.macchinetta.tutorial.selenium.WebDriverOperations;
 import com.example.securelogin.selenium.loginform.page.AuthenticationRequiredPage;
+import com.github.macchinetta.tutorial.selenium.WebDriverOperations;
 
 public class PasswordChangeSuccessPage extends AuthenticationRequiredPage {
 

@@ -18,10 +18,8 @@ package com.example.securelogin.domain.service.account;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.inject.Inject;
-
 import org.passay.CharacterRule;
 import org.passay.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,11 +35,11 @@ import org.terasoluna.gfw.common.exception.ResourceNotFoundException;
 import org.terasoluna.gfw.common.message.ResultMessages;
 import com.example.securelogin.domain.common.message.MessageKeys;
 import com.example.securelogin.domain.model.Account;
-import com.example.securelogin.domain.model.FailedAuthentication;
-import com.example.securelogin.domain.model.SuccessfulAuthentication;
-import com.example.securelogin.domain.model.PasswordHistory;
-import com.example.securelogin.domain.model.TempFile;
 import com.example.securelogin.domain.model.AccountImage;
+import com.example.securelogin.domain.model.FailedAuthentication;
+import com.example.securelogin.domain.model.PasswordHistory;
+import com.example.securelogin.domain.model.SuccessfulAuthentication;
+import com.example.securelogin.domain.model.TempFile;
 import com.example.securelogin.domain.repository.account.AccountRepository;
 import com.example.securelogin.domain.service.authenticationevent.AuthenticationEventSharedService;
 import com.example.securelogin.domain.service.fileupload.FileUploadSharedService;
@@ -87,11 +85,11 @@ public class AccountSharedServiceImpl implements AccountSharedService {
     @Transactional(readOnly = true)
     @Override
     public Account findOne(String username) {
-        Account account = accountRepository.findOne(username);
+        Account account = accountRepository.findById(username);
 
         if (account == null) {
-            throw new ResourceNotFoundException(ResultMessages.error().add(
-                    MessageKeys.E_SL_FA_5001, username));
+            throw new ResourceNotFoundException(
+                    ResultMessages.error().add(MessageKeys.E_SL_FA_5001, username));
         }
         return account;
     }
@@ -99,7 +97,7 @@ public class AccountSharedServiceImpl implements AccountSharedService {
     @Transactional(readOnly = true)
     @Override
     public boolean exists(String username) {
-        Account account = accountRepository.findOne(username);
+        Account account = accountRepository.findById(username);
 
         if (account == null) {
             return false;
@@ -130,8 +128,8 @@ public class AccountSharedServiceImpl implements AccountSharedService {
     @Transactional(readOnly = true)
     @Override
     public LocalDateTime getLastLoginDate(String username) {
-        List<SuccessfulAuthentication> events = authenticationEventSharedService
-                .findLatestSuccessEvents(username, 1);
+        List<SuccessfulAuthentication> events =
+                authenticationEventSharedService.findLatestSuccessEvents(username, 1);
 
         if (events.isEmpty()) {
             return null;
@@ -144,8 +142,8 @@ public class AccountSharedServiceImpl implements AccountSharedService {
     @Override
     @Cacheable("isInitialPassword")
     public boolean isInitialPassword(String username) {
-        List<PasswordHistory> passwordHistories = passwordHistorySharedService
-                .findLatest(username, 1);
+        List<PasswordHistory> passwordHistories =
+                passwordHistorySharedService.findLatest(username, 1);
         return passwordHistories.isEmpty();
     }
 
@@ -153,16 +151,15 @@ public class AccountSharedServiceImpl implements AccountSharedService {
     @Override
     @Cacheable("isCurrentPasswordExpired")
     public boolean isCurrentPasswordExpired(String username) {
-        List<PasswordHistory> passwordHistories = passwordHistorySharedService
-                .findLatest(username, 1);
+        List<PasswordHistory> passwordHistories =
+                passwordHistorySharedService.findLatest(username, 1);
 
         if (passwordHistories.isEmpty()) {
             return true;
         }
 
-        if (passwordHistories.get(0).getUseFrom().isBefore(dateFactory
-                .newTimestamp().toLocalDateTime().minusSeconds(
-                        passwordLifeTimeSeconds))) {
+        if (passwordHistories.get(0).getUseFrom().isBefore(dateFactory.newTimestamp()
+                .toLocalDateTime().minusSeconds(passwordLifeTimeSeconds))) {
             return true;
         }
 
@@ -170,14 +167,12 @@ public class AccountSharedServiceImpl implements AccountSharedService {
     }
 
     @Override
-    @CacheEvict(value = { "isInitialPassword",
-            "isCurrentPasswordExpired" }, key = "#username")
+    @CacheEvict(value = {"isInitialPassword", "isCurrentPasswordExpired"}, key = "#username")
     public boolean updatePassword(String username, String rawPassword) {
         String password = passwordEncoder.encode(rawPassword);
         boolean result = accountRepository.updatePassword(username, password);
 
-        LocalDateTime passwordChangeDate = dateFactory.newTimestamp()
-                .toLocalDateTime();
+        LocalDateTime passwordChangeDate = dateFactory.newTimestamp().toLocalDateTime();
 
         PasswordHistory passwordHistory = new PasswordHistory();
         passwordHistory.setUsername(username);
@@ -189,8 +184,7 @@ public class AccountSharedServiceImpl implements AccountSharedService {
     }
 
     @Override
-    @CacheEvict(value = { "isInitialPassword",
-            "isCurrentPasswordExpired" }, key = "#username")
+    @CacheEvict(value = {"isInitialPassword", "isCurrentPasswordExpired"}, key = "#username")
     public void clearPasswordValidationCache(String username) {
         // evict caches
     }
@@ -198,11 +192,9 @@ public class AccountSharedServiceImpl implements AccountSharedService {
     @Override
     public String create(Account account, String imageId) {
         if (exists(account.getUsername())) {
-            throw new BusinessException(ResultMessages.error().add(
-                    MessageKeys.E_SL_AC_5001));
+            throw new BusinessException(ResultMessages.error().add(MessageKeys.E_SL_AC_5001));
         }
-        String rawPassword = passwordGenerator.generatePassword(10,
-                passwordGenerationRules);
+        String rawPassword = passwordGenerator.generatePassword(10, passwordGenerationRules);
         account.setPassword(passwordEncoder.encode(rawPassword));
         accountRepository.create(account);
         accountRepository.createRoles(account);
@@ -211,8 +203,7 @@ public class AccountSharedServiceImpl implements AccountSharedService {
         AccountImage accountImage = new AccountImage();
         accountImage.setUsername(account.getUsername());
         accountImage.setBody(image);
-        accountImage.setExtension(StringUtils.getFilenameExtension(tempFile
-                .getOriginalName()));
+        accountImage.setExtension(StringUtils.getFilenameExtension(tempFile.getOriginalName()));
         accountRepository.createImage(accountImage);
         fileUploadSharedService.deleteTempFile(imageId);
         return rawPassword;

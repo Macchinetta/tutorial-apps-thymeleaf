@@ -16,20 +16,16 @@
 package com.example.securelogin.app.common.security;
 
 import java.io.IOException;
-
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
-
 import com.example.securelogin.domain.service.account.AccountSharedService;
 import com.example.securelogin.domain.service.userdetails.LoggedInUser;
 
-public class CacheClearLogoutSuccessHandler extends
-                                            SimpleUrlLogoutSuccessHandler {
+public class CacheClearLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
 
     @Inject
     AccountSharedService accountSharedService;
@@ -39,13 +35,11 @@ public class CacheClearLogoutSuccessHandler extends
     }
 
     @Override
-    public void onLogoutSuccess(HttpServletRequest request,
-            HttpServletResponse response,
+    public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
         if (authentication.getPrincipal() instanceof LoggedInUser) {
             LoggedInUser details = (LoggedInUser) authentication.getPrincipal();
-            accountSharedService.clearPasswordValidationCache(details
-                    .getUsername());
+            accountSharedService.clearPasswordValidationCache(details.getUsername());
         }
         super.onLogoutSuccess(request, response, authentication);
     }

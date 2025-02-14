@@ -15,8 +15,8 @@
  */
 package com.example.securelogin.selenium.loginform.page;
 
-import com.github.macchinetta.tutorial.selenium.WebDriverOperations;
 import com.example.securelogin.selenium.loginform.page.welcome.TopPage;
+import com.github.macchinetta.tutorial.selenium.WebDriverOperations;
 
 public abstract class AuthenticationRequiredPage extends AbstractPageObject {
 

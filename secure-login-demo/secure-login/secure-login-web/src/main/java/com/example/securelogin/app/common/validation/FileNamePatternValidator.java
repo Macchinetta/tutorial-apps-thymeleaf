@@ -17,14 +17,12 @@ package com.example.securelogin.app.common.validation;
 
 import java.io.File;
 import java.util.regex.Pattern;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-
 import org.springframework.web.multipart.MultipartFile;
 
-public class FileNamePatternValidator implements
-                                      ConstraintValidator<FileNamePattern, MultipartFile> {
+public class FileNamePatternValidator
+        implements ConstraintValidator<FileNamePattern, MultipartFile> {
 
     private Pattern pattern;
 
@@ -34,8 +32,7 @@ public class FileNamePatternValidator implements
     }
 
     @Override
-    public boolean isValid(MultipartFile value,
-            ConstraintValidatorContext context) {
+    public boolean isValid(MultipartFile value, ConstraintValidatorContext context) {
         if (value == null) {
             return true;
         }

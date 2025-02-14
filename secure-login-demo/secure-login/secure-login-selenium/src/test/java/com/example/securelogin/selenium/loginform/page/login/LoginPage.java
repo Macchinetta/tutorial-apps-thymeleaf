@@ -15,15 +15,14 @@
  */
 package com.example.securelogin.selenium.loginform.page.login;
 
+import static org.openqa.selenium.By.id;
 import org.springframework.core.io.ResourceLoader;
-import com.github.macchinetta.tutorial.selenium.WebDriverOperations;
 import com.example.securelogin.selenium.loginform.page.AbstractPageObject;
 import com.example.securelogin.selenium.loginform.page.account.AccountCreatePage;
 import com.example.securelogin.selenium.loginform.page.passwordchange.PasswordChangePage;
 import com.example.securelogin.selenium.loginform.page.passwordreissue.CreateReissueInfoPage;
 import com.example.securelogin.selenium.loginform.page.welcome.TopPage;
-
-import static org.openqa.selenium.By.id;
+import com.github.macchinetta.tutorial.selenium.WebDriverOperations;
 
 public class LoginPage extends AbstractPageObject {
 
@@ -31,8 +30,7 @@ public class LoginPage extends AbstractPageObject {
         url = "/login";
     }
 
-    public LoginPage(WebDriverOperations webDriverOperations,
-            String applicationContextURL) {
+    public LoginPage(WebDriverOperations webDriverOperations, String applicationContextURL) {
         super(webDriverOperations, applicationContextURL);
     }
 
@@ -43,8 +41,7 @@ public class LoginPage extends AbstractPageObject {
         waitDefaultInterval();
     }
 
-    public PasswordChangePage loginSuccessIntercepted(String username,
-            String password) {
+    public PasswordChangePage loginSuccessIntercepted(String username, String password) {
         login(username, password);
         return new PasswordChangePage(webDriverOperations, applicationContextUrl);
     }
@@ -63,8 +60,7 @@ public class LoginPage extends AbstractPageObject {
         return webDriverOperations.getText(id("loginError"));
     }
 
-    public AccountCreatePage goToAccountCreatePage(
-            ResourceLoader resourceLoader) {
+    public AccountCreatePage goToAccountCreatePage(ResourceLoader resourceLoader) {
         webDriverOperations.click(id("create"));
         waitDefaultInterval();
         return new AccountCreatePage(webDriverOperations, applicationContextUrl, resourceLoader);

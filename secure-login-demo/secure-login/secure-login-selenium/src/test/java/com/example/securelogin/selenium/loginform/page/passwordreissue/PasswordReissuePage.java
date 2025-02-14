@@ -15,10 +15,9 @@
  */
 package com.example.securelogin.selenium.loginform.page.passwordreissue;
 
-import com.github.macchinetta.tutorial.selenium.WebDriverOperations;
-import com.example.securelogin.selenium.loginform.page.AbstractPageObject;
-
 import static org.openqa.selenium.By.id;
+import com.example.securelogin.selenium.loginform.page.AbstractPageObject;
+import com.github.macchinetta.tutorial.selenium.WebDriverOperations;
 
 public class PasswordReissuePage extends AbstractPageObject {
 
@@ -28,18 +27,16 @@ public class PasswordReissuePage extends AbstractPageObject {
         url = reissueUrl;
     }
 
-    private void reissue(String secret, String newPassword,
-            String confirmNewPassword) {
+    private void reissue(String secret, String newPassword, String confirmNewPassword) {
         webDriverOperations.overrideText(id("secret"), secret);
         webDriverOperations.overrideText(id("newPassword"), newPassword);
-        webDriverOperations.overrideText(id("confirmNewPassword"),
-                confirmNewPassword);
+        webDriverOperations.overrideText(id("confirmNewPassword"), confirmNewPassword);
         webDriverOperations.click(id("submit"));
         waitDefaultInterval();
     }
 
-    public PasswordReissueSuccessPage reissueSuccess(String secret,
-            String newPassword, String confirmNewPassword) {
+    public PasswordReissueSuccessPage reissueSuccess(String secret, String newPassword,
+            String confirmNewPassword) {
         reissue(secret, newPassword, confirmNewPassword);
         return new PasswordReissueSuccessPage(webDriverOperations, applicationContextUrl);
     }
@@ -60,11 +57,9 @@ public class PasswordReissuePage extends AbstractPageObject {
     @Override
     public AbstractPageObject openWithDescription(String description) {
         if (url.contains("?")) {
-            webDriverOperations.displayPage(url + "&testdescription="
-                    + description);
+            webDriverOperations.displayPage(url + "&testdescription=" + description);
         } else {
-            webDriverOperations.displayPage(url + "?testdescription="
-                    + description);
+            webDriverOperations.displayPage(url + "?testdescription=" + description);
         }
         waitDefaultInterval();
         return this;

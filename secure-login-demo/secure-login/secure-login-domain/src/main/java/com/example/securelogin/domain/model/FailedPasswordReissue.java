@@ -16,7 +16,6 @@
 package com.example.securelogin.domain.model;
 
 import java.time.LocalDateTime;
-
 import lombok.Data;
 
 @Data

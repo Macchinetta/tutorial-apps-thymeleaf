@@ -20,10 +20,9 @@ import com.example.securelogin.domain.model.Account;
 import com.example.securelogin.domain.model.AccountImage;
 
 public interface AccountRepository {
-    Account findOne(String username);
+    Account findById(String username);
 
-    boolean updatePassword(@Param("username") String username,
-            @Param("password") String password);
+    boolean updatePassword(@Param("username") String username, @Param("password") String password);
 
     boolean create(Account account);
 

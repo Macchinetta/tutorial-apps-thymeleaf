@@ -3,16 +3,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:aop="http://www.springframework.org/schema/aop"
-    
     xmlns:task="http://www.springframework.org/schema/task"
     xmlns:util="http://www.springframework.org/schema/util"
-xsi:schemaLocation="
-        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/task https://www.springframework.org/schema/task/spring-task.xsd
-        http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd
-        http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd
-    ">
+    xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/task https://www.springframework.org/schema/task/spring-task.xsd
+                        http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd
+                        http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <import resource="classpath:/META-INF/spring/secure-login-domain.xml" />
 
@@ -26,7 +23,7 @@ xsi:schemaLocation="
                 <entry key="bcrypt">
                     <bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
                 </entry>
-                <!-- When using commented out PasswordEncoders, you need to add bcprov-jdk15on.jar to the dependency.
+                <!-- When using commented out PasswordEncoders, you need to add bcprov-jdk18on.jar to the dependency.
                 <entry key="argon2">
                     <bean class="org.springframework.security.crypto.argon2.Argon2PasswordEncoder" />
                 </entry>
@@ -63,7 +60,6 @@ xsi:schemaLocation="
         <property name="exceptionMappings">
             <map>
                 <entry key="ResourceNotFoundException" value="e.sl.fw.5001" />
-                
                 <entry key="MultipartException" value="e.sl.fw.6001" />
                 <entry key="InvalidTransactionTokenException" value="e.sl.fw.7001" />
                 <entry key="BusinessException" value="e.sl.fw.8001" />
@@ -81,7 +77,7 @@ xsi:schemaLocation="
 
     <!-- Filter. -->
     <bean id="exceptionLoggingFilter"
-        class="org.terasoluna.gfw.web.exception.ExceptionLoggingFilter" >
+        class="org.terasoluna.gfw.web.exception.ExceptionLoggingFilter">
         <property name="exceptionLogger" ref="exceptionLogger" />
     </bean>
 
@@ -89,8 +85,8 @@ xsi:schemaLocation="
 
 
     <bean id="inputValidationFilter" class="com.example.securelogin.app.common.filter.InputValidationFilter">
-        <constructor-arg index="0" value="${app.security.prohibitedChars}"/>
-        <constructor-arg index="1" value="${app.security.prohibitedCharsForFileName}"/>
+        <constructor-arg index="0" value="${app.security.prohibitedChars}" />
+        <constructor-arg index="1" value="${app.security.prohibitedCharsForFileName}" />
     </bean>
 
     <bean id="lengthRule" class="org.passay.LengthRule">

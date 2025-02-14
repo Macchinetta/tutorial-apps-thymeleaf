@@ -16,7 +16,6 @@
 package com.example.session.app.goods;
 
 import java.io.Serializable;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
@@ -25,9 +24,6 @@ import org.springframework.stereotype.Component;
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS) // (2)
 public class GoodsSearchCriteria implements Serializable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     private int categoryId = 1;

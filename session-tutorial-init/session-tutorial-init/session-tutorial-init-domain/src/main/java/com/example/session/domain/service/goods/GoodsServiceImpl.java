@@ -17,16 +17,13 @@ package com.example.session.domain.service.goods;
 
 import java.util.Collections;
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.example.session.domain.model.Goods;
 import com.example.session.domain.repository.goods.GoodsRepository;
 
@@ -45,10 +42,8 @@ public class GoodsServiceImpl implements GoodsService {
 
         List<Goods> goodsList = Collections.emptyList();
         if (total > 0) {
-            RowBounds rowBounds = new RowBounds((int) pageable
-                    .getOffset(), pageable.getPageSize());
-            goodsList = goodsRepository.findPageByCategoryId(categoryId,
-                    rowBounds);
+            RowBounds rowBounds = new RowBounds((int) pageable.getOffset(), pageable.getPageSize());
+            goodsList = goodsRepository.findPageByCategoryId(categoryId, rowBounds);
         }
 
         return new PageImpl<Goods>(goodsList, pageable, total);
@@ -57,7 +52,7 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     @Transactional(readOnly = true)
     public Goods findOne(String goodsId) {
-        return goodsRepository.findOne(goodsId);
+        return goodsRepository.findById(goodsId);
     }
 
 }

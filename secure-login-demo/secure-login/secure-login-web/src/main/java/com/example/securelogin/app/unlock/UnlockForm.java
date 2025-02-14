@@ -16,9 +16,7 @@
 package com.example.securelogin.app.unlock;
 
 import java.io.Serializable;
-
 import javax.validation.constraints.NotEmpty;
-
 import lombok.Data;
 
 @Data

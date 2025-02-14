@@ -16,7 +16,6 @@
 package com.example.securelogin.app.passwordchange;
 
 import javax.inject.Inject;
-
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +25,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.example.securelogin.domain.model.Account;
 import com.example.securelogin.domain.service.passwordchange.PasswordChangeService;
 import com.example.securelogin.domain.service.userdetails.LoggedInUser;
@@ -54,18 +52,15 @@ public class PasswordChangeController {
 
     @PostMapping
     public String change(@AuthenticationPrincipal LoggedInUser userDetails,
-            @Validated PasswordChangeForm form, BindingResult bindingResult,
-            Model model) {
+            @Validated PasswordChangeForm form, BindingResult bindingResult, Model model) {
 
         Account account = userDetails.getAccount();
-        if (bindingResult.hasErrors() || !account.getUsername().equals(form
-                .getUsername())) {
+        if (bindingResult.hasErrors() || !account.getUsername().equals(form.getUsername())) {
             model.addAttribute(account);
             return "passwordchange/changeForm";
         }
 
-        passwordService.updatePassword(form.getUsername(), form
-                .getNewPassword());
+        passwordService.updatePassword(form.getUsername(), form.getNewPassword());
 
         return "redirect:/password?complete";
 

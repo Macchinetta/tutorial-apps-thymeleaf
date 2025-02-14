@@ -16,7 +16,6 @@
 package com.example.securelogin.domain.service.passwordreissue;
 
 import java.time.LocalDateTime;
-
 import com.example.securelogin.domain.model.PasswordReissueInfo;
 
 public interface PasswordReissueService {
@@ -25,8 +24,7 @@ public interface PasswordReissueService {
 
     PasswordReissueInfo findOne(String token);
 
-    boolean resetPassword(String username, String token, String secret,
-            String rawPassword);
+    boolean resetPassword(String username, String token, String secret, String rawPassword);
 
     boolean removeExpired(LocalDateTime date);
 }

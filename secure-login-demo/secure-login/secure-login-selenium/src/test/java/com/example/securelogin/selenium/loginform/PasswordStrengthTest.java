@@ -15,26 +15,23 @@
  */
 package com.example.securelogin.selenium.loginform;
 
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.sql.DataSource;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.jdbc.datasource.init.ScriptException;
-import com.github.macchinetta.tutorial.selenium.DBLogFunctionTestSupport;
 import com.example.securelogin.selenium.loginform.page.AbstractPageObject;
 import com.example.securelogin.selenium.loginform.page.login.LoginPage;
 import com.example.securelogin.selenium.loginform.page.passwordchange.PasswordChangePage;
-
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.MatcherAssert.assertThat;
+import com.github.macchinetta.tutorial.selenium.DBLogFunctionTestSupport;
 
 public class PasswordStrengthTest extends DBLogFunctionTestSupport {
 
@@ -63,18 +60,16 @@ public class PasswordStrengthTest extends DBLogFunctionTestSupport {
     @Test
     public void testPasswordStrength001() throws IOException, InterruptedException {
         AbstractPageObject page = new LoginPage(webDriverOperations, applicationContextUrl)
-                .openWithDescription(
-                        "password strength check(insufficient length)");
+                .openWithDescription("password strength check(insufficient length)");
 
         // password strength check : insufficient length
         page = ((LoginPage) page).loginSuccessIntercepted("demo", "demo")
                 .changePasswordFailure("demo", "Fo1", "Fo1");
-        assertThat(((PasswordChangePage) page).getNewPasswordError(),
-                containsString("Password must be " + passwordMinimumLength
-                        + " or more characters in length."));
+        assertThat(((PasswordChangePage) page).getNewPasswordError(), containsString(
+                "Password must be " + passwordMinimumLength + " or more characters in length."));
 
-        page = ((PasswordChangePage) page).changePasswordSuccess("demo", "Foo1",
-                "Foo1").gotoTop().logout();
+        page = ((PasswordChangePage) page).changePasswordSuccess("demo", "Foo1", "Foo1").gotoTop()
+                .logout();
     }
 
     /**
@@ -84,20 +79,18 @@ public class PasswordStrengthTest extends DBLogFunctionTestSupport {
      */
     @Test
     public void testPasswordStrength002() throws IOException, InterruptedException {
-        AbstractPageObject page = new LoginPage(webDriverOperations, applicationContextUrl)
-                .openWithDescription(
-                        "password strength check(characteristic condition is"
-                                + "unsatisfied)");
+        AbstractPageObject page =
+                new LoginPage(webDriverOperations, applicationContextUrl).openWithDescription(
+                        "password strength check(characteristic condition is" + "unsatisfied)");
 
         // password strength check : characteristic condition is unsatisfied
         page = ((LoginPage) page).loginSuccessIntercepted("demo", "demo")
                 .changePasswordFailure("demo", "FooBar", "FooBar");
         assertThat(((PasswordChangePage) page).getNewPasswordError(),
-                containsString(
-                        "Password matches 2 of 4 character rules, but 3 are required."));
+                containsString("Password matches 2 of 4 character rules, but 3 are required."));
 
-        page = ((PasswordChangePage) page).changePasswordSuccess("demo", "Foo1",
-                "Foo1").gotoTop().logout();
+        page = ((PasswordChangePage) page).changePasswordSuccess("demo", "Foo1", "Foo1").gotoTop()
+                .logout();
     }
 
     /**
@@ -108,8 +101,7 @@ public class PasswordStrengthTest extends DBLogFunctionTestSupport {
     @Test
     public void testPasswordStrength003() throws IOException, InterruptedException {
         AbstractPageObject page = new LoginPage(webDriverOperations, applicationContextUrl)
-                .openWithDescription(
-                        "password strength check(contains username)");
+                .openWithDescription("password strength check(contains username)");
 
         // password strength check : contains username
         page = ((LoginPage) page).loginSuccessIntercepted("demo", "demo")
@@ -117,7 +109,7 @@ public class PasswordStrengthTest extends DBLogFunctionTestSupport {
         assertThat(((PasswordChangePage) page).getNewPasswordError(),
                 containsString("Password contains the user id 'demo'."));
 
-        page = ((PasswordChangePage) page).changePasswordSuccess("demo", "Foo1",
-                "Foo1").gotoTop().logout();
+        page = ((PasswordChangePage) page).changePasswordSuccess("demo", "Foo1", "Foo1").gotoTop()
+                .logout();
     }
 }

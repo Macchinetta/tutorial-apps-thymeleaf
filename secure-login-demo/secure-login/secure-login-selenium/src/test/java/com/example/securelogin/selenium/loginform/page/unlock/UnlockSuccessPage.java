@@ -15,8 +15,8 @@
  */
 package com.example.securelogin.selenium.loginform.page.unlock;
 
-import com.github.macchinetta.tutorial.selenium.WebDriverOperations;
 import com.example.securelogin.selenium.loginform.page.AuthenticationRequiredPage;
+import com.github.macchinetta.tutorial.selenium.WebDriverOperations;
 
 public class UnlockSuccessPage extends AuthenticationRequiredPage {
 

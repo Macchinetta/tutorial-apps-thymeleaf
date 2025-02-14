@@ -17,9 +17,7 @@ package com.example.securelogin.domain.service.fileupload;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
-
 import javax.inject.Inject;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.terasoluna.gfw.common.date.ClassicDateFactory;
@@ -46,12 +44,12 @@ public class FileUploadSharedServiceImpl implements FileUploadSharedService {
 
     @Override
     public TempFile findTempFile(String id) {
-        return tempFileRepository.findOne(id);
+        return tempFileRepository.findById(id);
     }
 
     @Override
     public void deleteTempFile(String id) {
-        tempFileRepository.delete(id);
+        tempFileRepository.deleteById(id);
     };
 
     @Override

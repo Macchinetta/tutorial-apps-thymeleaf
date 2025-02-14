@@ -18,12 +18,9 @@ package com.example.securelogin.app.account;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.validation.groups.Default;
-
 import org.apache.commons.io.IOUtils;
-import com.github.dozermapper.core.Mapper;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -44,12 +41,13 @@ import com.example.securelogin.app.account.AccountCreateForm.Confirm;
 import com.example.securelogin.app.account.AccountCreateForm.CreateAccount;
 import com.example.securelogin.domain.common.message.MessageKeys;
 import com.example.securelogin.domain.model.Account;
+import com.example.securelogin.domain.model.AccountImage;
 import com.example.securelogin.domain.model.Role;
 import com.example.securelogin.domain.model.TempFile;
-import com.example.securelogin.domain.model.AccountImage;
 import com.example.securelogin.domain.service.account.AccountSharedService;
 import com.example.securelogin.domain.service.fileupload.FileUploadSharedService;
 import com.example.securelogin.domain.service.userdetails.LoggedInUser;
+import com.github.dozermapper.core.Mapper;
 
 @Controller
 @RequestMapping("accounts")
@@ -70,8 +68,7 @@ public class AccountController {
     }
 
     @GetMapping
-    public String view(@AuthenticationPrincipal LoggedInUser userDetails,
-            Model model) {
+    public String view(@AuthenticationPrincipal LoggedInUser userDetails, Model model) {
         Account account = userDetails.getAccount();
         model.addAttribute(account);
         return "account/view";
@@ -79,10 +76,9 @@ public class AccountController {
 
     @GetMapping("/image")
     @ResponseBody
-    public ResponseEntity<byte[]> showImage(
-            @AuthenticationPrincipal LoggedInUser userDetails) throws IOException {
-        AccountImage userImage = accountSharedService.getImage(userDetails
-                .getUsername());
+    public ResponseEntity<byte[]> showImage(@AuthenticationPrincipal LoggedInUser userDetails)
+            throws IOException {
+        AccountImage userImage = accountSharedService.getImage(userDetails.getUsername());
         HttpHeaders headers = new HttpHeaders();
         if (userImage.getExtension().equalsIgnoreCase("png")) {
             headers.setContentType(MediaType.IMAGE_PNG);
@@ -91,8 +87,8 @@ public class AccountController {
         } else if (userImage.getExtension().equalsIgnoreCase("jpg")) {
             headers.setContentType(MediaType.IMAGE_JPEG);
         }
-        return new ResponseEntity<byte[]>(IOUtils.toByteArray(userImage
-                .getBody()), headers, HttpStatus.OK);
+        return new ResponseEntity<byte[]>(IOUtils.toByteArray(userImage.getBody()), headers,
+                HttpStatus.OK);
     }
 
     @GetMapping(value = "/create", params = "form")
@@ -106,15 +102,13 @@ public class AccountController {
     }
 
     @PostMapping(value = "/create", params = "confirm")
-    public String createConfirm(@Validated({ Confirm.class,
-            Default.class }) AccountCreateForm form, BindingResult result,
-            Model model, RedirectAttributes redirectAttributes) {
+    public String createConfirm(@Validated({Confirm.class, Default.class}) AccountCreateForm form,
+            BindingResult result, Model model, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             return createForm();
         }
         if (accountSharedService.exists(form.getUsername())) {
-            model.addAttribute(ResultMessages.error().add(
-                    MessageKeys.E_SL_AC_5001));
+            model.addAttribute(ResultMessages.error().add(MessageKeys.E_SL_AC_5001));
             return createForm();
         }
         try {
@@ -131,17 +125,15 @@ public class AccountController {
     }
 
     @PostMapping("/create")
-    public String create(@Validated({ CreateAccount.class,
-            Default.class }) AccountCreateForm form, BindingResult result,
-            RedirectAttributes redirectAttributes) {
+    public String create(@Validated({CreateAccount.class, Default.class}) AccountCreateForm form,
+            BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             return createForm();
         }
         Account account = beanMapper.map(form, Account.class);
         List<Role> roles = Arrays.asList(Role.USER);
         account.setRoles(roles);
-        String password = accountSharedService.create(account, form
-                .getImageId());
+        String password = accountSharedService.create(account, form.getImageId());
         redirectAttributes.addFlashAttribute("firstName", form.getFirstName());
         redirectAttributes.addFlashAttribute("lastName", form.getLastName());
         redirectAttributes.addFlashAttribute("password", password);

@@ -19,9 +19,7 @@ import java.io.File;
 import java.time.Duration;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.inject.Inject;
-
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Rule;
@@ -30,11 +28,6 @@ import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -43,12 +36,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {
-        "classpath:META-INF/spring/seleniumContext.xml" })
-public class FunctionTestSupport extends ApplicationObjectSupport {
+@ContextConfiguration(locations = {"classpath:META-INF/spring/seleniumContext.xml"})
+public abstract class FunctionTestSupport extends ApplicationObjectSupport {
 
-    private static final Logger logger = LoggerFactory.getLogger(
-            FunctionTestSupport.class);
+    private static final Logger logger = LoggerFactory.getLogger(FunctionTestSupport.class);
 
     protected static WebDriver driver;
 
@@ -73,9 +64,6 @@ public class FunctionTestSupport extends ApplicationObjectSupport {
 
     @Inject
     protected PageSource pageSource;
-
-    @Inject
-    private WebDriverManagerConfigurer webDriverManagerConfigurer;
 
     @Rule
     public TestName testName = new TestName();
@@ -104,20 +92,19 @@ public class FunctionTestSupport extends ApplicationObjectSupport {
 
     private String simplePackageName;
 
-    protected WebDriverInputFieldAccessor inputFieldAccessor = WebDriverInputFieldAccessor.JAVASCRIPT;
+    protected WebDriverInputFieldAccessor inputFieldAccessor =
+            WebDriverInputFieldAccessor.JAVASCRIPT;
 
     protected long defaultTimeoutSecForImplicitlyWait = 5;
 
     protected FunctionTestSupport() {
-        this.simplePackageName = this.getClass().getPackage().getName()
-                .replaceAll(".*\\.", "");
+        this.simplePackageName = this.getClass().getPackage().getName().replaceAll(".*\\.", "");
     }
 
     @Value("${selenium.webDriverInputFieldAccessor:JAVASCRIPT}")
-    public void setWebDriverInputFieldAccessor(
-            String webDriverInputFieldAccessor) {
-        this.inputFieldAccessor = WebDriverInputFieldAccessor.valueOf(
-                webDriverInputFieldAccessor.toUpperCase());
+    public void setWebDriverInputFieldAccessor(String webDriverInputFieldAccessor) {
+        this.inputFieldAccessor =
+                WebDriverInputFieldAccessor.valueOf(webDriverInputFieldAccessor.toUpperCase());
     }
 
     @AfterClass
@@ -131,11 +118,10 @@ public class FunctionTestSupport extends ApplicationObjectSupport {
 
         String testCaseName = testName.getMethodName().replaceAll("^test", "");
 
-        File evidenceSavingDirectory = new File(String.format("%s/%s/%s",
-                evidenceBaseDirectory, simplePackageName, testCaseName));
+        File evidenceSavingDirectory = new File(
+                String.format("%s/%s/%s", evidenceBaseDirectory, simplePackageName, testCaseName));
 
-        logger.debug("evidenceSavingDirectory is " + evidenceSavingDirectory
-                .getAbsolutePath());
+        logger.debug("evidenceSavingDirectory is " + evidenceSavingDirectory.getAbsolutePath());
 
         screenCapture.setUp(evidenceSavingDirectory);
         pageSource.setUp(evidenceSavingDirectory);
@@ -150,8 +136,7 @@ public class FunctionTestSupport extends ApplicationObjectSupport {
     }
 
     @Before
-    public final void setUpDBLog() {
-    }
+    public final void setUpDBLog() {}
 
     protected void bindWebDriver(WebDriver webDriver) {
         webDrivers.add(webDriver);
@@ -165,43 +150,20 @@ public class FunctionTestSupport extends ApplicationObjectSupport {
         if (driver == null) {
             driver = newWebDriver();
         }
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(
-                defaultTimeoutSecForImplicitlyWait));
+        driver.manage().timeouts()
+                .implicitlyWait(Duration.ofSeconds(defaultTimeoutSecForImplicitlyWait));
         driver.get(getPackageRootUrl());
 
-        this.webDriverOperations = new WebDriverOperations(driver, inputFieldAccessor, screenCapture);
-        this.webDriverOperations.setDefaultTimeoutForImplicitlyWait(
-                defaultTimeoutSecForImplicitlyWait);
+        this.webDriverOperations =
+                new WebDriverOperations(driver, inputFieldAccessor, screenCapture);
+        this.webDriverOperations
+                .setDefaultTimeoutForImplicitlyWait(defaultTimeoutSecForImplicitlyWait);
     }
 
     private WebDriver newWebDriver() {
-        WebDriver driver = null;
-        for (String activeProfile : getApplicationContext().getEnvironment()
-                .getActiveProfiles()) {
-            if ("chrome".equals(activeProfile)) {
-                driver = new ChromeDriver();
-                break;
-            } else if ("firefox".equals(activeProfile)) {
-                break;
-            } else if ("ie".equals(activeProfile)) {
-                driver = new InternetExplorerDriver();
-                break;
-            }
-        }
-
-        if (driver == null) {
-            webDriverManagerConfigurer.setUp();
-            FirefoxProfile profile = new FirefoxProfile();
-            profile.setPreference("browser.startup.homepage_override.mstone",
-                    "ignore");
-            profile.setPreference("network.proxy.type", 0);
-            profile.setPreference("devtools.jsonview.enabled", false);
-            FirefoxOptions options = new FirefoxOptions().setProfile(profile);
-            driver = new FirefoxDriver(options);
-        }
-
-        webDrivers.add(driver);
-        return driver;
+        WebDriver webDriver = getApplicationContext().getBean(WebDriver.class);
+        webDrivers.add(webDriver);
+        return webDriver;
     }
 
     protected void quitDefaultWebDriver() {
@@ -273,13 +235,10 @@ public class FunctionTestSupport extends ApplicationObjectSupport {
         }
     }
 
-    protected void onSucceeded() {
-    }
+    protected void onSucceeded() {}
 
-    protected void onFailed(Throwable e) {
-    }
+    protected void onFailed(Throwable e) {}
 
-    protected void onFinished() {
-    }
+    protected void onFinished() {}
 
 }

@@ -16,10 +16,8 @@
 package com.example.securelogin.domain.service.passwordchange;
 
 import javax.inject.Inject;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.example.securelogin.domain.service.account.AccountSharedService;
 
 @Service

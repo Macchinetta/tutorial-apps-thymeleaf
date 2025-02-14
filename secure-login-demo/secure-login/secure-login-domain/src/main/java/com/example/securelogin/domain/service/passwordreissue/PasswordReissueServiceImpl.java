@@ -18,10 +18,8 @@ package com.example.securelogin.domain.service.passwordreissue;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-
 import javax.annotation.Resource;
 import javax.inject.Inject;
-
 import org.passay.CharacterRule;
 import org.passay.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Value;
@@ -93,8 +91,7 @@ public class PasswordReissueServiceImpl implements PasswordReissueService {
     @Override
     public String createAndSendReissueInfo(String username) {
 
-        String rowSecret = passwordGenerator.generatePassword(10,
-                passwordGenerationRules);
+        String rowSecret = passwordGenerator.generatePassword(10, passwordGenerationRules);
 
         String encodeSecret = passwordEncoder.encode(rowSecret);
 
@@ -104,8 +101,8 @@ public class PasswordReissueServiceImpl implements PasswordReissueService {
 
             String token = UUID.randomUUID().toString();
 
-            LocalDateTime expiryDate = dateFactory.newTimestamp()
-                    .toLocalDateTime().plusSeconds(tokenLifeTimeSeconds);
+            LocalDateTime expiryDate =
+                    dateFactory.newTimestamp().toLocalDateTime().plusSeconds(tokenLifeTimeSeconds);
 
             PasswordReissueInfo info = new PasswordReissueInfo();
             info.setUsername(username);
@@ -115,11 +112,10 @@ public class PasswordReissueServiceImpl implements PasswordReissueService {
 
             passwordReissueInfoRepository.create(info);
 
-            UriComponentsBuilder uriBuilder = UriComponentsBuilder
-                    .newInstance();
+            UriComponentsBuilder uriBuilder = UriComponentsBuilder.newInstance();
             uriBuilder.scheme(protocol).host(host).port(port).path(contextPath)
-                    .pathSegment("reissue").pathSegment("resetpassword")
-                    .queryParam("form").queryParam("token", info.getToken());
+                    .pathSegment("reissue").pathSegment("resetpassword").queryParam("form")
+                    .queryParam("token", info.getToken());
             String passwordResetUrl = uriBuilder.build().toString();
 
             mailSharedService.send(account.getEmail(), passwordResetUrl);
@@ -131,36 +127,31 @@ public class PasswordReissueServiceImpl implements PasswordReissueService {
     @Override
     @Transactional(readOnly = true)
     public PasswordReissueInfo findOne(String token) {
-        PasswordReissueInfo info = passwordReissueInfoRepository.findOne(token);
+        PasswordReissueInfo info = passwordReissueInfoRepository.findById(token);
 
         if (info == null) {
-            throw new ResourceNotFoundException(ResultMessages.error().add(
-                    MessageKeys.E_SL_PR_5002, token));
+            throw new ResourceNotFoundException(
+                    ResultMessages.error().add(MessageKeys.E_SL_PR_5002, token));
         }
 
-        if (dateFactory.newTimestamp().toLocalDateTime().isAfter(info
-                .getExpiryDate())) {
-            throw new BusinessException(ResultMessages.error().add(
-                    MessageKeys.E_SL_PR_2001));
+        if (dateFactory.newTimestamp().toLocalDateTime().isAfter(info.getExpiryDate())) {
+            throw new BusinessException(ResultMessages.error().add(MessageKeys.E_SL_PR_2001));
         }
 
         int count = failedPasswordReissueRepository.countByToken(token);
         if (count >= tokenValidityThreshold) {
-            throw new BusinessException(ResultMessages.error().add(
-                    MessageKeys.E_SL_PR_5004));
+            throw new BusinessException(ResultMessages.error().add(MessageKeys.E_SL_PR_5004));
         }
 
         return info;
     }
 
     @Override
-    public boolean resetPassword(String username, String token, String secret,
-            String rawPassword) {
+    public boolean resetPassword(String username, String token, String secret, String rawPassword) {
         PasswordReissueInfo info = this.findOne(token);
         if (!passwordEncoder.matches(secret, info.getSecret())) {
             passwordReissueFailureSharedService.resetFailure(username, token);
-            throw new BusinessException(ResultMessages.error().add(
-                    MessageKeys.E_SL_PR_5003));
+            throw new BusinessException(ResultMessages.error().add(MessageKeys.E_SL_PR_5003));
         }
         failedPasswordReissueRepository.deleteByToken(token);
         passwordReissueInfoRepository.deleteByToken(token);

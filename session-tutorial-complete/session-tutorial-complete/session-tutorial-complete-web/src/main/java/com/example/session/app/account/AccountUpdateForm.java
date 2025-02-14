@@ -17,51 +17,46 @@ package com.example.session.app.account;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class AccountUpdateForm implements Serializable { // (1)
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     private String id;
 
     // (2)
-    @NotNull(groups = { Wizard1.class })
-    @Size(min = 1, max = 255, groups = { Wizard1.class })
+    @NotNull(groups = {Wizard1.class})
+    @Size(min = 1, max = 255, groups = {Wizard1.class})
     private String name;
 
-    @NotNull(groups = { Wizard1.class })
-    @Size(min = 1, max = 255, groups = { Wizard1.class })
-    @Email(groups = { Wizard1.class })
+    @NotNull(groups = {Wizard1.class})
+    @Size(min = 1, max = 255, groups = {Wizard1.class})
+    @Email(groups = {Wizard1.class})
     private String email;
 
-    @NotNull(groups = { Wizard1.class })
+    @NotNull(groups = {Wizard1.class})
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date birthday;
 
-    @NotNull(groups = { Wizard1.class })
-    @Size(min = 7, max = 7, groups = { Wizard1.class })
+    @NotNull(groups = {Wizard1.class})
+    @Size(min = 7, max = 7, groups = {Wizard1.class})
     private String zip;
 
-    @NotNull(groups = { Wizard1.class })
-    @Size(min = 1, max = 255, groups = { Wizard1.class })
+    @NotNull(groups = {Wizard1.class})
+    @Size(min = 1, max = 255, groups = {Wizard1.class})
     private String address;
 
-    @Size(min = 16, max = 16, groups = { Wizard2.class })
+    @Size(min = 16, max = 16, groups = {Wizard2.class})
     private String cardNumber;
 
     @DateTimeFormat(pattern = "yyyy-MM")
     private Date cardExpirationDate;
 
-    @Size(min = 1, max = 255, groups = { Wizard2.class })
+    @Size(min = 1, max = 255, groups = {Wizard2.class})
     private String cardSecurityCode;
 
     public String getId() {

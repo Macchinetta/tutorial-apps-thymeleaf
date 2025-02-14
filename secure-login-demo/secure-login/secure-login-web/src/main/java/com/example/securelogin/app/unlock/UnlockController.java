@@ -16,7 +16,6 @@
 package com.example.securelogin.app.unlock;
 
 import javax.inject.Inject;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,7 +25,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.terasoluna.gfw.common.exception.BusinessException;
-
 import com.example.securelogin.domain.service.unlock.UnlockService;
 
 @Controller
@@ -42,8 +40,7 @@ public class UnlockController {
     }
 
     @PostMapping
-    public String unlock(@Validated UnlockForm form,
-            BindingResult bindingResult, Model model,
+    public String unlock(@Validated UnlockForm form, BindingResult bindingResult, Model model,
             RedirectAttributes attributes) {
         if (bindingResult.hasErrors()) {
             return showForm(form);

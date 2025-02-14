@@ -17,29 +17,27 @@ package com.example.securelogin.domain.service.passwordhistory;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import com.example.securelogin.domain.model.PasswordHistory;
 import com.example.securelogin.domain.repository.passwordhistory.PasswordHistoryRepository;
 
 @Service
 @Transactional
-public class PasswordHistorySharedServiceImpl implements
-                                              PasswordHistorySharedService {
+public class PasswordHistorySharedServiceImpl implements PasswordHistorySharedService {
 
     @Inject
     PasswordHistoryRepository passwordHistoryRepository;
 
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public int insert(PasswordHistory history) {
         return passwordHistoryRepository.create(history);
     }
 
     @Transactional(readOnly = true)
-    public List<PasswordHistory> findHistoriesByUseFrom(String username,
-            LocalDateTime useFrom) {
+    public List<PasswordHistory> findHistoriesByUseFrom(String username, LocalDateTime useFrom) {
         return passwordHistoryRepository.findByUseFrom(username, useFrom);
     }
 

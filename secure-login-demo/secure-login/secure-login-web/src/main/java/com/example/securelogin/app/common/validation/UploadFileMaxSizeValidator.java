@@ -17,11 +17,10 @@ package com.example.securelogin.app.common.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-
 import org.springframework.web.multipart.MultipartFile;
 
-public class UploadFileMaxSizeValidator implements
-                                        ConstraintValidator<UploadFileMaxSize, MultipartFile> {
+public class UploadFileMaxSizeValidator
+        implements ConstraintValidator<UploadFileMaxSize, MultipartFile> {
 
     private UploadFileMaxSize constraint;
 
@@ -31,8 +30,7 @@ public class UploadFileMaxSizeValidator implements
     }
 
     @Override
-    public boolean isValid(MultipartFile multipartFile,
-            ConstraintValidatorContext context) {
+    public boolean isValid(MultipartFile multipartFile, ConstraintValidatorContext context) {
         if (constraint.value() < 0 || multipartFile == null) {
             return true;
         }

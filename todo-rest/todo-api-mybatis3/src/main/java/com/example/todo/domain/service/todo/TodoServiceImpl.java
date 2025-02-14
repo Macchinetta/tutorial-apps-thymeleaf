@@ -18,15 +18,12 @@ package com.example.todo.domain.service.todo;
 import java.util.Collection;
 import java.util.Date;
 import java.util.UUID;
-
 import javax.inject.Inject;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.terasoluna.gfw.common.exception.BusinessException;
 import org.terasoluna.gfw.common.exception.ResourceNotFoundException;
 import org.terasoluna.gfw.common.message.ResultMessages;
-
 import com.example.todo.domain.model.Todo;
 import com.example.todo.domain.repository.todo.TodoRepository;
 
@@ -42,7 +39,7 @@ public class TodoServiceImpl implements TodoService {
     @Override
     @Transactional(readOnly = true)
     public Todo findOne(String todoId) {
-        Todo todo = todoRepository.findOne(todoId);
+        Todo todo = todoRepository.findById(todoId);
         if (todo == null) {
             ResultMessages messages = ResultMessages.error();
             messages.add("E404", todoId);

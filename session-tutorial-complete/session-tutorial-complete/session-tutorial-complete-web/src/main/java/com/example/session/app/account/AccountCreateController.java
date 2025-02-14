@@ -16,8 +16,6 @@
 package com.example.session.app.account;
 
 import javax.inject.Inject;
-
-import com.github.dozermapper.core.Mapper;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -31,13 +29,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.terasoluna.gfw.common.message.ResultMessages;
-
 import com.example.session.domain.model.Account;
 import com.example.session.domain.service.account.AccountService;
+import com.github.dozermapper.core.Mapper;
 
 @Controller
 @RequestMapping("account/create")
-@SessionAttributes(value = { "accountCreateForm" })
+@SessionAttributes(value = {"accountCreateForm"})
 public class AccountCreateController {
 
     @Inject
@@ -48,8 +46,7 @@ public class AccountCreateController {
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(String.class,
-                new StringTrimmerEditor(true));
+        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
     }
 
     @ModelAttribute(value = "accountCreateForm")
@@ -63,8 +60,7 @@ public class AccountCreateController {
     }
 
     @PostMapping(params = "confirm")
-    public String confirmCreate(@Validated AccountCreateForm form,
-            BindingResult result) {
+    public String confirmCreate(@Validated AccountCreateForm form, BindingResult result) {
 
         if (result.hasErrors()) {
             return showCreateForm();
@@ -79,8 +75,7 @@ public class AccountCreateController {
     }
 
     @PostMapping
-    public String update(@Validated AccountCreateForm form,
-            BindingResult result) {
+    public String update(@Validated AccountCreateForm form, BindingResult result) {
 
         if (result.hasErrors()) {
             ResultMessages messages = ResultMessages.error();

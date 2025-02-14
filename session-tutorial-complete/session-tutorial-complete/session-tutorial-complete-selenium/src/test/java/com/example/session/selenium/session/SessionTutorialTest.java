@@ -18,13 +18,11 @@ package com.example.session.selenium.session;
 import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-
 import org.junit.After;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 import org.springframework.beans.factory.annotation.Value;
-
 import com.github.macchinetta.tutorial.selenium.FunctionTestSupport;
 
 public class SessionTutorialTest extends FunctionTestSupport {
@@ -40,14 +38,12 @@ public class SessionTutorialTest extends FunctionTestSupport {
 
         // check initial value
         {
-            assertThat(driver.findElement(By.id("Kokoro")).getText(), is(
-                    "Kokoro"));
-            assertThat(driver.findElement(By.xpath("//tbody/tr[3]/td[1]"))
-                    .getText(), is("〔Ame ni mo Makezu〕"));
-            assertThat(driver.findElement(By.xpath("//tbody/tr[4]/td[1]"))
-                    .getText(), is("Run, Melos!"));
-            assertThat(driver.findElement(By.id("userName")).getText(), is(
-                    "xxx"));
+            assertThat(driver.findElement(By.id("Kokoro")).getText(), is("Kokoro"));
+            assertThat(driver.findElement(By.xpath("//tbody/tr[3]/td[1]")).getText(),
+                    is("〔Ame ni mo Makezu〕"));
+            assertThat(driver.findElement(By.xpath("//tbody/tr[4]/td[1]")).getText(),
+                    is("Run, Melos!"));
+            assertThat(driver.findElement(By.id("userName")).getText(), is("xxx"));
 
         }
     }
@@ -63,31 +59,22 @@ public class SessionTutorialTest extends FunctionTestSupport {
         // input the form value and click confirm button
         {
             inputFieldAccessor.overrideValue(By.id("name"), "test", driver);
-            inputFieldAccessor.overrideValue(By.id("email"), "test@xxx.co.jp",
-                    driver);
-            inputFieldAccessor.overrideValue(By.id("password"), "password",
-                    driver);
-            inputFieldAccessor.overrideValue(By.id("confirmPassword"),
-                    "password", driver);
-            inputFieldAccessor.overrideValue(By.id("birthday"), "2016-01-01",
-                    driver);
+            inputFieldAccessor.overrideValue(By.id("email"), "test@xxx.co.jp", driver);
+            inputFieldAccessor.overrideValue(By.id("password"), "password", driver);
+            inputFieldAccessor.overrideValue(By.id("confirmPassword"), "password", driver);
+            inputFieldAccessor.overrideValue(By.id("birthday"), "2016-01-01", driver);
             inputFieldAccessor.overrideValue(By.id("zip"), "1234567", driver);
-            inputFieldAccessor.overrideValue(By.id("address"), "Nagoya",
-                    driver);
+            inputFieldAccessor.overrideValue(By.id("address"), "Nagoya", driver);
             driver.findElement(By.id("confirm")).click();
         }
 
         // check update value
         {
             assertThat(driver.findElement(By.id("name")).getText(), is("test"));
-            assertThat(driver.findElement(By.id("email")).getText(), is(
-                    "test@xxx.co.jp"));
-            assertThat(driver.findElement(By.id("birthday")).getText(), is(
-                    "2016-01-01"));
-            assertThat(driver.findElement(By.id("zip")).getText(), is(
-                    "1234567"));
-            assertThat(driver.findElement(By.id("address")).getText(), is(
-                    "Nagoya"));
+            assertThat(driver.findElement(By.id("email")).getText(), is("test@xxx.co.jp"));
+            assertThat(driver.findElement(By.id("birthday")).getText(), is("2016-01-01"));
+            assertThat(driver.findElement(By.id("zip")).getText(), is("1234567"));
+            assertThat(driver.findElement(By.id("address")).getText(), is("Nagoya"));
         }
 
         // click back button
@@ -97,28 +84,19 @@ public class SessionTutorialTest extends FunctionTestSupport {
 
         // check update value
         {
-            assertThat(inputFieldAccessor.getValue(By.id("name"), driver), is(
-                    "test"));
-            assertThat(inputFieldAccessor.getValue(By.id("email"), driver), is(
-                    "test@xxx.co.jp"));
-            assertThat(inputFieldAccessor.getValue(By.id("password"), driver),
-                    is(""));
-            assertThat(inputFieldAccessor.getValue(By.id("confirmPassword"),
-                    driver), is(""));
-            assertThat(inputFieldAccessor.getValue(By.id("birthday"), driver),
-                    is("2016-01-01"));
-            assertThat(inputFieldAccessor.getValue(By.id("zip"), driver), is(
-                    "1234567"));
-            assertThat(inputFieldAccessor.getValue(By.id("address"), driver),
-                    is("Nagoya"));
+            assertThat(inputFieldAccessor.getValue(By.id("name"), driver), is("test"));
+            assertThat(inputFieldAccessor.getValue(By.id("email"), driver), is("test@xxx.co.jp"));
+            assertThat(inputFieldAccessor.getValue(By.id("password"), driver), is(""));
+            assertThat(inputFieldAccessor.getValue(By.id("confirmPassword"), driver), is(""));
+            assertThat(inputFieldAccessor.getValue(By.id("birthday"), driver), is("2016-01-01"));
+            assertThat(inputFieldAccessor.getValue(By.id("zip"), driver), is("1234567"));
+            assertThat(inputFieldAccessor.getValue(By.id("address"), driver), is("Nagoya"));
         }
 
         // click confirm button
         {
-            inputFieldAccessor.overrideValue(By.id("password"), "password",
-                    driver);
-            inputFieldAccessor.overrideValue(By.id("confirmPassword"),
-                    "password", driver);
+            inputFieldAccessor.overrideValue(By.id("password"), "password", driver);
+            inputFieldAccessor.overrideValue(By.id("confirmPassword"), "password", driver);
             driver.findElement(By.id("confirm")).click();
         }
 
@@ -130,14 +108,10 @@ public class SessionTutorialTest extends FunctionTestSupport {
         // check update value
         {
             assertThat(driver.findElement(By.id("name")).getText(), is("test"));
-            assertThat(driver.findElement(By.id("email")).getText(), is(
-                    "test@xxx.co.jp"));
-            assertThat(driver.findElement(By.id("birthday")).getText(), is(
-                    "2016-01-01"));
-            assertThat(driver.findElement(By.id("zip")).getText(), is(
-                    "1234567"));
-            assertThat(driver.findElement(By.id("address")).getText(), is(
-                    "Nagoya"));
+            assertThat(driver.findElement(By.id("email")).getText(), is("test@xxx.co.jp"));
+            assertThat(driver.findElement(By.id("birthday")).getText(), is("2016-01-01"));
+            assertThat(driver.findElement(By.id("zip")).getText(), is("1234567"));
+            assertThat(driver.findElement(By.id("address")).getText(), is("Nagoya"));
         }
 
         // click Login page button
@@ -147,23 +121,19 @@ public class SessionTutorialTest extends FunctionTestSupport {
 
         // login
         {
-            inputFieldAccessor.overrideValue(By.id("email"), "test@xxx.co.jp",
-                    driver);
-            inputFieldAccessor.overrideValue(By.id("password"), "password",
-                    driver);
+            inputFieldAccessor.overrideValue(By.id("email"), "test@xxx.co.jp", driver);
+            inputFieldAccessor.overrideValue(By.id("password"), "password", driver);
             driver.findElement(By.id("login")).click();
         }
 
         // check initial value
         {
-            assertThat(driver.findElement(By.id("Kokoro")).getText(), is(
-                    "Kokoro"));
-            assertThat(driver.findElement(By.xpath("//tbody/tr[3]/td[1]"))
-                    .getText(), is("〔Ame ni mo Makezu〕"));
-            assertThat(driver.findElement(By.xpath("//tbody/tr[4]/td[1]"))
-                    .getText(), is("Run, Melos!"));
-            assertThat(driver.findElement(By.id("userName")).getText(), is(
-                    "test"));
+            assertThat(driver.findElement(By.id("Kokoro")).getText(), is("Kokoro"));
+            assertThat(driver.findElement(By.xpath("//tbody/tr[3]/td[1]")).getText(),
+                    is("〔Ame ni mo Makezu〕"));
+            assertThat(driver.findElement(By.xpath("//tbody/tr[4]/td[1]")).getText(),
+                    is("Run, Melos!"));
+            assertThat(driver.findElement(By.id("userName")).getText(), is("test"));
 
         }
     }
@@ -181,13 +151,12 @@ public class SessionTutorialTest extends FunctionTestSupport {
 
         // check the display page
         {
-            assertThat(driver.findElement(By.id("name")).getText(), is(
-                    "Kokoro"));
+            assertThat(driver.findElement(By.id("name")).getText(), is("Kokoro"));
             // differs depending on browser locale.
-            assertThat(driver.findElement(By.id("price")).getText(), anyOf(is(
-                    "¥ 900"), is("¥900")));
-            assertThat(driver.findElement(By.id("description")).getText(), is(
-                    "Souseki Natsume wrote this book"));
+            assertThat(driver.findElement(By.id("price")).getText(),
+                    anyOf(is("¥ 900"), is("¥900")));
+            assertThat(driver.findElement(By.id("description")).getText(),
+                    is("Souseki Natsume wrote this book"));
         }
 
         // click the home button
@@ -197,19 +166,18 @@ public class SessionTutorialTest extends FunctionTestSupport {
 
         // update category
         {
-            new Select(driver.findElement(By.id("categoryId")))
-                    .selectByVisibleText("music");
+            new Select(driver.findElement(By.id("categoryId"))).selectByVisibleText("music");
             driver.findElement(By.id("update")).click();
         }
 
         // check the display page
         {
-            assertThat(driver.findElement(By.xpath("//tbody/tr[2]/td[1]"))
-                    .getText(), is("Symphony No. 5 in C minor (Fate)"));
-            assertThat(driver.findElement(By.xpath("//tbody/tr[3]/td[1]"))
-                    .getText(), is("Eine kleine Nachtmusik"));
-            assertThat(driver.findElement(By.xpath("//tbody/tr[4]/td[1]"))
-                    .getText(), is("Swan Lake"));
+            assertThat(driver.findElement(By.xpath("//tbody/tr[2]/td[1]")).getText(),
+                    is("Symphony No. 5 in C minor (Fate)"));
+            assertThat(driver.findElement(By.xpath("//tbody/tr[3]/td[1]")).getText(),
+                    is("Eine kleine Nachtmusik"));
+            assertThat(driver.findElement(By.xpath("//tbody/tr[4]/td[1]")).getText(),
+                    is("Swan Lake"));
         }
 
         // click the item name
@@ -218,13 +186,12 @@ public class SessionTutorialTest extends FunctionTestSupport {
         }
         // check page
         {
-            assertThat(driver.findElement(By.id("name")).getText(), is(
-                    "Swan Lake"));
+            assertThat(driver.findElement(By.id("name")).getText(), is("Swan Lake"));
             // differs depending on browser locale.
-            assertThat(driver.findElement(By.id("price")).getText(), anyOf(is(
-                    "¥ 900"), is("¥900")));
-            assertThat(driver.findElement(By.id("description")).getText(), is(
-                    "Tchaikovsky composed this music"));
+            assertThat(driver.findElement(By.id("price")).getText(),
+                    anyOf(is("¥ 900"), is("¥900")));
+            assertThat(driver.findElement(By.id("description")).getText(),
+                    is("Tchaikovsky composed this music"));
         }
 
     }
@@ -242,16 +209,11 @@ public class SessionTutorialTest extends FunctionTestSupport {
 
         // check the form default page
         {
-            assertThat(inputFieldAccessor.getValue(By.id("name"), driver), is(
-                    "xxx"));
-            assertThat(inputFieldAccessor.getValue(By.id("email"), driver), is(
-                    "a@b.com"));
-            assertThat(inputFieldAccessor.getValue(By.id("birthday"), driver),
-                    is("2015-08-01"));
-            assertThat(inputFieldAccessor.getValue(By.id("zip"), driver), is(
-                    "1111111"));
-            assertThat(inputFieldAccessor.getValue(By.id("address"), driver),
-                    is("Tokyo"));
+            assertThat(inputFieldAccessor.getValue(By.id("name"), driver), is("xxx"));
+            assertThat(inputFieldAccessor.getValue(By.id("email"), driver), is("a@b.com"));
+            assertThat(inputFieldAccessor.getValue(By.id("birthday"), driver), is("2015-08-01"));
+            assertThat(inputFieldAccessor.getValue(By.id("zip"), driver), is("1111111"));
+            assertThat(inputFieldAccessor.getValue(By.id("address"), driver), is("Tokyo"));
         }
 
         // click the next button
@@ -265,10 +227,9 @@ public class SessionTutorialTest extends FunctionTestSupport {
         {
             assertThat(inputFieldAccessor.getValue(By.id("cardNumber"), driver),
                     is("1111111111111111"));
-            assertThat(inputFieldAccessor.getValue(By.id("cardExpirationDate"),
-                    driver), is("2015-08"));
-            assertThat(inputFieldAccessor.getValue(By.id("cardSecurityCode"),
-                    driver), is("111"));
+            assertThat(inputFieldAccessor.getValue(By.id("cardExpirationDate"), driver),
+                    is("2015-08"));
+            assertThat(inputFieldAccessor.getValue(By.id("cardSecurityCode"), driver), is("111"));
         }
 
         // click the buck button
@@ -278,16 +239,11 @@ public class SessionTutorialTest extends FunctionTestSupport {
 
         // check that the entered value remains
         {
-            assertThat(inputFieldAccessor.getValue(By.id("name"), driver), is(
-                    "test"));
-            assertThat(inputFieldAccessor.getValue(By.id("email"), driver), is(
-                    "a@b.com"));
-            assertThat(inputFieldAccessor.getValue(By.id("birthday"), driver),
-                    is("2015-08-01"));
-            assertThat(inputFieldAccessor.getValue(By.id("zip"), driver), is(
-                    "1111111"));
-            assertThat(inputFieldAccessor.getValue(By.id("address"), driver),
-                    is("Osaka"));
+            assertThat(inputFieldAccessor.getValue(By.id("name"), driver), is("test"));
+            assertThat(inputFieldAccessor.getValue(By.id("email"), driver), is("a@b.com"));
+            assertThat(inputFieldAccessor.getValue(By.id("birthday"), driver), is("2015-08-01"));
+            assertThat(inputFieldAccessor.getValue(By.id("zip"), driver), is("1111111"));
+            assertThat(inputFieldAccessor.getValue(By.id("address"), driver), is("Osaka"));
         }
 
         // click the next button
@@ -297,28 +253,21 @@ public class SessionTutorialTest extends FunctionTestSupport {
 
         // click the confirm button
         {
-            inputFieldAccessor.overrideValue(By.id("cardNumber"),
-                    "1234567890123456", driver);
+            inputFieldAccessor.overrideValue(By.id("cardNumber"), "1234567890123456", driver);
             driver.findElement(By.id("confirm")).click();
         }
 
         // check the input value
         {
             assertThat(driver.findElement(By.id("name")).getText(), is("test"));
-            assertThat(driver.findElement(By.id("email")).getText(), is(
-                    "a@b.com"));
-            assertThat(driver.findElement(By.id("birthday")).getText(), is(
-                    "2015-08-01"));
-            assertThat(driver.findElement(By.id("zip")).getText(), is(
-                    "1111111"));
-            assertThat(driver.findElement(By.id("address")).getText(), is(
-                    "Osaka"));
-            assertThat(driver.findElement(By.id("cardNumber")).getText(), is(
-                    "****-****-****-3456"));
-            assertThat(driver.findElement(By.id("cardExpirationDate"))
-                    .getText(), is("2015-08"));
-            assertThat(driver.findElement(By.id("cardSecurityCode")).getText(),
-                    is("111"));
+            assertThat(driver.findElement(By.id("email")).getText(), is("a@b.com"));
+            assertThat(driver.findElement(By.id("birthday")).getText(), is("2015-08-01"));
+            assertThat(driver.findElement(By.id("zip")).getText(), is("1111111"));
+            assertThat(driver.findElement(By.id("address")).getText(), is("Osaka"));
+            assertThat(driver.findElement(By.id("cardNumber")).getText(),
+                    is("****-****-****-3456"));
+            assertThat(driver.findElement(By.id("cardExpirationDate")).getText(), is("2015-08"));
+            assertThat(driver.findElement(By.id("cardSecurityCode")).getText(), is("111"));
         }
 
         // click the buck button
@@ -330,10 +279,9 @@ public class SessionTutorialTest extends FunctionTestSupport {
         {
             assertThat(inputFieldAccessor.getValue(By.id("cardNumber"), driver),
                     is("1234567890123456"));
-            assertThat(inputFieldAccessor.getValue(By.id("cardExpirationDate"),
-                    driver), is("2015-08"));
-            assertThat(inputFieldAccessor.getValue(By.id("cardSecurityCode"),
-                    driver), is("111"));
+            assertThat(inputFieldAccessor.getValue(By.id("cardExpirationDate"), driver),
+                    is("2015-08"));
+            assertThat(inputFieldAccessor.getValue(By.id("cardSecurityCode"), driver), is("111"));
         }
 
         // click the confirm button
@@ -349,20 +297,14 @@ public class SessionTutorialTest extends FunctionTestSupport {
         // check update value
         {
             assertThat(driver.findElement(By.id("name")).getText(), is("test"));
-            assertThat(driver.findElement(By.id("email")).getText(), is(
-                    "a@b.com"));
-            assertThat(driver.findElement(By.id("birthday")).getText(), is(
-                    "2015-08-01"));
-            assertThat(driver.findElement(By.id("zip")).getText(), is(
-                    "1111111"));
-            assertThat(driver.findElement(By.id("address")).getText(), is(
-                    "Osaka"));
-            assertThat(driver.findElement(By.id("cardNumber")).getText(), is(
-                    "****-****-****-3456"));
-            assertThat(driver.findElement(By.id("cardExpirationDate"))
-                    .getText(), is("2015-08"));
-            assertThat(driver.findElement(By.id("cardSecurityCode")).getText(),
-                    is("111"));
+            assertThat(driver.findElement(By.id("email")).getText(), is("a@b.com"));
+            assertThat(driver.findElement(By.id("birthday")).getText(), is("2015-08-01"));
+            assertThat(driver.findElement(By.id("zip")).getText(), is("1111111"));
+            assertThat(driver.findElement(By.id("address")).getText(), is("Osaka"));
+            assertThat(driver.findElement(By.id("cardNumber")).getText(),
+                    is("****-****-****-3456"));
+            assertThat(driver.findElement(By.id("cardExpirationDate")).getText(), is("2015-08"));
+            assertThat(driver.findElement(By.id("cardSecurityCode")).getText(), is("111"));
         }
 
         // click the home button
@@ -372,8 +314,7 @@ public class SessionTutorialTest extends FunctionTestSupport {
 
         // check update value
         {
-            assertThat(driver.findElement(By.id("userName")).getText(), is(
-                    "test"));
+            assertThat(driver.findElement(By.id("userName")).getText(), is("test"));
         }
 
         // click the Account Update button
@@ -384,8 +325,7 @@ public class SessionTutorialTest extends FunctionTestSupport {
         // click the next button
         {
             inputFieldAccessor.overrideValue(By.id("name"), "aaaaaa", driver);
-            inputFieldAccessor.overrideValue(By.id("address"), "Nagoya",
-                    driver);
+            inputFieldAccessor.overrideValue(By.id("address"), "Nagoya", driver);
             driver.findElement(By.id("next")).click();
         }
 
@@ -401,16 +341,11 @@ public class SessionTutorialTest extends FunctionTestSupport {
 
         // check update value
         {
-            assertThat(inputFieldAccessor.getValue(By.id("name"), driver), is(
-                    "test"));
-            assertThat(inputFieldAccessor.getValue(By.id("email"), driver), is(
-                    "a@b.com"));
-            assertThat(inputFieldAccessor.getValue(By.id("birthday"), driver),
-                    is("2015-08-01"));
-            assertThat(inputFieldAccessor.getValue(By.id("zip"), driver), is(
-                    "1111111"));
-            assertThat(inputFieldAccessor.getValue(By.id("address"), driver),
-                    is("Osaka"));
+            assertThat(inputFieldAccessor.getValue(By.id("name"), driver), is("test"));
+            assertThat(inputFieldAccessor.getValue(By.id("email"), driver), is("a@b.com"));
+            assertThat(inputFieldAccessor.getValue(By.id("birthday"), driver), is("2015-08-01"));
+            assertThat(inputFieldAccessor.getValue(By.id("zip"), driver), is("1111111"));
+            assertThat(inputFieldAccessor.getValue(By.id("address"), driver), is("Osaka"));
         }
 
         // Re-update the updated value to its original value
@@ -419,8 +354,7 @@ public class SessionTutorialTest extends FunctionTestSupport {
             inputFieldAccessor.overrideValue(By.id("address"), "Tokyo", driver);
             driver.findElement(By.id("next")).click();
 
-            inputFieldAccessor.overrideValue(By.id("cardNumber"),
-                    "1111111111111111", driver);
+            inputFieldAccessor.overrideValue(By.id("cardNumber"), "1111111111111111", driver);
             driver.findElement(By.id("confirm")).click();
 
             driver.findElement(By.id("update")).click();
@@ -443,16 +377,14 @@ public class SessionTutorialTest extends FunctionTestSupport {
 
         // check update value
         {
-            assertThat(driver.findElement(By.id("itemName0")).getText(), is(
-                    "Kokoro"));
+            assertThat(driver.findElement(By.id("itemName0")).getText(), is("Kokoro"));
             // differs depending on browser locale.
-            assertThat(driver.findElement(By.id("itemPrice0")).getText(), anyOf(
-                    is("¥ 900"), is("¥900")));
-            assertThat(driver.findElement(By.id("itemQuantity0")).getText(), is(
-                    "2"));
+            assertThat(driver.findElement(By.id("itemPrice0")).getText(),
+                    anyOf(is("¥ 900"), is("¥900")));
+            assertThat(driver.findElement(By.id("itemQuantity0")).getText(), is("2"));
             // differs depending on browser locale.
-            assertThat(driver.findElement(By.id("totalPrice")).getText(), anyOf(
-                    is("¥ 1,800"), is("¥1,800")));
+            assertThat(driver.findElement(By.id("totalPrice")).getText(),
+                    anyOf(is("¥ 1,800"), is("¥1,800")));
         }
 
         // click the addCart button
@@ -463,23 +395,19 @@ public class SessionTutorialTest extends FunctionTestSupport {
 
         // check update value
         {
-            assertThat(driver.findElement(By.id("itemName0")).getText(), is(
-                    "Kokoro"));
+            assertThat(driver.findElement(By.id("itemName0")).getText(), is("Kokoro"));
             // differs depending on browser locale.
-            assertThat(driver.findElement(By.id("itemPrice0")).getText(), anyOf(
-                    is("¥ 900"), is("¥900")));
-            assertThat(driver.findElement(By.id("itemQuantity0")).getText(), is(
-                    "2"));
-            assertThat(driver.findElement(By.id("itemName1")).getText(), is(
-                    "〔Ame ni mo Makezu〕"));
+            assertThat(driver.findElement(By.id("itemPrice0")).getText(),
+                    anyOf(is("¥ 900"), is("¥900")));
+            assertThat(driver.findElement(By.id("itemQuantity0")).getText(), is("2"));
+            assertThat(driver.findElement(By.id("itemName1")).getText(), is("〔Ame ni mo Makezu〕"));
             // differs depending on browser locale.
-            assertThat(driver.findElement(By.id("itemPrice1")).getText(), anyOf(
-                    is("¥ 800"), is("¥800")));
-            assertThat(driver.findElement(By.id("itemQuantity1")).getText(), is(
-                    "1"));
+            assertThat(driver.findElement(By.id("itemPrice1")).getText(),
+                    anyOf(is("¥ 800"), is("¥800")));
+            assertThat(driver.findElement(By.id("itemQuantity1")).getText(), is("1"));
             // differs depending on browser locale.
-            assertThat(driver.findElement(By.id("totalPrice")).getText(), anyOf(
-                    is("¥ 2,600"), is("¥2,600")));
+            assertThat(driver.findElement(By.id("totalPrice")).getText(),
+                    anyOf(is("¥ 2,600"), is("¥2,600")));
         }
 
         // click the Account Update button
@@ -494,23 +422,19 @@ public class SessionTutorialTest extends FunctionTestSupport {
 
         // check update value
         {
-            assertThat(driver.findElement(By.id("itemName0")).getText(), is(
-                    "Kokoro"));
+            assertThat(driver.findElement(By.id("itemName0")).getText(), is("Kokoro"));
             // differs depending on browser locale.
-            assertThat(driver.findElement(By.id("itemPrice0")).getText(), anyOf(
-                    is("¥ 900"), is("¥900")));
-            assertThat(driver.findElement(By.id("itemQuantity0")).getText(), is(
-                    "2"));
-            assertThat(driver.findElement(By.id("itemName1")).getText(), is(
-                    "〔Ame ni mo Makezu〕"));
+            assertThat(driver.findElement(By.id("itemPrice0")).getText(),
+                    anyOf(is("¥ 900"), is("¥900")));
+            assertThat(driver.findElement(By.id("itemQuantity0")).getText(), is("2"));
+            assertThat(driver.findElement(By.id("itemName1")).getText(), is("〔Ame ni mo Makezu〕"));
             // differs depending on browser locale.
-            assertThat(driver.findElement(By.id("itemPrice1")).getText(), anyOf(
-                    is("¥ 800"), is("¥800")));
-            assertThat(driver.findElement(By.id("itemQuantity1")).getText(), is(
-                    "1"));
+            assertThat(driver.findElement(By.id("itemPrice1")).getText(),
+                    anyOf(is("¥ 800"), is("¥800")));
+            assertThat(driver.findElement(By.id("itemQuantity1")).getText(), is("1"));
             // differs depending on browser locale.
-            assertThat(driver.findElement(By.id("totalPrice")).getText(), anyOf(
-                    is("¥ 2,600"), is("¥2,600")));
+            assertThat(driver.findElement(By.id("totalPrice")).getText(),
+                    anyOf(is("¥ 2,600"), is("¥2,600")));
         }
     }
 
@@ -545,16 +469,14 @@ public class SessionTutorialTest extends FunctionTestSupport {
 
         // check update value
         {
-            assertThat(driver.findElement(By.id("itemName0")).getText(), is(
-                    "Kokoro"));
+            assertThat(driver.findElement(By.id("itemName0")).getText(), is("Kokoro"));
             // differs depending on browser locale.
-            assertThat(driver.findElement(By.id("itemPrice0")).getText(), anyOf(
-                    is("¥ 900"), is("¥900")));
-            assertThat(driver.findElement(By.id("itemQuantity0")).getText(), is(
-                    "2"));
+            assertThat(driver.findElement(By.id("itemPrice0")).getText(),
+                    anyOf(is("¥ 900"), is("¥900")));
+            assertThat(driver.findElement(By.id("itemQuantity0")).getText(), is("2"));
             // differs depending on browser locale.
-            assertThat(driver.findElement(By.id("totalPrice")).getText(), anyOf(
-                    is("¥ 1,800"), is("¥1,800")));
+            assertThat(driver.findElement(By.id("totalPrice")).getText(),
+                    anyOf(is("¥ 1,800"), is("¥1,800")));
         }
 
         // Click the remove button without checking deletion
@@ -564,8 +486,8 @@ public class SessionTutorialTest extends FunctionTestSupport {
 
         // check error message
         {
-            assertThat(driver.findElement(By.id("removedItemsIds-errors"))
-                    .getText(), is("空要素は許可されていません"));
+            assertThat(driver.findElement(By.id("removedItemsIds-errors")).getText(),
+                    is("空要素は許可されていません"));
         }
     }
 
@@ -599,26 +521,21 @@ public class SessionTutorialTest extends FunctionTestSupport {
 
         // check update value
         {
-            assertThat(driver.findElement(By.id("itemName0")).getText(), is(
-                    "Kokoro"));
+            assertThat(driver.findElement(By.id("itemName0")).getText(), is("Kokoro"));
             // differs depending on browser locale.
-            assertThat(driver.findElement(By.id("itemPrice0")).getText(), anyOf(
-                    is("¥ 900"), is("¥900")));
-            assertThat(driver.findElement(By.id("itemQuantity0")).getText(), is(
-                    "2"));
-            assertThat(driver.findElement(By.id("itemName1")).getText(), is(
-                    "〔Ame ni mo Makezu〕"));
+            assertThat(driver.findElement(By.id("itemPrice0")).getText(),
+                    anyOf(is("¥ 900"), is("¥900")));
+            assertThat(driver.findElement(By.id("itemQuantity0")).getText(), is("2"));
+            assertThat(driver.findElement(By.id("itemName1")).getText(), is("〔Ame ni mo Makezu〕"));
             // differs depending on browser locale.
-            assertThat(driver.findElement(By.id("itemPrice1")).getText(), anyOf(
-                    is("¥ 800"), is("¥800")));
-            assertThat(driver.findElement(By.id("itemQuantity1")).getText(), is(
-                    "1"));
+            assertThat(driver.findElement(By.id("itemPrice1")).getText(),
+                    anyOf(is("¥ 800"), is("¥800")));
+            assertThat(driver.findElement(By.id("itemQuantity1")).getText(), is("1"));
             // differs depending on browser locale.
-            assertThat(driver.findElement(By.id("totalPrice")).getText(), anyOf(
-                    is("¥ 2,600"), is("¥2,600")));
+            assertThat(driver.findElement(By.id("totalPrice")).getText(),
+                    anyOf(is("¥ 2,600"), is("¥2,600")));
 
-            assertThat(driver.findElement(By.id("email")).getText(), is(
-                    "a@b.com"));
+            assertThat(driver.findElement(By.id("email")).getText(), is("a@b.com"));
 
         }
 
@@ -629,26 +546,21 @@ public class SessionTutorialTest extends FunctionTestSupport {
 
         // check update value
         {
-            assertThat(driver.findElement(By.id("orderNumber")).getText()
-                    .length(), is(36));
+            assertThat(driver.findElement(By.id("orderNumber")).getText().length(), is(36));
 
-            assertThat(driver.findElement(By.id("itemName0")).getText(), is(
-                    "Kokoro"));
+            assertThat(driver.findElement(By.id("itemName0")).getText(), is("Kokoro"));
             // differs depending on browser locale.
-            assertThat(driver.findElement(By.id("itemPrice0")).getText(), anyOf(
-                    is("¥ 900"), is("¥900")));
-            assertThat(driver.findElement(By.id("itemQuantity0")).getText(), is(
-                    "2"));
-            assertThat(driver.findElement(By.id("itemName1")).getText(), is(
-                    "〔Ame ni mo Makezu〕"));
+            assertThat(driver.findElement(By.id("itemPrice0")).getText(),
+                    anyOf(is("¥ 900"), is("¥900")));
+            assertThat(driver.findElement(By.id("itemQuantity0")).getText(), is("2"));
+            assertThat(driver.findElement(By.id("itemName1")).getText(), is("〔Ame ni mo Makezu〕"));
             // differs depending on browser locale.
-            assertThat(driver.findElement(By.id("itemPrice1")).getText(), anyOf(
-                    is("¥ 800"), is("¥800")));
-            assertThat(driver.findElement(By.id("itemQuantity1")).getText(), is(
-                    "1"));
+            assertThat(driver.findElement(By.id("itemPrice1")).getText(),
+                    anyOf(is("¥ 800"), is("¥800")));
+            assertThat(driver.findElement(By.id("itemQuantity1")).getText(), is("1"));
             // differs depending on browser locale.
-            assertThat(driver.findElement(By.id("totalPrice")).getText(), anyOf(
-                    is("¥ 2,600"), is("¥2,600")));
+            assertThat(driver.findElement(By.id("totalPrice")).getText(),
+                    anyOf(is("¥ 2,600"), is("¥2,600")));
         }
 
     }

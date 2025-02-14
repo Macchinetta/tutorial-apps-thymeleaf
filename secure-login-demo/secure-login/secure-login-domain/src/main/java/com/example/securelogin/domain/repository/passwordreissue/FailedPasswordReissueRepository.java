@@ -16,7 +16,6 @@
 package com.example.securelogin.domain.repository.passwordreissue;
 
 import java.time.LocalDateTime;
-
 import org.apache.ibatis.annotations.Param;
 import com.example.securelogin.domain.model.FailedPasswordReissue;
 

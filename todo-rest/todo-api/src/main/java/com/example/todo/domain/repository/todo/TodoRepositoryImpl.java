@@ -18,17 +18,15 @@ package com.example.todo.domain.repository.todo;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
 import org.springframework.stereotype.Repository;
-
 import com.example.todo.domain.model.Todo;
 
 @Repository // (1)
 public class TodoRepositoryImpl implements TodoRepository {
-    private static final Map<String, Todo> TODO_MAP = new ConcurrentHashMap<String, Todo>();
+    private static final Map<String, Todo> TODO_MAP = new ConcurrentHashMap<>();
 
     @Override
-    public Todo findOne(String todoId) {
+    public Todo findById(String todoId) {
         return TODO_MAP.get(todoId);
     }
 

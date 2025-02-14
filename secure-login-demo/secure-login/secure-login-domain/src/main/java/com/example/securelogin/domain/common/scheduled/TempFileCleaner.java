@@ -16,7 +16,6 @@
 package com.example.securelogin.domain.common.scheduled;
 
 import javax.inject.Inject;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.terasoluna.gfw.common.date.ClassicDateFactory;
 import com.example.securelogin.domain.service.fileupload.FileUploadSharedService;
@@ -33,7 +32,7 @@ public class TempFileCleaner {
     int cleanupInterval;
 
     public void cleanup() {
-        fileUploadSharedService.cleanUp(dateFactory.newTimestamp()
-                .toLocalDateTime().minusSeconds(cleanupInterval));
+        fileUploadSharedService.cleanUp(
+                dateFactory.newTimestamp().toLocalDateTime().minusSeconds(cleanupInterval));
     }
 }

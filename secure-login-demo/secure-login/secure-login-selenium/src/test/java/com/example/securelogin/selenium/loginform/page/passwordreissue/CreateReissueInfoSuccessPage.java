@@ -15,10 +15,9 @@
  */
 package com.example.securelogin.selenium.loginform.page.passwordreissue;
 
-import com.github.macchinetta.tutorial.selenium.WebDriverOperations;
-import com.example.securelogin.selenium.loginform.page.AbstractPageObject;
-
 import static org.openqa.selenium.By.id;
+import com.example.securelogin.selenium.loginform.page.AbstractPageObject;
+import com.github.macchinetta.tutorial.selenium.WebDriverOperations;
 
 public class CreateReissueInfoSuccessPage extends AbstractPageObject {
 

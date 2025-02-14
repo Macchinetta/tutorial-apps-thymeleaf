@@ -19,7 +19,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.atomic.AtomicInteger;
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
@@ -29,8 +28,7 @@ import org.springframework.util.StringUtils;
 
 public class PageSource {
 
-    private static final Logger logger = LoggerFactory.getLogger(
-            PageSource.class);
+    private static final Logger logger = LoggerFactory.getLogger(PageSource.class);
 
     @Value("${selenium.enablePageSource}")
     protected boolean enablePageSource;
@@ -60,13 +58,12 @@ public class PageSource {
         subTitle = StringUtils.hasText(subTitle) ? "-" + subTitle : "";
 
         int sequenceNo = sequence.incrementAndGet();
-        String evidenceFile = String.format("page_source_%03d%s.txt",
-                sequenceNo, subTitle);
+        String evidenceFile = String.format("page_source_%03d%s.txt", sequenceNo, subTitle);
         File pageSourceFile = new File(evidenceSavingDirectory, evidenceFile);
 
         try {
-            FileUtils.writeStringToFile(pageSourceFile, webDriver
-                    .getPageSource(), StandardCharsets.UTF_8);
+            FileUtils.writeStringToFile(pageSourceFile, webDriver.getPageSource(),
+                    StandardCharsets.UTF_8);
 
         } catch (IOException e) {
             logger.error(e.toString());

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper
     namespace="com.example.securelogin.domain.repository.account.AccountRepository">
@@ -18,7 +17,7 @@
         </collection>
     </resultMap>
 
-    <select id="findOne" parameterType="string" resultMap="accountResultMap">
+    <select id="findById" parameterType="string" resultMap="accountResultMap">
     <![CDATA[
         SELECT
             a.username,
@@ -75,7 +74,8 @@
         INSERT INTO role (
             username,
             role
-        ) VALUES
+        )
+        VALUES
         <foreach collection="roles" item="elem" separator=",">
         (
             #{username},

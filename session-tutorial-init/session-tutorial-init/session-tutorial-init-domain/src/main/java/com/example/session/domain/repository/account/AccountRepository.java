@@ -19,7 +19,7 @@ import com.example.session.domain.model.Account;
 
 public interface AccountRepository {
 
-    Account findOne(String email);
+    Account findByEmail(String email);
 
     void create(Account account);
 

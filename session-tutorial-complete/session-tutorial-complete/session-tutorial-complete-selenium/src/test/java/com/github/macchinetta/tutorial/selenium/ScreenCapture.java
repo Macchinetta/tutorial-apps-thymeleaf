@@ -18,7 +18,6 @@ package com.github.macchinetta.tutorial.selenium;
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -30,8 +29,7 @@ import org.springframework.util.StringUtils;
 
 public class ScreenCapture {
 
-    private static final Logger logger = LoggerFactory.getLogger(
-            ScreenCapture.class);
+    private static final Logger logger = LoggerFactory.getLogger(ScreenCapture.class);
 
     @Value("${selenium.enableCapture}")
     protected boolean enableCapture;
@@ -63,9 +61,7 @@ public class ScreenCapture {
             takesScreenshot = (TakesScreenshot) webDriver;
         }
         if (takesScreenshot == null) {
-            logger.warn(
-                    "WebDriver is not supported screenshot. WebDeiver is {}.",
-                    webDriver);
+            logger.warn("WebDriver is not supported screenshot. WebDeiver is {}.", webDriver);
             return;
         }
 
@@ -74,12 +70,10 @@ public class ScreenCapture {
         File screenshotFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
 
         int sequenceNo = sequence.incrementAndGet();
-        String evidenceFile = String.format("screen_capture_%03d%s.png",
-                sequenceNo, subTitle);
+        String evidenceFile = String.format("screen_capture_%03d%s.png", sequenceNo, subTitle);
 
         try {
-            FileUtils.copyFile(screenshotFile,
-                    new File(evidenceSavingDirectory, evidenceFile));
+            FileUtils.copyFile(screenshotFile, new File(evidenceSavingDirectory, evidenceFile));
         } catch (IOException e) {
             logger.error(e.toString());
         }

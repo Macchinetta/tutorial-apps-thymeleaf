@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC
-    "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.security.domain.repository.sample.SampleRepository">
 
-<!--
+    <!--
 
     <resultMap id="todoResultMap" type="Todo">
         <id property="todoId" column="todo_id" />
@@ -14,7 +12,7 @@
         <result property="createdAt" column="created_at" />
     </resultMap>
 
-    <select id="findOne" parameterType="string" resultMap="todoResultMap">
+    <select id="findById" parameterType="string" resultMap="todoResultMap">
     <![CDATA[
         SELECT
             todo_id, 

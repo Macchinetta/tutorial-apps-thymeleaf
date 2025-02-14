@@ -1,40 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.session.domain.repository.order.OrderRepository">
 
-	<insert id="createOrder" parameterType="Order">
+    <insert id="createOrder" parameterType="Order">
         INSERT INTO
             orders
         (
-        	order_id,
+            order_id,
             email,
             order_date
         )
         VALUES
         (
-            #{id}
-            ,#{email}
-            ,#{orderDate}
+            #{id},
+            #{email},
+            #{orderDate}
         )
-	</insert>
+    </insert>
 
-	<insert id="createOrderLines" parameterType="list">
+    <insert id="createOrderLines" parameterType="list">
         INSERT INTO
             order_line
         (
-        	order_id,
+            order_id,
             goods_id,
             quantity
         )
         VALUES
         <foreach collection="list" item="orderLine" separator=",">
         (
-            #{orderLine.orderId}
-            ,#{orderLine.goods.id}
-            ,#{orderLine.quantity}
+            #{orderLine.orderId},
+            #{orderLine.goods.id},
+            #{orderLine.quantity}
         )
         </foreach>
-	</insert>
+    </insert>
 
 </mapper>

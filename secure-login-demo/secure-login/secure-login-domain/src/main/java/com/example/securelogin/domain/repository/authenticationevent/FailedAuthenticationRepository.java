@@ -16,9 +16,7 @@
 package com.example.securelogin.domain.repository.authenticationevent;
 
 import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
-
 import com.example.securelogin.domain.model.FailedAuthentication;
 
 public interface FailedAuthenticationRepository {

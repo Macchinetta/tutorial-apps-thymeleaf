@@ -17,28 +17,23 @@ package com.example.todo.selenium;
 
 import static io.restassured.config.LogConfig.logConfig;
 import static io.restassured.config.RestAssuredConfig.config;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
-
 import javax.inject.Inject;
-
 import org.apache.commons.io.output.WriterOutputStream;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.github.macchinetta.tutorial.selenium.FunctionTestSupport;
-
 import io.restassured.RestAssured;
 
 public abstract class RestTestSupport extends FunctionTestSupport {
 
-    private static final Logger logger = LoggerFactory.getLogger(
-            RestTestSupport.class);
+    private static final Logger logger = LoggerFactory.getLogger(RestTestSupport.class);
 
     @Inject
     private RestLog restLog;
@@ -57,10 +52,9 @@ public abstract class RestTestSupport extends FunctionTestSupport {
 
         String testCaseName = testName.getMethodName().replaceAll("^test", "");
 
-        String simplePackageName = this.getClass().getPackage().getName()
-                .replaceAll(".*\\.", "");
-        File evidenceSavingDirectory = new File(String.format("%s/%s/%s",
-                evidenceBaseDirectory, simplePackageName, testCaseName));
+        String simplePackageName = this.getClass().getPackage().getName().replaceAll(".*\\.", "");
+        File evidenceSavingDirectory = new File(
+                String.format("%s/%s/%s", evidenceBaseDirectory, simplePackageName, testCaseName));
         restLog.setUp(evidenceSavingDirectory);
     }
 
@@ -69,8 +63,7 @@ public abstract class RestTestSupport extends FunctionTestSupport {
 
         // Initialization of applicationContextUrl
         RestAssured.baseURI = applicationContextUrl + "/api/v1/todos";
-        RestAssured.config = config().logConfig(logConfig()
-                .enablePrettyPrinting(false));
+        RestAssured.config = config().logConfig(logConfig().enablePrettyPrinting(false));
         writer = new StringWriter();
         WriterOutputStream writerOutputStream = WriterOutputStream.builder().setWriter(writer)
                 .setCharset(StandardCharsets.UTF_8).get();

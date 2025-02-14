@@ -17,7 +17,6 @@ package com.example.securelogin.domain.repository.passwordhistory;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
 import com.example.securelogin.domain.model.PasswordHistory;
 
@@ -27,6 +26,5 @@ public interface PasswordHistoryRepository {
     List<PasswordHistory> findByUseFrom(@Param("username") String username,
             @Param("useFrom") LocalDateTime useFrom);
 
-    List<PasswordHistory> findLatest(@Param("username") String username,
-            @Param("limit") int limit);
+    List<PasswordHistory> findLatest(@Param("username") String username, @Param("limit") int limit);
 }

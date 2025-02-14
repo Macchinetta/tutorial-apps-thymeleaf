@@ -3,11 +3,9 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:aop="http://www.springframework.org/schema/aop"
-    xsi:schemaLocation="
-        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd
-    ">
+    xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <import resource="classpath:/META-INF/spring/todo-mybatis3-domain.xml" />
 
@@ -21,7 +19,7 @@
                 <entry key="bcrypt">
                     <bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
                 </entry>
-                <!-- When using commented out PasswordEncoders, you need to add bcprov-jdk15on.jar to the dependency.
+                <!-- When using commented out PasswordEncoders, you need to add bcprov-jdk18on.jar to the dependency.
                 <entry key="argon2">
                     <bean class="org.springframework.security.crypto.argon2.Argon2PasswordEncoder" />
                 </entry>
@@ -74,7 +72,7 @@
 
     <!-- Filter. -->
     <bean id="exceptionLoggingFilter"
-        class="org.terasoluna.gfw.web.exception.ExceptionLoggingFilter" >
+        class="org.terasoluna.gfw.web.exception.ExceptionLoggingFilter">
         <property name="exceptionLogger" ref="exceptionLogger" />
     </bean>
 

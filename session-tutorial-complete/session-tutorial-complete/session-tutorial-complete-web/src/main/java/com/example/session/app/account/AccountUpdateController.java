@@ -16,8 +16,6 @@
 package com.example.session.app.account;
 
 import javax.inject.Inject;
-
-import com.github.dozermapper.core.Mapper;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -33,16 +31,16 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.terasoluna.gfw.common.message.ResultMessages;
-
 import com.example.session.app.account.AccountUpdateForm.Wizard1;
 import com.example.session.app.account.AccountUpdateForm.Wizard2;
 import com.example.session.domain.model.Account;
 import com.example.session.domain.service.account.AccountService;
 import com.example.session.domain.service.userdetails.AccountDetails;
+import com.github.dozermapper.core.Mapper;
 
 @Controller
 @RequestMapping("account/update")
-@SessionAttributes(value = { "accountUpdateForm" }) // (1)
+@SessionAttributes(value = {"accountUpdateForm"}) // (1)
 public class AccountUpdateController {
 
     @Inject
@@ -53,8 +51,7 @@ public class AccountUpdateController {
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(String.class,
-                new StringTrimmerEditor(true));
+        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
     }
 
     @ModelAttribute(value = "accountUpdateForm") // (2)
@@ -63,20 +60,17 @@ public class AccountUpdateController {
     }
 
     @GetMapping(params = "form1")
-    public String showUpdateForm1(
-            @AuthenticationPrincipal AccountDetails userDetails,
+    public String showUpdateForm1(@AuthenticationPrincipal AccountDetails userDetails,
             AccountUpdateForm form) { // (3)
 
-        Account account = accountService.findOne(userDetails.getAccount()
-                .getEmail());
+        Account account = accountService.findOne(userDetails.getAccount().getEmail());
         beanMapper.map(account, form);
 
         return "account/updateForm1";
     }
 
     @PostMapping(params = "form2")
-    public String showUpdateForm2(
-            @Validated(Wizard1.class) AccountUpdateForm form,
+    public String showUpdateForm2(@Validated(Wizard1.class) AccountUpdateForm form,
             BindingResult result) {
 
         if (result.hasErrors()) {
@@ -92,8 +86,7 @@ public class AccountUpdateController {
     }
 
     @PostMapping(params = "confirm")
-    public String confirmUpdate(
-            @Validated(Wizard2.class) AccountUpdateForm form,
+    public String confirmUpdate(@Validated(Wizard2.class) AccountUpdateForm form,
             BindingResult result) {
 
         if (result.hasErrors()) {
@@ -110,9 +103,8 @@ public class AccountUpdateController {
 
     @PostMapping
     public String update(@AuthenticationPrincipal AccountDetails userDetails,
-            @Validated({ Wizard1.class, Wizard2.class }) AccountUpdateForm form,
-            BindingResult result, RedirectAttributes attributes,
-            SessionStatus sessionStatus) {
+            @Validated({Wizard1.class, Wizard2.class}) AccountUpdateForm form, BindingResult result,
+            RedirectAttributes attributes, SessionStatus sessionStatus) {
 
         if (result.hasErrors()) {
             ResultMessages messages = ResultMessages.error();

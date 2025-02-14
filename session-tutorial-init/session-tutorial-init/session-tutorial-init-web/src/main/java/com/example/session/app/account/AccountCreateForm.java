@@ -17,21 +17,15 @@ package com.example.session.app.account;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import org.springframework.format.annotation.DateTimeFormat;
-
 import com.example.session.app.validation.Confirm;
 
 @Confirm(field = "password")
 public class AccountCreateForm implements Serializable {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 1L;
 
     @NotNull

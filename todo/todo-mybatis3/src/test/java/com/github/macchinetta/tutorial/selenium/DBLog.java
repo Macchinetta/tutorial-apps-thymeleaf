@@ -20,9 +20,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
-
 import javax.sql.DataSource;
-
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,27 +68,22 @@ public class DBLog {
 
         int sequenceNo = sequence.incrementAndGet();
 
-        writeLog("SELECT * FROM logging_event ORDER BY event_id ASC",
-                sequenceNo, subTitle, "logging_event");
+        writeLog("SELECT * FROM logging_event ORDER BY event_id ASC", sequenceNo, subTitle,
+                "logging_event");
 
-        writeLog(
-                "SELECT * FROM logging_event_property ORDER BY event_id ASC, mapped_key ASC",
+        writeLog("SELECT * FROM logging_event_property ORDER BY event_id ASC, mapped_key ASC",
                 sequenceNo, subTitle, "logging_event_property");
 
-        writeLog(
-                "SELECT * FROM logging_event_exception ORDER BY event_id ASC, i ASC",
-                sequenceNo, subTitle, "logging_event_exception");
+        writeLog("SELECT * FROM logging_event_exception ORDER BY event_id ASC, i ASC", sequenceNo,
+                subTitle, "logging_event_exception");
 
     }
 
-    private void writeLog(String sql, int sequenceNo, String subTitle,
-            String tableName) {
-        String evidenceFile = String.format("dblog_%03d%s-%s.log", sequenceNo,
-                subTitle, tableName);
+    private void writeLog(String sql, int sequenceNo, String subTitle, String tableName) {
+        String evidenceFile = String.format("dblog_%03d%s-%s.log", sequenceNo, subTitle, tableName);
         List<Map<String, Object>> results = jdbcTemplate.queryForList(sql);
         try {
-            FileUtils.writeLines(
-                    new File(evidenceSavingDirectory, evidenceFile), results);
+            FileUtils.writeLines(new File(evidenceSavingDirectory, evidenceFile), results);
         } catch (IOException e) {
             logger.error(e.toString());
         } finally {

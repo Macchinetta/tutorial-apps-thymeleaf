@@ -15,10 +15,9 @@
  */
 package com.example.securelogin.selenium.loginform.page.unlock;
 
-import com.github.macchinetta.tutorial.selenium.WebDriverOperations;
-import com.example.securelogin.selenium.loginform.page.AuthenticationRequiredPage;
-
 import static org.openqa.selenium.By.id;
+import com.example.securelogin.selenium.loginform.page.AuthenticationRequiredPage;
+import com.github.macchinetta.tutorial.selenium.WebDriverOperations;
 
 public class UnlockPage extends AuthenticationRequiredPage {
 
@@ -26,8 +25,7 @@ public class UnlockPage extends AuthenticationRequiredPage {
         url = "/unlock?form";
     }
 
-    public UnlockPage(WebDriverOperations webDriverOperations,
-            String applicationContextURL) {
+    public UnlockPage(WebDriverOperations webDriverOperations, String applicationContextURL) {
         super(webDriverOperations, applicationContextURL);
     }
 

@@ -16,7 +16,6 @@
 package com.example.session.app.order;
 
 import javax.inject.Inject;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -31,7 +30,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.terasoluna.gfw.common.exception.BusinessException;
 import org.terasoluna.gfw.common.message.ResultMessages;
-
 import com.example.session.app.goods.GoodsSearchCriteria;
 import com.example.session.domain.model.Cart;
 import com.example.session.domain.model.Order;
@@ -55,11 +53,9 @@ public class OrderController {
     GoodsSearchCriteria criteria;
 
     @GetMapping(params = "confirm")
-    public String confirm(@AuthenticationPrincipal AccountDetails userDetails,
-            Model model) {
+    public String confirm(@AuthenticationPrincipal AccountDetails userDetails, Model model) {
         if (cart.isEmpty()) {
-            ResultMessages messages = ResultMessages.error().add(
-                    "e.st.od.5001");
+            ResultMessages messages = ResultMessages.error().add("e.st.od.5001");
             model.addAttribute(messages);
             return "cart/viewCart";
         }
@@ -71,8 +67,7 @@ public class OrderController {
     @PostMapping
     public String order(@AuthenticationPrincipal AccountDetails userDetails,
             @RequestParam String signature, RedirectAttributes attributes) {
-        Order order = orderService.purchase(userDetails.getAccount(), cart,
-                signature); // (2)
+        Order order = orderService.purchase(userDetails.getAccount(), cart, signature); // (2)
         attributes.addFlashAttribute(order);
         criteria.clear(); // (3)
         return "redirect:/order?finish";
@@ -84,11 +79,9 @@ public class OrderController {
     }
 
     // (4)
-    @ExceptionHandler({ EmptyCartOrderException.class,
-            InvalidCartOrderException.class })
+    @ExceptionHandler({EmptyCartOrderException.class, InvalidCartOrderException.class})
     @ResponseStatus(HttpStatus.CONFLICT)
     ModelAndView handleOrderException(BusinessException e) {
-        return new ModelAndView("common/error/businessError").addObject(e
-                .getResultMessages());
+        return new ModelAndView("common/error/businessError").addObject(e.getResultMessages());
     }
 }

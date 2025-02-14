@@ -17,7 +17,6 @@ package com.example.session.app.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.util.ObjectUtils;
@@ -42,14 +41,13 @@ public class ConfirmValidator implements ConstraintValidator<Confirm, Object> {
         BeanWrapper beanWrapper = new BeanWrapperImpl(value);
         Object fieldValue = beanWrapper.getPropertyValue(field);
         Object confirmFieldValue = beanWrapper.getPropertyValue(confirmField);
-        boolean matched = ObjectUtils.nullSafeEquals(fieldValue,
-                confirmFieldValue);
+        boolean matched = ObjectUtils.nullSafeEquals(fieldValue, confirmFieldValue);
         if (matched) {
             return true;
         } else {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate(message)
-                    .addPropertyNode(field).addConstraintViolation();
+            context.buildConstraintViolationWithTemplate(message).addPropertyNode(field)
+                    .addConstraintViolation();
             return false;
         }
     }

@@ -15,15 +15,13 @@
  */
 package com.example.securelogin.selenium.loginform.page.welcome;
 
-import com.github.macchinetta.tutorial.selenium.WebDriverOperations;
+import static org.openqa.selenium.By.id;
+import org.openqa.selenium.By;
 import com.example.securelogin.selenium.loginform.page.AuthenticationRequiredPage;
 import com.example.securelogin.selenium.loginform.page.account.AccountInfoPage;
 import com.example.securelogin.selenium.loginform.page.login.LoginPage;
 import com.example.securelogin.selenium.loginform.page.unlock.UnlockPage;
-
-import org.openqa.selenium.By;
-
-import static org.openqa.selenium.By.id;
+import com.github.macchinetta.tutorial.selenium.WebDriverOperations;
 
 public class TopPage extends AuthenticationRequiredPage {
 
@@ -31,8 +29,7 @@ public class TopPage extends AuthenticationRequiredPage {
         url = "/";
     }
 
-    public TopPage(WebDriverOperations webDriverOperations,
-            String applicationContextURL) {
+    public TopPage(WebDriverOperations webDriverOperations, String applicationContextURL) {
         super(webDriverOperations, applicationContextURL);
     }
 

@@ -17,9 +17,7 @@ package com.github.macchinetta.tutorial.selenium;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
-
 import javax.sql.DataSource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -28,8 +26,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 public class DBLogCleaner {
-    private static final Logger logger = LoggerFactory.getLogger(
-            DBLogCleaner.class);
+    private static final Logger logger = LoggerFactory.getLogger(DBLogCleaner.class);
 
     private long savedPeriodMinutes = TimeUnit.MINUTES.toHours(24);
 
@@ -65,8 +62,8 @@ public class DBLogCleaner {
 
     private int cleanup(long savedPeriodMinutes) {
         // calculate cutoff date.
-        Date cutoffDate = new Date(System.currentTimeMillis()
-                - (TimeUnit.MINUTES.toMillis(savedPeriodMinutes)));
+        Date cutoffDate = new Date(
+                System.currentTimeMillis() - (TimeUnit.MINUTES.toMillis(savedPeriodMinutes)));
 
         logger.info("Begin cleanup. cutoffDate is '{}'.", cutoffDate);
 
@@ -89,10 +86,8 @@ public class DBLogCleaner {
                     "DELETE FROM logging_event_property WHERE event_id <= :eventId",
                     deleteParameters);
             deletedCount = namedParameterJdbcTemplate.update(
-                    "DELETE FROM logging_event WHERE event_id <= :eventId",
-                    deleteParameters);
-            logger.info("Finished cleanup. Deleted log count is '{}'.",
-                    deletedCount);
+                    "DELETE FROM logging_event WHERE event_id <= :eventId", deleteParameters);
+            logger.info("Finished cleanup. Deleted log count is '{}'.", deletedCount);
         } else {
             logger.info("Finished cleanup. Not exists target log.");
         }

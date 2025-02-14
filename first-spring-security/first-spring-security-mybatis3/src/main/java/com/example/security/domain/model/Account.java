@@ -62,7 +62,7 @@ public class Account implements Serializable {
 
     @Override
     public String toString() {
-        return "Account [username=" + username + ", password=" + password
-                + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+        return "Account [username=" + username + ", password=" + password + ", firstName="
+                + firstName + ", lastName=" + lastName + "]";
     }
 }

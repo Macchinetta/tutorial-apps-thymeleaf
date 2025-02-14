@@ -16,12 +16,10 @@
 package com.example.session.domain.service.account;
 
 import javax.inject.Inject;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.terasoluna.gfw.common.exception.ResourceNotFoundException;
-
 import com.example.session.domain.model.Account;
 import com.example.session.domain.repository.account.AccountRepository;
 
@@ -38,7 +36,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     @Transactional(readOnly = true)
     public Account findOne(String email) {
-        Account account = accountRespository.findOne(email);
+        Account account = accountRespository.findByEmail(email);
         if (account == null) {
             throw new ResourceNotFoundException("アカウントが存在しません");
         }

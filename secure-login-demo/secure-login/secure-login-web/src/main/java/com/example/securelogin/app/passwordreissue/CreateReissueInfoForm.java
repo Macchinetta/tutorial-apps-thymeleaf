@@ -16,9 +16,7 @@
 package com.example.securelogin.app.passwordreissue;
 
 import java.io.Serializable;
-
 import javax.validation.constraints.NotEmpty;
-
 import lombok.Data;
 
 @Data

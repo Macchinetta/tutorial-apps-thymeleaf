@@ -16,7 +16,6 @@
 package com.example.session.app.cart;
 
 import javax.inject.Inject;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,7 +25,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.terasoluna.gfw.common.message.ResultMessages;
-
 import com.example.session.domain.model.Cart;
 
 @Controller
@@ -48,11 +46,10 @@ public class CartController {
     }
 
     @PostMapping
-    public String removeFromCart(@Validated CartForm cartForm,
-            BindingResult bindingResult, Model model) {
+    public String removeFromCart(@Validated CartForm cartForm, BindingResult bindingResult,
+            Model model) {
         if (bindingResult.hasErrors()) {
-            ResultMessages messages = ResultMessages.error().add(
-                    "e.st.ca.5001");
+            ResultMessages messages = ResultMessages.error().add("e.st.ca.5001");
             model.addAttribute(messages);
             return viewCart(model);
         }

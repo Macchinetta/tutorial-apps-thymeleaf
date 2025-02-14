@@ -17,7 +17,6 @@ package com.example.securelogin.domain.model;
 
 import java.io.InputStream;
 import java.io.Serializable;
-
 import lombok.Data;
 
 @Data

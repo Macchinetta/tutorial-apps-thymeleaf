@@ -6,9 +6,14 @@
     <parent>
         <groupId>com.example.securelogin</groupId>
         <artifactId>secure-login</artifactId>
-        <version>1.8.3.RELEASE</version>
+        <version>1.8.4.RELEASE</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
+    <scm>
+        <connection>scm:git:git://github.com/Macchinetta/macchinetta-web-multi-blank-thymeleaf.git</connection>
+        <developerConnection>scm:git:ssh://github.com/Macchinetta/macchinetta-web-multi-blank-thymeleaf.git</developerConnection>
+        <url>https://github.com/Macchinetta/macchinetta-web-multi-blank-thymeleaf</url>
+    </scm>
 
     <build>
         <plugins>
@@ -49,16 +54,16 @@
         <!-- == End TERASOLUNA == -->
 
         <!-- == Begin Database == -->
-<!--         <dependency> -->
-<!--             <groupId>org.postgresql</groupId> -->
-<!--             <artifactId>postgresql</artifactId> -->
-<!--             <scope>test</scope> -->
-<!--         </dependency> -->
-<!--         <dependency> -->
-<!--             <groupId>com.oracle.database.jdbc</groupId> -->
-<!--             <artifactId>ojdbc8</artifactId> -->
-<!--             <scope>test</scope> -->
-<!--         </dependency> -->
+        <!--         <dependency> -->
+        <!--             <groupId>org.postgresql</groupId> -->
+        <!--             <artifactId>postgresql</artifactId> -->
+        <!--             <scope>test</scope> -->
+        <!--         </dependency> -->
+        <!--         <dependency> -->
+        <!--             <groupId>com.oracle.database.jdbc</groupId> -->
+        <!--             <artifactId>ojdbc8</artifactId> -->
+        <!--             <scope>test</scope> -->
+        <!--         </dependency> -->
         <!-- == End Database == -->
 
         <!-- == Begin Unit Test == -->
@@ -111,7 +116,6 @@
         -->
         <!-- == End Coding Support == -->
 
-    
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
@@ -132,7 +136,6 @@
         <dependency>
             <groupId>org.passay</groupId>
             <artifactId>passay</artifactId>
-            <version>1.6.4</version>
         </dependency>
 
         <dependency>
@@ -143,7 +146,6 @@
         <dependency>
             <groupId>com.icegreen</groupId>
             <artifactId>greenmail-spring</artifactId>
-            <version>1.6.15</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.sun.mail</groupId>
@@ -155,48 +157,46 @@
         <dependency>
             <groupId>ch.qos.logback.db</groupId>
             <artifactId>logback-classic-db</artifactId>
-            <version>1.2.11.1</version>
         </dependency>
     </dependencies>
 
-
-  <profiles>
-    <profile>
-      <id>jdk11</id>
-      <activation>
-        <jdk>11</jdk>
-      </activation>
-      <dependencies>
-        <dependency>
-          <groupId>jakarta.annotation</groupId>
-          <artifactId>jakarta.annotation-api</artifactId>
-        </dependency>
-      </dependencies>
-    </profile>
-    <profile>
-      <id>jdk17</id>
-      <activation>
-        <jdk>17</jdk>
-      </activation>
-      <dependencies>
-        <dependency>
-          <groupId>jakarta.annotation</groupId>
-          <artifactId>jakarta.annotation-api</artifactId>
-        </dependency>
-      </dependencies>
-    </profile>
-    <profile>
-      <id>jdk21</id>
-      <activation>
-        <jdk>21</jdk>
-      </activation>
-      <dependencies>
-        <dependency>
-          <groupId>jakarta.annotation</groupId>
-          <artifactId>jakarta.annotation-api</artifactId>
-        </dependency>
-      </dependencies>
-    </profile>
-  </profiles>
+    <profiles>
+        <profile>
+            <id>jdk11</id>
+            <activation>
+                <jdk>11</jdk>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>jakarta.annotation</groupId>
+                    <artifactId>jakarta.annotation-api</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>jdk17</id>
+            <activation>
+                <jdk>17</jdk>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>jakarta.annotation</groupId>
+                    <artifactId>jakarta.annotation-api</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>jdk21</id>
+            <activation>
+                <jdk>21</jdk>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>jakarta.annotation</groupId>
+                    <artifactId>jakarta.annotation-api</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 
 </project>

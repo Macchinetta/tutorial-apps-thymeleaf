@@ -16,12 +16,11 @@
 package com.example.securelogin.app.passwordchange;
 
 import java.io.Serializable;
-
+import javax.validation.constraints.NotEmpty;
 import org.terasoluna.gfw.common.validator.constraints.Compare;
+import com.example.securelogin.app.common.validation.ConfirmOldPassword;
 import com.example.securelogin.app.common.validation.NotReusedPassword;
 import com.example.securelogin.app.common.validation.StrongPassword;
-import com.example.securelogin.app.common.validation.ConfirmOldPassword;
-
 import lombok.Data;
 
 @Data
@@ -33,12 +32,16 @@ public class PasswordChangeForm implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @NotEmpty
     private String username;
 
+    @NotEmpty
     private String oldPassword;
 
+    @NotEmpty
     private String newPassword;
 
+    @NotEmpty
     private String confirmNewPassword;
 
 }

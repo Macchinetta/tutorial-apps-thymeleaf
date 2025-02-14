@@ -16,7 +16,6 @@
 package com.example.securelogin.domain.service.mail;
 
 import java.util.List;
-
 import com.example.securelogin.domain.model.ReceivedMail;
 
 public interface PasswordReissueMailSharedService {

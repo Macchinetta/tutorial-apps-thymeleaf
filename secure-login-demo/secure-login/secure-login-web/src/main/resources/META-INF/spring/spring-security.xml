@@ -2,22 +2,26 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:sec="http://www.springframework.org/schema/security"
-    xsi:schemaLocation="
-        http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd
-        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-    ">
+    xsi:schemaLocation="http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd
+                        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <sec:http pattern="/resources/**" security="none"/>
+    <sec:http pattern="/resources/**" security="none" />
     <sec:http once-per-request="false">
         <sec:form-login login-page="/login"
             login-processing-url="/login" username-parameter="username"
             password-parameter="password" />
         <sec:logout logout-url="/logout" success-handler-ref="logoutSuccessHandler"
             delete-cookies="JSESSIONID" />
-        <sec:access-denied-handler ref="accessDeniedHandler"/>
-        <sec:custom-filter ref="userIdMDCPutFilter" after="ANONYMOUS_FILTER"/>
+        <sec:access-denied-handler ref="accessDeniedHandler" />
+        <sec:custom-filter ref="userIdMDCPutFilter" after="ANONYMOUS_FILTER" />
         <sec:session-management />
-            <sec:intercept-url pattern="/login" access="permitAll" />        <sec:intercept-url pattern="/accounts/create" access="permitAll" />        <sec:intercept-url pattern="/reissue/**" access="permitAll" />        <sec:intercept-url pattern="/api/receivedmail" access="permitAll" />        <sec:intercept-url pattern="/unlock/**" access="hasRole('ADMIN')" />        <sec:intercept-url pattern="/**" access="isAuthenticated()" /></sec:http>
+        <sec:intercept-url pattern="/login" access="permitAll" />
+        <sec:intercept-url pattern="/accounts/create" access="permitAll" />
+        <sec:intercept-url pattern="/reissue/**" access="permitAll" />
+        <sec:intercept-url pattern="/api/receivedmail" access="permitAll" />
+        <sec:intercept-url pattern="/unlock/**" access="hasRole('ADMIN')" />
+        <sec:intercept-url pattern="/**" access="isAuthenticated()" />
+    </sec:http>
 
     <sec:authentication-manager>
         <sec:authentication-provider
@@ -61,7 +65,6 @@
     <!-- Put UserID into MDC -->
     <bean id="userIdMDCPutFilter" class="org.terasoluna.gfw.security.web.logging.UserIdMDCPutFilter">
     </bean>
-
 
     <bean id="logoutSuccessHandler"
         class="com.example.securelogin.app.common.security.CacheClearLogoutSuccessHandler">

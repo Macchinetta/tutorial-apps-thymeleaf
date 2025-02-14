@@ -16,9 +16,7 @@
 package com.example.session.domain.repository.goods;
 
 import java.util.List;
-
 import org.apache.ibatis.session.RowBounds;
-
 import com.example.session.domain.model.Goods;
 
 public interface GoodsRepository {
@@ -27,5 +25,5 @@ public interface GoodsRepository {
 
     long countByCategoryId(int categoryId);
 
-    Goods findOne(String id);
+    Goods findById(String id);
 }
